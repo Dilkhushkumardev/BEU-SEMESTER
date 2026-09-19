@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback, useMemo } from 'react';
 
 interface ProgressContextType {
   completedTopicIds: Set<string>;
@@ -95,53 +95,68 @@ export const ProgressProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     }
   }, [recentTopicIds]);
 
-  const markTopicCompleted = (topicId: string) => {
+  const markTopicCompleted = useCallback((topicId: string) => {
     setCompletedTopicIds(prev => {
+      if (prev.has(topicId)) return prev;
       const next = new Set(prev);
       next.add(topicId);
       return next;
     });
     setInProgressTopicIds(prev => {
+      if (!prev.has(topicId)) return prev;
       const next = new Set(prev);
       next.delete(topicId);
       return next;
     });
-  };
+  }, []);
 
-  const markTopicInProgress = (topicId: string) => {
-    if (!completedTopicIds.has(topicId)) {
-      setInProgressTopicIds(prev => {
-        const next = new Set(prev);
-        next.add(topicId);
-        return next;
-      });
-    }
-  };
+  const markTopicInProgress = useCallback((topicId: string) => {
+    setCompletedTopicIds(completed => {
+      if (!completed.has(topicId)) {
+        setInProgressTopicIds(prev => {
+          if (prev.has(topicId)) return prev;
+          const next = new Set(prev);
+          next.add(topicId);
+          return next;
+        });
+      }
+      return completed;
+    });
+  }, []);
 
-  const toggleTopicCompleted = (topicId: string) => {
-    if (completedTopicIds.has(topicId)) {
-      setCompletedTopicIds(prev => {
+  const toggleTopicCompleted = useCallback((topicId: string) => {
+    setCompletedTopicIds(prev => {
+      if (prev.has(topicId)) {
         const next = new Set(prev);
         next.delete(topicId);
+        setInProgressTopicIds(inProg => {
+          if (inProg.has(topicId)) return inProg;
+          const inProgNext = new Set(inProg);
+          inProgNext.add(topicId);
+          return inProgNext;
+        });
         return next;
-      });
-      setInProgressTopicIds(prev => {
+      } else {
         const next = new Set(prev);
         next.add(topicId);
+        setInProgressTopicIds(inProg => {
+          if (!inProg.has(topicId)) return inProg;
+          const inProgNext = new Set(inProg);
+          inProgNext.delete(topicId);
+          return inProgNext;
+        });
         return next;
-      });
-    } else {
-      markTopicCompleted(topicId);
-    }
-  };
+      }
+    });
+  }, []);
 
-  const getTopicStatus = (topicId: string): 'completed' | 'in_progress' | 'not_started' => {
+  const getTopicStatus = useCallback((topicId: string): 'completed' | 'in_progress' | 'not_started' => {
     if (completedTopicIds.has(topicId)) return 'completed';
     if (inProgressTopicIds.has(topicId)) return 'in_progress';
     return 'not_started';
-  };
+  }, [completedTopicIds, inProgressTopicIds]);
 
-  const toggleLabCompleted = (labId: string) => {
+  const toggleLabCompleted = useCallback((labId: string) => {
     setCompletedLabIds(prev => {
       const next = new Set(prev);
       if (next.has(labId)) {
@@ -151,60 +166,82 @@ export const ProgressProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       }
       return next;
     });
-  };
+  }, []);
 
-  const isLabCompleted = (labId: string): boolean => {
+  const isLabCompleted = useCallback((labId: string): boolean => {
     return completedLabIds.has(labId);
-  };
+  }, [completedLabIds]);
 
-  const addRecentlyViewed = (topicId: string) => {
+  const addRecentlyViewed = useCallback((topicId: string) => {
     setRecentTopicIds(prev => {
+      if (prev[0] === topicId) return prev;
       const filtered = prev.filter(id => id !== topicId);
       return [topicId, ...filtered].slice(0, 10);
     });
     markTopicInProgress(topicId);
-  };
+  }, [markTopicInProgress]);
 
-  const getSubjectProgress = (topicIds: string[]): number => {
+  const getSubjectProgress = useCallback((topicIds: string[]): number => {
     if (!topicIds.length) return 0;
     const completed = topicIds.filter(id => completedTopicIds.has(id)).length;
     return Math.round((completed / topicIds.length) * 100);
-  };
+  }, [completedTopicIds]);
 
-  const resetAllProgress = () => {
+  const resetAllProgress = useCallback(() => {
     setCompletedTopicIds(new Set<string>());
     setInProgressTopicIds(new Set<string>());
     setCompletedLabIds(new Set<string>());
     setRecentTopicIds([]);
-    localStorage.removeItem(`${STORAGE_KEY}_completed_topics`);
-    localStorage.removeItem(`${STORAGE_KEY}_inprogress_topics`);
-    localStorage.removeItem(`${STORAGE_KEY}_completed_labs`);
-    localStorage.removeItem(`${STORAGE_KEY}_recent_topics`);
-  };
+    try {
+      localStorage.removeItem(`${STORAGE_KEY}_completed_topics`);
+      localStorage.removeItem(`${STORAGE_KEY}_inprogress_topics`);
+      localStorage.removeItem(`${STORAGE_KEY}_completed_labs`);
+      localStorage.removeItem(`${STORAGE_KEY}_recent_topics`);
+    } catch (e) {
+      console.error(e);
+    }
+  }, []);
+
+  const stats = useMemo(() => ({
+    completedTopicsCount: completedTopicIds.size,
+    inProgressTopicsCount: inProgressTopicIds.size,
+    completedLabsCount: completedLabIds.size,
+  }), [completedTopicIds.size, inProgressTopicIds.size, completedLabIds.size]);
+
+  const contextValue = useMemo(() => ({
+    completedTopicIds,
+    inProgressTopicIds,
+    completedLabIds,
+    recentTopicIds,
+    markTopicCompleted,
+    markTopicInProgress,
+    toggleTopicCompleted,
+    getTopicStatus,
+    toggleLabCompleted,
+    isLabCompleted,
+    addRecentlyViewed,
+    getSubjectProgress,
+    resetAllProgress,
+    stats,
+  }), [
+    completedTopicIds,
+    inProgressTopicIds,
+    completedLabIds,
+    recentTopicIds,
+    markTopicCompleted,
+    markTopicInProgress,
+    toggleTopicCompleted,
+    getTopicStatus,
+    toggleLabCompleted,
+    isLabCompleted,
+    addRecentlyViewed,
+    getSubjectProgress,
+    resetAllProgress,
+    stats,
+  ]);
 
   return (
-    <ProgressContext.Provider
-      value={{
-        completedTopicIds,
-        inProgressTopicIds,
-        completedLabIds,
-        recentTopicIds,
-        markTopicCompleted,
-        markTopicInProgress,
-        toggleTopicCompleted,
-        getTopicStatus,
-        toggleLabCompleted,
-        isLabCompleted,
-        addRecentlyViewed,
-        getSubjectProgress,
-        resetAllProgress,
-        stats: {
-          completedTopicsCount: completedTopicIds.size,
-          inProgressTopicsCount: inProgressTopicIds.size,
-          completedLabsCount: completedLabIds.size,
-        }
-      }}
-    >
+    <ProgressContext.Provider value={contextValue}>
       {children}
     </ProgressContext.Provider>
   );

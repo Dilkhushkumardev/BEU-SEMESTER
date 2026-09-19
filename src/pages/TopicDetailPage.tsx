@@ -55,7 +55,6 @@ export const TopicDetailPage: React.FC<TopicDetailPageProps> = ({ subjectId, top
   useEffect(() => {
     if (topicId) {
       addRecentlyViewed(topicId);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }, [topicId, addRecentlyViewed]);
 

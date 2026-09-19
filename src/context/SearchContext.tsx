@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback, useMemo } from 'react';
 
 interface SearchContextType {
   isSearchOpen: boolean;
@@ -15,11 +15,11 @@ export const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
-  const openSearch = () => setIsSearchOpen(true);
-  const closeSearch = () => {
+  const openSearch = useCallback(() => setIsSearchOpen(true), []);
+  const closeSearch = useCallback(() => {
     setIsSearchOpen(false);
     setSearchQuery('');
-  };
+  }, []);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -34,19 +34,24 @@ export const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isSearchOpen]);
+  }, [isSearchOpen, closeSearch]);
+
+  const contextValue = useMemo(() => ({
+    isSearchOpen,
+    openSearch,
+    closeSearch,
+    setIsSearchOpen,
+    searchQuery,
+    setSearchQuery,
+  }), [
+    isSearchOpen,
+    openSearch,
+    closeSearch,
+    searchQuery,
+  ]);
 
   return (
-    <SearchContext.Provider
-      value={{
-        isSearchOpen,
-        openSearch,
-        closeSearch,
-        setIsSearchOpen,
-        searchQuery,
-        setSearchQuery,
-      }}
-    >
+    <SearchContext.Provider value={contextValue}>
       {children}
     </SearchContext.Provider>
   );

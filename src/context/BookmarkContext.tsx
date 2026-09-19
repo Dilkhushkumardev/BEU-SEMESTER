@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback, useMemo } from 'react';
 
 interface BookmarkContextType {
   bookmarkedTopicIds: Set<string>;
@@ -69,7 +69,7 @@ export const BookmarkProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     }
   }, [bookmarkedLabIds]);
 
-  const toggleBookmarkTopic = (topicId: string) => {
+  const toggleBookmarkTopic = useCallback((topicId: string) => {
     setBookmarkedTopicIds(prev => {
       const next = new Set(prev);
       if (next.has(topicId)) {
@@ -79,13 +79,13 @@ export const BookmarkProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       }
       return next;
     });
-  };
+  }, []);
 
-  const isTopicBookmarked = (topicId: string): boolean => {
+  const isTopicBookmarked = useCallback((topicId: string): boolean => {
     return bookmarkedTopicIds.has(topicId);
-  };
+  }, [bookmarkedTopicIds]);
 
-  const toggleBookmarkFormula = (formulaId: string) => {
+  const toggleBookmarkFormula = useCallback((formulaId: string) => {
     setBookmarkedFormulaIds(prev => {
       const next = new Set(prev);
       if (next.has(formulaId)) {
@@ -95,13 +95,13 @@ export const BookmarkProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       }
       return next;
     });
-  };
+  }, []);
 
-  const isFormulaBookmarked = (formulaId: string): boolean => {
+  const isFormulaBookmarked = useCallback((formulaId: string): boolean => {
     return bookmarkedFormulaIds.has(formulaId);
-  };
+  }, [bookmarkedFormulaIds]);
 
-  const toggleBookmarkLab = (labId: string) => {
+  const toggleBookmarkLab = useCallback((labId: string) => {
     setBookmarkedLabIds(prev => {
       const next = new Set(prev);
       if (next.has(labId)) {
@@ -111,29 +111,40 @@ export const BookmarkProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       }
       return next;
     });
-  };
+  }, []);
 
-  const isLabBookmarked = (labId: string): boolean => {
+  const isLabBookmarked = useCallback((labId: string): boolean => {
     return bookmarkedLabIds.has(labId);
-  };
+  }, [bookmarkedLabIds]);
 
   const totalBookmarksCount = bookmarkedTopicIds.size + bookmarkedFormulaIds.size + bookmarkedLabIds.size;
 
+  const contextValue = useMemo(() => ({
+    bookmarkedTopicIds,
+    bookmarkedFormulaIds,
+    bookmarkedLabIds,
+    toggleBookmarkTopic,
+    isTopicBookmarked,
+    toggleBookmarkFormula,
+    isFormulaBookmarked,
+    toggleBookmarkLab,
+    isLabBookmarked,
+    totalBookmarksCount,
+  }), [
+    bookmarkedTopicIds,
+    bookmarkedFormulaIds,
+    bookmarkedLabIds,
+    toggleBookmarkTopic,
+    isTopicBookmarked,
+    toggleBookmarkFormula,
+    isFormulaBookmarked,
+    toggleBookmarkLab,
+    isLabBookmarked,
+    totalBookmarksCount,
+  ]);
+
   return (
-    <BookmarkContext.Provider
-      value={{
-        bookmarkedTopicIds,
-        bookmarkedFormulaIds,
-        bookmarkedLabIds,
-        toggleBookmarkTopic,
-        isTopicBookmarked,
-        toggleBookmarkFormula,
-        isFormulaBookmarked,
-        toggleBookmarkLab,
-        isLabBookmarked,
-        totalBookmarksCount,
-      }}
-    >
+    <BookmarkContext.Provider value={contextValue}>
       {children}
     </BookmarkContext.Provider>
   );
