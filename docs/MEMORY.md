@@ -19,6 +19,7 @@ This file documents the living runtime state of **Semester Point**. It is update
 - **Global Search:** `Ctrl/Cmd + K` search modal indexing subjects, topics, formulas, and labs.
 - **Progress & Bookmarks Engine:** LocalStorage tracking topic completion, reading history, and saved bookmarks.
 - **Pre-Exam Quick Revision:** Flash summary cards for high-yield pre-exam preparation.
+- **GeeksforGeeks Style In-Depth Notes & Visuals:** Added sticky section navigator, quick fact matrix, and 20+ specialized SVG technical schematics in `AIVisualDiagram.tsx`.
 - **Enhanced Documentation & Presentation:** High-impact `README.md` and complete `docs/` suite created.
 - **Standardized Vibe Coding System:** Complete `docs/` suite and `.cursor/rules/` implemented.
 
