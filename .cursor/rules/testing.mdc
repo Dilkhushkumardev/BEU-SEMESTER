@@ -1,0 +1,11 @@
+---
+description: Verification and testing rules for Semester Point
+globs: *
+---
+
+# Testing & Quality Gates
+
+- **Type Checking:** Run `npm run typecheck` to ensure 0 TypeScript errors.
+- **Linting:** Run `npm run lint` (Oxlint) to catch potential syntax or dead code issues.
+- **Build Validation:** Run `npm run build` before pushing to verify production asset bundling.
+- **Verification Matrix:** Check modified features against `docs/TEST_PLAN.md` across mobile and desktop viewports.

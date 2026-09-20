@@ -1,0 +1,16 @@
+---
+description: Frontend and UI styling guidelines for Semester Point
+globs: src/**/*.tsx, src/**/*.ts, src/**/*.css
+---
+
+# Frontend & UI Guidelines
+
+- **Design System:** Follow `docs/DESIGN.md` explicitly.
+  - Background: Deep space navy `#050816`
+  - Cards: `bg-slate-900/60 backdrop-blur-md border border-slate-800/80 rounded-2xl`
+  - Accents: Blue (`#3B82F6`), Cyan (`#06B6D4`), Purple (`#8B5CF6`), Emerald (`#10B981`)
+  - Fonts: `Outfit` for display headings, `Inter` for body, `JetBrains Mono` for math & code.
+- **Responsiveness:** Ensure all components adapt seamlessly to mobile (375px), tablet (768px), and desktop (1440px).
+- **Interactive States:** Provide hover micro-interactions, smooth transitions (`duration-300`), visible focus rings, and proper empty/loading states.
+- **Formulas:** Always use `<MathView math={...} />` for rendering KaTeX equations.
+- **Icons:** Use tree-shakeable icons from `lucide-react`.

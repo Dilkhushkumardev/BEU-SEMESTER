@@ -1,0 +1,12 @@
+---
+description: General development standards and constraints for Semester Point
+globs: *
+---
+
+# General Development Rules
+
+- **Language:** TypeScript only. Avoid `any` types; use explicit interfaces from `src/types/`.
+- **Modularity:** Keep functions and components small and focused (< 250 lines).
+- **No Duplicate Logic:** Reuse existing components from `src/components/` and context hooks from `src/context/`.
+- **Surgical Edits:** Never modify unrelated files or change syllabus JSON structures unless specifically requested.
+- **Context Awareness:** Before making changes, always review `docs/PRD.md`, `docs/ARCHITECTURE.md`, `docs/DESIGN.md`, and `docs/RULES.md`.
