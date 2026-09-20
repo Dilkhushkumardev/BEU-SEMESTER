@@ -53,32 +53,65 @@ export const physicsSubject: Subject = {
           unitId: 'phy-u1',
           subjectId: 'physics-1',
           subjectCode: '100104',
-          quickDefinition: 'Division of amplitude splits an incoming light wave at a semi-reflecting interface. In Newton’s Rings, interference occurs between light reflected from the bottom surface of a plano-convex lens and the top surface of a flat glass plate enclosing a thin wedge-shaped air film.',
-          whyItMatters: 'Interferometry allows optical metrology with sub-nanometer precision (e.g. measuring lens curvature, testing optical flatness, and detecting gravitational waves in LIGO).',
+          quickDefinition: 'Division of amplitude is an optical interference mechanism where an incident wavefront is divided into two or more beams of reduced amplitude at a partially reflecting boundary. In Newton’s Rings, interference takes place between monochromatic light waves reflected from the top and bottom boundaries of a thin, enclosed air film formed between a large-radius plano-convex lens and an optically plane glass plate, producing circular fringes of equal thickness.',
+          whyItMatters: 'Newton’s Rings and interferometry represent the gold standard in ultra-precision optical metrology, enabling sub-nanometer measurement of optical surface flatness, lens curvature radius R, refractive indices of microscopic liquids, and gravitational wave detection in LIGO.',
           coreConcept: [
             {
-              heading: 'Newton’s Rings Setup & Optical Path Difference',
+              heading: '1. Geometric Derivation of Air Film Thickness (t = r² / 2R)',
               paragraphs: [
-                'A plano-convex lens of large radius of curvature R rests on an optically flat glass plate, enclosing an air film of variable thickness t = r^2 / (2R).',
-                'Reflected rays from the upper and lower surfaces of the air film interfere. The ray reflected from the denser glass plate undergoes an additional phase shift of π (path difference λ/2 by Stokes’ treatment).',
-                'Total Path Difference: Δ = 2t + λ/2 = r^2/R + λ/2.'
+                'Consider a plano-convex lens of very large radius of curvature R resting on a perfectly flat glass plate. At the point of contact O, the thickness of the enclosed air film is zero (t = 0), and it increases symmetrically outward in all radial directions.',
+                'Let C be the center of curvature of the spherical lens surface. Let r be the radius of a circular ring at a point where the air film thickness is t.',
+                'Applying the Pythagorean theorem in the right-angled triangle formed by the radius of curvature R, radius r, and distance (R - t):',
+                'R² = (R - t)² + r²  ==>  R² = R² - 2Rt + t² + r²',
+                '2Rt - t² = r²',
+                'Since the radius of curvature R is very large (~100 cm to 200 cm) and the film thickness t is on the order of a few micrometers, t² is negligibly small compared to 2Rt (t² << 2Rt).',
+                'Neglecting t² gives the exact thickness relation: 2Rt ≈ r²  ==>  t = r² / (2R).'
+              ],
+              bulletPoints: [
+                'Thickness t increases proportionally to the square of radial distance r from the contact point.',
+                'Loci of constant thickness t are concentric circles, producing perfectly circular interference fringes centered at the contact point.',
+                'At the exact center of contact (r = 0), the physical thickness t = 0.'
               ]
             },
             {
-              heading: 'Ring Diameter Conditions',
+              heading: '2. Optical Path Difference & Stokes’ Phase Change Rule',
               paragraphs: [
-                'For Dark Rings: Δ = (2n + 1) λ/2 ==> r_n^2 / R = n λ ==> D_n^2 = 4n R λ ==> D_n ∝ √n.',
-                'For Bright Rings: Δ = n λ ==> D_n^2 = 2(2n - 1) R λ ==> D_n ∝ √(2n - 1).',
-                'Central spot is DARK in reflected light because at point of contact t = 0, Δ = λ/2.',
-                'Wavelength measurement formula: λ = (D_{n+p}^2 - D_n^2) / (4 p R).'
+                'When a monochromatic parallel beam of wavelength λ falls normally on the glass plate at 45°, it is reflected normally downwards onto the lens-plate system.',
+                'Ray 1 reflects from the bottom curved surface of the lens (glass-to-air interface, reflecting from an optically rarer medium, hence undergoing ZERO phase change).',
+                'Ray 2 passes through the air film of thickness t, reflects from the top surface of the flat glass plate (air-to-glass interface, reflecting from an optically denser medium), and travels back through the film.',
+                'According to Stokes’ principle of optical reversibility, reflection from a denser medium introduces an abrupt phase shift of π radians, equivalent to an additional optical path difference of λ/2.',
+                'The total effective optical path difference Δ between the two interfering rays for normal incidence (cos r = 1) in an air film (μ = 1) is given by:',
+                'Δ = 2μt cos r + λ/2  ==>  Δ = 2t + λ/2 = (r² / R) + λ/2.'
+              ],
+              bulletPoints: [
+                'Condition for Dark Rings (Destructive Interference): Δ = (2n + 1) λ/2  ==>  2t + λ/2 = (2n + 1) λ/2  ==>  2t = nλ  ==>  r_n² / R = nλ.',
+                'Diameter of nth Dark Ring: D_n = 2 r_n  ==>  D_n² = 4 r_n² = 4 n R λ  ==>  D_n = √(4 n R λ)  ==>  D_n ∝ √n.',
+                'Condition for Bright Rings (Constructive Interference): Δ = nλ  ==>  2t + λ/2 = nλ  ==>  2t = (2n - 1) λ/2  ==>  r_n² / R = (2n - 1) λ/2.',
+                'Diameter of nth Bright Ring: D_n² = 2 (2n - 1) R λ  ==>  D_n ∝ √(2n - 1).',
+                'Central Spot Behavior: At the contact point (r = 0, t = 0), Δ = λ/2. Thus, destructive interference occurs and the central fringe in reflected light is ALWAYS DARK.'
               ]
             },
             {
-              heading: 'Michelson Interferometer',
+              heading: '3. Determination of Wavelength (λ) & Refractive Index of Liquid (μ)',
               paragraphs: [
-                'Splits light via a beam splitter (half-silvered glass plate) into two perpendicular arms of lengths d_1 and d_2 with plane mirrors M_1 and M_2.',
-                'Path difference Δ = 2(d_1 - d_2) cos θ. Circular fringes form when M_1 and M_2 are strictly perpendicular; localized straight fringes form when slightly tilted.',
-                'Moving mirror M_1 by distance x shifts N fringes: x = N (λ/2).'
+                'To eliminate errors associated with identifying the exact zero-order contact point, the difference between the squares of the diameters of two well-separated dark rings (nth and (n+p)th) is used:',
+                'D_{n+p}² = 4 (n + p) R λ   and   D_n² = 4 n R λ',
+                'Subtracting the two equations gives: D_{n+p}² - D_n² = 4 (n + p) R λ - 4 n R λ = 4 p R λ',
+                'Therefore, the wavelength of the monochromatic source is: λ = (D_{n+p}² - D_n²) / (4 p R).',
+                'If a liquid of refractive index μ is placed between the lens and the glass plate, the optical path difference becomes 2μt + λ/2. The diameters reduce according to:',
+                '(D_{n+p}² - D_n²)_{liquid} = (4 p R λ) / μ',
+                'Hence, the refractive index of the liquid can be determined directly by: μ = (D_{n+p}² - D_n²)_{air} / (D_{n+p}² - D_n²)_{liquid}.'
+              ]
+            },
+            {
+              heading: '4. Michelson Interferometer Working & Fringe Classifications',
+              paragraphs: [
+                'The Michelson interferometer splits an amplitude wave into two coherent beams traveling along mutually perpendicular paths d1 and d2 via a beam splitter (a semi-silvered plane parallel glass plate P1) and an identical compensating plate P2.',
+                'Beam 1 reflects from fixed reference mirror M2, while Beam 2 reflects from movable mirror M1 mounted on a precision micrometer carriage.',
+                'When the two returning beams recombine, the optical path difference is Δ = 2(d1 - d2) cos θ.',
+                'Circular Fringes (Fringes of Equal Inclination / Haidinger Fringes): Formed when mirrors M1 and M2 are strictly perpendicular to each other. Concentric circles appear with maximum order at the center.',
+                'Localized Straight Fringes: Formed when one mirror is slightly tilted relative to the other, creating a wedge-shaped air film between M1 and virtual image M2\'.',
+                'Mirror Displacement Relation: When mirror M1 is translated along its normal by distance x, and N circular fringes cross the center of the crosshair: x = N (λ / 2)  ==>  λ = 2x / N.'
               ]
             }
           ],
@@ -148,34 +181,51 @@ export const physicsSubject: Subject = {
           unitId: 'phy-u1',
           subjectId: 'physics-1',
           subjectCode: '100104',
-          quickDefinition: 'Fraunhofer diffraction occurs when both light source and observation screen are effectively at infinite distance from the aperture (using convex lenses to create planar wavefronts). The bending of light around edges produces intensity distributions governed by sinc functions.',
-          whyItMatters: 'Sets the ultimate physical diffraction limit (Airy disk) for camera lenses, astronomical telescopes, and satellite reconnaissance resolution.',
+          quickDefinition: 'Fraunhofer diffraction is the phenomenon of wave bending and mutual interference of secondary wavelets when a planar wavefront is incident on an aperture, with both source and observation screen positioned effectively at infinity (using convergent lenses). The resulting spatial intensity distribution is governed by the sinc² function for rectangular slits and Bessel functions for circular apertures.',
+          whyItMatters: 'Fraunhofer diffraction governs the fundamental physical resolution threshold (Rayleigh criterion & Airy disk) of all imaging optics, telescope apertures, photolithography stepper lenses, and radar antennas.',
           coreConcept: [
             {
-              heading: 'Single Slit Diffraction',
+              heading: '1. Analytical Derivation of Single Slit Intensity Distribution',
               paragraphs: [
-                'A plane wavefront of wavelength λ falls on a slit of width a. Secondary wavelets interfere on a screen at angle θ.',
-                'Resultant amplitude: R = A * (sin α / α) where α = (π a sin θ) / λ.',
-                'Intensity: I = I_0 * (sin α / α)^2.',
-                'Central Maximum: at θ = 0 (α = 0), I = I_0.',
-                'Minima condition: sin α = 0 (α = ±m π, m ≠ 0) ==> a sin θ = m λ (m = 1, 2, 3, ...).',
-                'Secondary Maxima: α ≈ ±1.43 π, ±2.46 π (intensities drop drastically: I_0/22, I_0/61).'
+                'Consider a narrow rectangular slit AB of width a illuminated normally by a monochromatic plane wave of wavelength λ. According to Huygens’ principle, every point on the exposed wavefront inside the slit acts as a source of secondary wavelets.',
+                'Let the slit width a be divided into n equal strips, each of width dy = a/n. The phase difference between wavelets emerging from two adjacent strips separated by distance y from edge A at diffraction angle θ is:',
+                'δ = (2π / λ) · y sin θ.',
+                'The total resultant amplitude R obtained by vector addition (integration) across the entire slit from y = 0 to y = a is given by:',
+                'R = ∫₀ᵃ A₀ e^{i (2π y sin θ / λ)} dy = A₀ [ (e^{i (2π a sin θ / λ)} - 1) / (i 2π sin θ / λ) ].',
+                'Simplifying using Euler’s identity yields the standard Fraunhofer amplitude relation:',
+                'R = A · [ sin α / α ], where α = (π a sin θ) / λ.',
+                'The resultant intensity I(θ) observed on the focal plane screen is the square of amplitude:',
+                'I(θ) = R² = I₀ · [ sin α / α ]², where I₀ represents the peak intensity of the central principal maximum.'
+              ],
+              bulletPoints: [
+                'Central Principal Maximum (θ = 0, α = 0): By L’Hôpital’s rule, lim_{α→0} (sin α / α) = 1. Therefore, I(0) = I₀ (maximum intensity containing ~85% of total transmitted energy).',
+                'Positions of Minima (Zero Intensity): Occur when sin α = 0 while α ≠ 0, meaning α = ±mπ (m = 1, 2, 3, ...). Substituting α gives: (π a sin θ) / λ = ±mπ  ==>  a sin θ = ±mλ (m = 1, 2, 3, ...).',
+                'Positions of Secondary (Subsidiary) Maxima: Found by differentiating I with respect to α: dI/dα = 0 ==> α = tan α. Roots of this transcendental equation are α ≈ ±1.430π, ±2.459π, ±3.471π.',
+                'Relative Intensity of Secondary Maxima: I₁ ≈ I₀ / (1.43π)² ≈ I₀ / 22.2 (4.5% of central peak); I₂ ≈ I₀ / (2.46π)² ≈ I₀ / 61.7 (1.6% of central peak).'
               ]
             },
             {
-              heading: 'Double Slit Diffraction',
+              heading: '2. Double Slit Diffraction & Missing Spectral Orders',
               paragraphs: [
-                'Two slits of width a separated by opaque width b (slit separation d = a + b).',
-                'Intensity: I = 4 I_0 * (sin α / α)^2 * cos^2 β, where β = (π d sin θ) / λ.',
-                'Combines single-slit diffraction envelope (sin α / α)^2 with Young’s double-slit interference fringes cos^2 β.',
-                'Missing orders occur when a diffraction minimum coincides with an interference maximum: d / a = (a+b) / a = n / m.'
+                'In Fraunhofer double slit diffraction, two identical parallel slits of width a are separated by an opaque boundary of width b (center-to-center slit separation d = a + b).',
+                'The resultant intensity on the screen is the product of single-slit diffraction envelope and two-beam interference fringes:',
+                'I(θ) = 4 I₀ · [ sin α / α ]² · cos² β, where α = (π a sin θ) / λ and β = (π d sin θ) / λ = [ π (a + b) sin θ ] / λ.',
+                'The factor [ sin α / α ]² represents the diffraction pattern of a single slit of width a, while cos² β represents the sharp interference fringes produced by two coherent point sources separated by distance d = a + b.',
+                'Missing Orders (Absent Spectra): Occur when an interference maximum condition coincides exactly with a single-slit diffraction minimum at the same angle θ.',
+                'Condition for nth Interference Maximum: (a + b) sin θ = n λ',
+                'Condition for mth Diffraction Minimum: a sin θ = m λ',
+                'Dividing the two conditions gives the missing order ratio: (a + b) / a = n / m  ==>  n = m · (a + b) / a.',
+                'For example, if opaque width b equals slit width a (b = a, d = 2a), then n = m(2a)/a = 2m. Thus, the 2nd, 4th, 6th, 8th... interference maxima will be completely absent from the pattern.'
               ]
             },
             {
-              heading: 'Circular Aperture & Airy Disk',
+              heading: '3. Circular Aperture Diffraction & Airy Disk Limit',
               paragraphs: [
-                'Diffraction through a circular hole of diameter D produces a central bright circular spot called the Airy disk surrounded by concentric rings.',
-                'First dark ring angle: sin θ ≈ 1.22 λ / D (Airy formula derived from Bessel functions).'
+                'When light of wavelength λ passes through a circular aperture of diameter D, the two-dimensional symmetry produces a bright central circular disk (Airy disk) surrounded by alternating concentric dark and bright rings.',
+                'The intensity distribution is derived using first-order Bessel functions J₁(x): I(θ) = I₀ · [ 2 J₁(ka sin θ) / (ka sin θ) ]².',
+                'The angular radius θ₁ of the first dark minimum ring (Airy ring boundary) is given by:',
+                'sin θ₁ ≈ θ₁ = 1.22 · (λ / D) (where angle θ₁ is measured in radians).',
+                'Linear Radius of Airy Disk on Screen at focal distance f: r_Airy = f · θ₁ = 1.22 · (λ f / D) = 1.22 · λ · (F-number).'
               ]
             }
           ],
