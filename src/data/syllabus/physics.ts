@@ -13,7 +13,7 @@ export const physicsSubject: Subject = {
   totalHours: 42,
   semester: 1,
   group: 'Group-A (CSE & Allied Branches)',
-  description: 'Covers physical wave optics, laser systems & optical fibers, electrodynamics & Maxwell equations, quantum mechanics, and solid-state semiconductors & nanomaterials for modern engineering.',
+  description: 'Comprehensive physical wave optics, laser systems & optical waveguides, Maxwell electrodynamics & EM wave propagation, quantum mechanics, and solid-state semiconductors & nanomaterials for modern computing and engineering.',
   iconName: 'Atom',
   accentColor: '#06b6d4',
   courseOutcomes: [
@@ -40,31 +40,43 @@ export const physicsSubject: Subject = {
       mappedCOs: ['CO1'],
       learningObjectives: [
         'Explain interference by division of amplitude (Newton’s rings, Michelson interferometer).',
-        'Analyze Fraunhofer single/double slit diffraction and circular aperture patterns.',
-        'Calculate grating spectra and resolving power of telescopes using Rayleigh criterion.',
-        'Understand polarization, double refraction, and Nicol prism functioning.'
+        'Analyze Fraunhofer single/double slit diffraction and circular aperture Airy patterns.',
+        'Calculate grating spectra, absent orders, and resolving power of optical instruments using Rayleigh criterion.',
+        'Understand polarization, double refraction in calcite crystals, and Nicol prism functioning.'
       ],
       topics: [
         {
           id: 'phy-u1-t1',
           topicNumber: '1.1',
-          title: 'Interference, Division of Amplitude, Newton’s Rings & Michelson Interferometer',
+          title: 'Interference of Light, Division of Amplitude, Newton’s Rings & Michelson Interferometer',
           syllabusText: 'Interference, Division of amplitude, Newton’s Ring experiment, Michelson interferometer.',
           unitId: 'phy-u1',
           subjectId: 'physics-1',
           subjectCode: '100104',
-          quickDefinition: 'Division of amplitude is an optical interference mechanism where an incident wavefront is divided into two or more beams of reduced amplitude at a partially reflecting boundary. In Newton’s Rings, interference takes place between monochromatic light waves reflected from the top and bottom boundaries of a thin, enclosed air film formed between a large-radius plano-convex lens and an optically plane glass plate, producing circular fringes of equal thickness.',
-          whyItMatters: 'Newton’s Rings and interferometry represent the gold standard in ultra-precision optical metrology, enabling sub-nanometer measurement of optical surface flatness, lens curvature radius R, refractive indices of microscopic liquids, and gravitational wave detection in LIGO.',
+          quickDefinition: 'Division of amplitude is an optical interference mechanism where an incident wavefront is divided into two or more beams of reduced amplitude at partially reflecting boundaries. In Newton’s Rings, interference occurs between monochromatic waves reflected from the upper and lower surfaces of a thin air film formed between a plano-convex lens and an optical flat glass plate, generating concentric circular fringes of equal thickness.',
+          whyItMatters: 'Interferometry is the cornerstone of ultra-precision optical metrology, enabling sub-nanometer surface roughness measurement, lens curvature radius testing, refractive index profiling of liquids, and gravitational wave detection in LIGO.',
           coreConcept: [
             {
-              heading: '1. Geometric Derivation of Air Film Thickness (t = r² / 2R)',
+              heading: '1. Superposition Principle & Coherence Conditions',
               paragraphs: [
-                'Consider a plano-convex lens of very large radius of curvature R resting on a perfectly flat glass plate. At the point of contact O, the thickness of the enclosed air film is zero (t = 0), and it increases symmetrically outward in all radial directions.',
+                'When two or more light waves travel simultaneously through a medium, the resultant displacement at any point is the vector sum of individual displacements: y = y₁ + y₂. If two waves of amplitudes a₁ and a₂ have a constant phase difference φ, the resultant intensity is given by I = a₁² + a₂² + 2a₁a₂ cos φ = I₁ + I₂ + 2√(I₁I₂) cos φ.',
+                'Constructive Interference (Bright fringes) occurs when cos φ = +1 ==> φ = 2nπ, corresponding to optical path difference Δ = nλ (n = 0, 1, 2, ...). Maximum intensity: I_max = (a₁ + a₂)² = (√I₁ + √I₂)²',
+                'Destructive Interference (Dark fringes) occurs when cos φ = -1 ==> φ = (2n - 1)π, corresponding to optical path difference Δ = (2n - 1) λ/2. Minimum intensity: I_min = (a₁ - a₂)² = (√I₁ - √I₂)²'
+              ],
+              bulletPoints: [
+                'Coherence Requirement: The two interfering sources must emit waves of identical wavelength λ, constant initial phase difference, and equal amplitudes for perfect fringe contrast (visibility γ = (I_max - I_min) / (I_max + I_min) = 1).',
+                'Division of Wavefront vs Division of Amplitude: Young’s double slit divides the incoming wavefront spatially; Newton’s rings and Michelson interferometer divide amplitude via partial reflection/transmission.'
+              ]
+            },
+            {
+              heading: '2. Geometric Derivation of Air Film Thickness (t = r² / 2R)',
+              paragraphs: [
+                'Consider a plano-convex lens of large radius of curvature R placed on a flat glass plate. At the center of contact O, the thickness of the enclosed air film is zero (t = 0), and it increases symmetrically outward in all radial directions.',
                 'Let C be the center of curvature of the spherical lens surface. Let r be the radius of a circular ring at a point where the air film thickness is t.',
-                'Applying the Pythagorean theorem in the right-angled triangle formed by the radius of curvature R, radius r, and distance (R - t):',
+                'Applying the Pythagorean theorem in the right-angled triangle formed by radius R, radius r, and distance (R - t):',
                 'R² = (R - t)² + r²  ==>  R² = R² - 2Rt + t² + r²',
                 '2Rt - t² = r²',
-                'Since the radius of curvature R is very large (~100 cm to 200 cm) and the film thickness t is on the order of a few micrometers, t² is negligibly small compared to 2Rt (t² << 2Rt).',
+                'Since R is very large (~100 cm to 200 cm) and t is on the order of micrometers, t² is negligibly small compared to 2Rt (t² << 2Rt).',
                 'Neglecting t² gives the exact thickness relation: 2Rt ≈ r²  ==>  t = r² / (2R).'
               ],
               bulletPoints: [
@@ -74,44 +86,42 @@ export const physicsSubject: Subject = {
               ]
             },
             {
-              heading: '2. Optical Path Difference & Stokes’ Phase Change Rule',
+              heading: '3. Optical Path Difference & Stokes’ Phase Shift Rule',
               paragraphs: [
                 'When a monochromatic parallel beam of wavelength λ falls normally on the glass plate at 45°, it is reflected normally downwards onto the lens-plate system.',
                 'Ray 1 reflects from the bottom curved surface of the lens (glass-to-air interface, reflecting from an optically rarer medium, hence undergoing ZERO phase change).',
                 'Ray 2 passes through the air film of thickness t, reflects from the top surface of the flat glass plate (air-to-glass interface, reflecting from an optically denser medium), and travels back through the film.',
                 'According to Stokes’ principle of optical reversibility, reflection from a denser medium introduces an abrupt phase shift of π radians, equivalent to an additional optical path difference of λ/2.',
-                'The total effective optical path difference Δ between the two interfering rays for normal incidence (cos r = 1) in an air film (μ = 1) is given by:',
-                'Δ = 2μt cos r + λ/2  ==>  Δ = 2t + λ/2 = (r² / R) + λ/2.'
+                'The total effective optical path difference Δ between the two interfering rays for normal incidence (cos r = 1) in an air film (μ = 1) is given by: Δ = 2μt cos r + λ/2 = 2t + λ/2 = (r² / R) + λ/2.'
               ],
               bulletPoints: [
                 'Condition for Dark Rings (Destructive Interference): Δ = (2n + 1) λ/2  ==>  2t + λ/2 = (2n + 1) λ/2  ==>  2t = nλ  ==>  r_n² / R = nλ.',
-                'Diameter of nth Dark Ring: D_n = 2 r_n  ==>  D_n² = 4 r_n² = 4 n R λ  ==>  D_n = √(4 n R λ)  ==>  D_n ∝ √n.',
+                'Diameter of nth Dark Ring: D_n = 2 r_n  ==>  D_n² = 4 r_n² = 4 n R λ  ==>  D_n = √(4 n R λ)  ==>  D_n ∝ √n (proportional to square root of natural numbers).',
                 'Condition for Bright Rings (Constructive Interference): Δ = nλ  ==>  2t + λ/2 = nλ  ==>  2t = (2n - 1) λ/2  ==>  r_n² / R = (2n - 1) λ/2.',
-                'Diameter of nth Bright Ring: D_n² = 2 (2n - 1) R λ  ==>  D_n ∝ √(2n - 1).',
+                'Diameter of nth Bright Ring: D_n² = 2 (2n - 1) R λ  ==>  D_n ∝ √(2n - 1) (proportional to square root of odd numbers).',
                 'Central Spot Behavior: At the contact point (r = 0, t = 0), Δ = λ/2. Thus, destructive interference occurs and the central fringe in reflected light is ALWAYS DARK.'
               ]
             },
             {
-              heading: '3. Determination of Wavelength (λ) & Refractive Index of Liquid (μ)',
+              heading: '4. Determination of Wavelength (λ) & Refractive Index of Liquid (μ)',
               paragraphs: [
                 'To eliminate errors associated with identifying the exact zero-order contact point, the difference between the squares of the diameters of two well-separated dark rings (nth and (n+p)th) is used:',
                 'D_{n+p}² = 4 (n + p) R λ   and   D_n² = 4 n R λ',
-                'Subtracting the two equations gives: D_{n+p}² - D_n² = 4 (n + p) R λ - 4 n R λ = 4 p R λ',
+                'Subtracting the two equations: D_{n+p}² - D_n² = 4 (n + p) R λ - 4 n R λ = 4 p R λ',
                 'Therefore, the wavelength of the monochromatic source is: λ = (D_{n+p}² - D_n²) / (4 p R).',
-                'If a liquid of refractive index μ is placed between the lens and the glass plate, the optical path difference becomes 2μt + λ/2. The diameters reduce according to:',
-                '(D_{n+p}² - D_n²)_{liquid} = (4 p R λ) / μ',
+                'If a transparent liquid of refractive index μ is introduced between the lens and the glass plate, the optical path difference becomes 2μt + λ/2. The diameters reduce according to: (D_{n+p}² - D_n²)_{liquid} = (4 p R λ) / μ',
                 'Hence, the refractive index of the liquid can be determined directly by: μ = (D_{n+p}² - D_n²)_{air} / (D_{n+p}² - D_n²)_{liquid}.'
               ]
             },
             {
-              heading: '4. Michelson Interferometer Working & Fringe Classifications',
+              heading: '5. Michelson Interferometer Working & Fringe Types',
               paragraphs: [
-                'The Michelson interferometer splits an amplitude wave into two coherent beams traveling along mutually perpendicular paths d1 and d2 via a beam splitter (a semi-silvered plane parallel glass plate P1) and an identical compensating plate P2.',
-                'Beam 1 reflects from fixed reference mirror M2, while Beam 2 reflects from movable mirror M1 mounted on a precision micrometer carriage.',
-                'When the two returning beams recombine, the optical path difference is Δ = 2(d1 - d2) cos θ.',
-                'Circular Fringes (Fringes of Equal Inclination / Haidinger Fringes): Formed when mirrors M1 and M2 are strictly perpendicular to each other. Concentric circles appear with maximum order at the center.',
-                'Localized Straight Fringes: Formed when one mirror is slightly tilted relative to the other, creating a wedge-shaped air film between M1 and virtual image M2\'.',
-                'Mirror Displacement Relation: When mirror M1 is translated along its normal by distance x, and N circular fringes cross the center of the crosshair: x = N (λ / 2)  ==>  λ = 2x / N.'
+                'The Michelson interferometer splits an amplitude wave into two coherent beams traveling along mutually perpendicular arms d₁ and d₂ using a beam splitter (a semi-silvered plane parallel glass plate P₁) and an identical compensating plate P₂.',
+                'Beam 1 reflects from fixed reference mirror M₂, while Beam 2 reflects from movable mirror M₁ mounted on a precision micrometer carriage.',
+                'When the two returning beams recombine at the beam splitter, the optical path difference is Δ = 2(d₁ - d₂) cos θ.',
+                'Circular Fringes (Fringes of Equal Inclination / Haidinger Fringes): Formed when mirrors M₁ and M₂ are strictly perpendicular to each other. Concentric circles appear with maximum order at the center.',
+                'Localized Straight Fringes: Formed when one mirror is slightly tilted relative to the other, creating a wedge-shaped air film between M₁ and the virtual image M₂\'.',
+                'Mirror Displacement Relation: When mirror M₁ is translated along its normal by distance x, and N circular fringes cross the center of the crosshair: x = N (λ / 2)  ==>  λ = 2x / N.'
               ]
             }
           ],
@@ -136,188 +146,256 @@ export const physicsSubject: Subject = {
             problem: 'In a Newton’s rings experiment, the diameter of the 4th and 12th dark rings are 0.40 cm and 0.70 cm respectively. If radius of curvature R = 100 cm, find the wavelength of light used.',
             solutionSteps: [
               'Step 1: Given n = 4, n + p = 12 ==> p = 8.',
-              'Step 2: D_4 = 0.40 cm ==> D_4^2 = 0.16 cm^2; D_12 = 0.70 cm ==> D_12^2 = 0.49 cm^2.',
-              'Step 3: D_12^2 - D_4^2 = 0.49 - 0.16 = 0.33 cm^2.',
+              'Step 2: D_4 = 0.40 cm ==> D_4² = 0.16 cm²; D_12 = 0.70 cm ==> D_12² = 0.49 cm².',
+              'Step 3: D_12² - D_4² = 0.49 - 0.16 = 0.33 cm².',
               'Step 4: Radius of curvature R = 100 cm.',
-              'Step 5: Apply formula: λ = (D_{n+p}^2 - D_n^2) / (4 p R) = 0.33 / (4 * 8 * 100) = 0.33 / 3200 = 1.03125 * 10^(-4) cm = 5890 Å (589.3 nm).'
+              'Step 5: Apply formula: λ = (D_{n+p}² - D_n²) / (4 p R) = 0.33 / (4 * 8 * 100) = 0.33 / 3200 = 1.03125 * 10^(-4) cm = 5890 Å (589.3 nm).'
             ],
             finalAnswer: 'Wavelength λ = 589.3 nm (5893 Å).'
           },
           engineeringApplication: {
-            title: 'Optical Surface Flatness Testing & Semiconductor Lithography',
-            description: 'Semiconductor silicon wafer surfaces must be flat to within fractions of an optical wavelength. Placing an optical flat creates interference contour maps where fringe distortions reveal nanoscale surface defects.',
-            impact: 'Prevents focus defocusing in EUV photolithography for 3nm CPU fabrication.'
+            title: 'Optical Flat Testing & Laser Gravitational Wave Detection (LIGO)',
+            description: 'Newton’s rings test the sphericity and flatness of high-end optical mirrors to within λ/20 precision. The Michelson interferometer architecture is scaled to 4 km arms in LIGO to detect gravitational wave ripples in spacetime on the order of 10^(-19) meters.',
+            impact: 'Enabled humanity’s first direct observation of colliding black holes and neutron stars.'
           },
           commonMistakes: [
             {
-              mistake: 'Assuming the central spot in Newton’s rings reflected light is bright.',
-              correction: 'The central spot is ALWAYS DARK in reflected light due to the extra π phase shift at the glass-air boundary.',
-              why: 'At contact t=0, path difference is λ/2, creating complete destructive interference.'
+              mistake: 'Forgetting the λ/2 phase change due to reflection at the flat glass plate.',
+              correction: 'Always include the Stokes phase shift Δ = 2t + λ/2 for reflected light.',
+              why: 'Reflection from a denser medium causes an abrupt phase reversal of π radians (equivalent to path difference λ/2).'
+            },
+            {
+              mistake: 'Thinking Newton’s rings are equally spaced.',
+              correction: 'Fringes get progressively closer together as order n increases because D_n ∝ √n.',
+              why: 'The radial thickness gradient dt/dr increases linearly with radius r.'
             }
           ],
           quickRevision: [
-            'Newton’s rings: circular fringes of equal thickness (wedge film).',
-            'Dark ring diameter D_n ∝ √n; Bright ring D_n ∝ √(2n-1).',
-            'λ = (D_{n+p}^2 - D_n^2) / (4pR).',
-            'Central spot is dark in reflected light, bright in transmitted light.',
-            'Michelson: 1 fringe shift = λ/2 mirror movement.'
+            'Newton’s rings form fringes of equal thickness; Michelson circular rings are fringes of equal inclination.',
+            'Air film thickness: t = r² / (2R).',
+            'Diameter of nth dark ring: D_n² = 4n R λ.',
+            'Diameter of nth bright ring: D_n² = 2(2n - 1) R λ.',
+            'Central fringe in reflected light is DARK due to Stokes’ λ/2 phase change.',
+            'Liquid film: μ = (D_{n+p}² - D_n²)_air / (D_{n+p}² - D_n²)_liquid.',
+            'Michelson displacement: x = N (λ/2).'
           ],
           examFocus: {
-            questionTypes: ['Derive expression for diameter of dark & bright Newton’s rings (7-8 Marks)', 'Explain Michelson Interferometer construction & working to find wavelength (7 Marks)', 'Numerical on finding λ or μ using Newton’s rings (5 Marks)'],
+            questionTypes: [
+              'Derive the expression for diameter of dark and bright rings in Newton’s rings experiment (8 Marks)',
+              'Explain why the central ring in Newton’s rings reflected system is dark (3 Marks)',
+              'Describe the construction and working of Michelson interferometer and explain how wavelength is measured (7-8 Marks)',
+              'Numerical problem on calculating wavelength λ or refractive index μ of liquid (5 Marks)'
+            ],
             likelyMarks: '8 to 10 Marks',
-            keyTheorems: ['Stokes’ Treatment of Reflection (π phase shift at denser medium)'],
-            tip: 'Always draw the cross-sectional ray diagram showing the plano-convex lens, glass plate, and path difference 2t cos r + λ/2.'
+            keyTheorems: ['Stokes’ Phase Change on Reflection', 'Division of Amplitude Principle'],
+            tip: 'Always state the Pythagorean approximation 2Rt - t² ≈ 2Rt clearly during the Newton’s rings derivation in university exams.'
           },
-          visualType: 'newton-rings',
-          visualCaption: 'Newton’s Rings Optical Wedge Film & Concentric Interference Rings',
-          visualExplanation: 'Diagram depicting the plano-convex lens resting on a flat glass plate, ray reflections at the wedge air film, and concentric dark/bright circular fringes.',
+          visualType: 'newtons-rings',
+          visualCaption: 'Newton’s Rings Optical Apparatus & Concentric Circular Fringe Pattern',
+          visualExplanation: 'Diagram illustrating 45° glass plate beam splitter directing monochromatic light onto plano-convex lens resting on optical flat, creating concentric dark/bright interference rings with dark center.',
           estimatedMinutes: 30
         },
         {
           id: 'phy-u1-t2',
           topicNumber: '1.2',
-          title: 'Diffraction: Fraunhofer Single Slit, Double Slit & Circular Aperture',
+          title: 'Fraunhofer Diffraction: Single Slit, Double Slit & Circular Aperture',
           syllabusText: 'Diffraction, Fraunhofer diffraction, Single and double slit, & Circular aperture.',
           unitId: 'phy-u1',
           subjectId: 'physics-1',
           subjectCode: '100104',
-          quickDefinition: 'Fraunhofer diffraction is the phenomenon of wave bending and mutual interference of secondary wavelets when a planar wavefront is incident on an aperture, with both source and observation screen positioned effectively at infinity (using convergent lenses). The resulting spatial intensity distribution is governed by the sinc² function for rectangular slits and Bessel functions for circular apertures.',
-          whyItMatters: 'Fraunhofer diffraction governs the fundamental physical resolution threshold (Rayleigh criterion & Airy disk) of all imaging optics, telescope apertures, photolithography stepper lenses, and radar antennas.',
+          quickDefinition: 'Diffraction is the bending of light waves around the sharp edges of obstacles or apertures into the geometrical shadow. In Fraunhofer diffraction, the source and the screen are effectively at infinite distances from the diffracting aperture, using convex lenses to produce plane incident and diffracted wavefronts.',
+          whyItMatters: 'Diffraction sets the fundamental physical limit (Airy disk) on resolving power in smartphone cameras, optical microscopes, photolithography steppers, and satellite imaging systems.',
           coreConcept: [
             {
-              heading: '1. Analytical Derivation of Single Slit Intensity Distribution',
+              heading: '1. Fresnel vs Fraunhofer Diffraction',
               paragraphs: [
-                'Consider a narrow rectangular slit AB of width a illuminated normally by a monochromatic plane wave of wavelength λ. According to Huygens’ principle, every point on the exposed wavefront inside the slit acts as a source of secondary wavelets.',
-                'Let the slit width a be divided into n equal strips, each of width dy = a/n. The phase difference between wavelets emerging from two adjacent strips separated by distance y from edge A at diffraction angle θ is:',
-                'δ = (2π / λ) · y sin θ.',
-                'The total resultant amplitude R obtained by vector addition (integration) across the entire slit from y = 0 to y = a is given by:',
-                'R = ∫₀ᵃ A₀ e^{i (2π y sin θ / λ)} dy = A₀ [ (e^{i (2π a sin θ / λ)} - 1) / (i 2π sin θ / λ) ].',
-                'Simplifying using Euler’s identity yields the standard Fraunhofer amplitude relation:',
-                'R = A · [ sin α / α ], where α = (π a sin θ) / λ.',
-                'The resultant intensity I(θ) observed on the focal plane screen is the square of amplitude:',
-                'I(θ) = R² = I₀ · [ sin α / α ]², where I₀ represents the peak intensity of the central principal maximum.'
+                'Diffraction is classified into two distinct regimes based on the geometric arrangement:',
+                '• Fresnel Diffraction: Source and screen are at finite distances from the diffracting obstacle. Incident and diffracted wavefronts are spherical or cylindrical. No focusing lenses are required. Mathematical treatment requires Fresnel half-period zones.',
+                '• Fraunhofer Diffraction: Source and screen are at infinite distances (or placed at the focal planes of convex lenses). Incident and diffracted wavefronts are plane wavefronts. Mathematical treatment uses simple phase integration across the aperture.'
+              ]
+            },
+            {
+              heading: '2. Fraunhofer Diffraction at a Single Slit (Derivation)',
+              paragraphs: [
+                'Consider a narrow rectangular slit AB of width a illuminated by a plane monochromatic wave of wavelength λ at normal incidence.',
+                'According to Huygens’ principle, every point along the slit width acts as a source of secondary wavelets vibrating in phase.',
+                'Let the diffracted wavelets traveling at an angle θ with the normal be focused by a convex lens onto screen point P.',
+                'The total path difference between wavelets originating from the top edge A and bottom edge B of the slit is: Δ = a sin θ.',
+                'The corresponding total phase difference across the full slit width is: 2α = (2π / λ) a sin θ  ==>  α = (π a sin θ) / λ.',
+                'Dividing the slit width into N infinitesimal sub-elements of width dy and integrating the electric field contributions across the slit from y = -a/2 to +a/2:',
+                'E(θ) = E₀ (sin α / α)',
+                'The resultant intensity distribution I(θ) on the screen is proportional to the square of amplitude: I(θ) = I₀ (sin α / α)², where I₀ is the peak intensity of the Central Maximum (at θ = 0, α = 0).'
               ],
               bulletPoints: [
-                'Central Principal Maximum (θ = 0, α = 0): By L’Hôpital’s rule, lim_{α→0} (sin α / α) = 1. Therefore, I(0) = I₀ (maximum intensity containing ~85% of total transmitted energy).',
-                'Positions of Minima (Zero Intensity): Occur when sin α = 0 while α ≠ 0, meaning α = ±mπ (m = 1, 2, 3, ...). Substituting α gives: (π a sin θ) / λ = ±mπ  ==>  a sin θ = ±mλ (m = 1, 2, 3, ...).',
-                'Positions of Secondary (Subsidiary) Maxima: Found by differentiating I with respect to α: dI/dα = 0 ==> α = tan α. Roots of this transcendental equation are α ≈ ±1.430π, ±2.459π, ±3.471π.',
-                'Relative Intensity of Secondary Maxima: I₁ ≈ I₀ / (1.43π)² ≈ I₀ / 22.2 (4.5% of central peak); I₂ ≈ I₀ / (2.46π)² ≈ I₀ / 61.7 (1.6% of central peak).'
+                'Central Maximum (Principal Maximum): At θ = 0, α = 0. Since lim_{α→0} (sin α / α) = 1, I = I₀ (broad, intensely bright central peak).',
+                'Positions of Minima (Zero Intensity): Intensity I = 0 when sin α = 0 but α ≠ 0. Thus α = ±mπ (m = 1, 2, 3, ...) ==> (π a sin θ) / λ = ±mπ  ==>  a sin θ = ±mλ (m = 1, 2, 3, ...).',
+                'Positions of Secondary Maxima: Found by differentiating I with respect to α and setting dI/dα = 0: tan α = α. The graphical intersection roots are α ≈ ±1.430π, ±2.459π, ±3.471π...',
+                'Relative Intensities: I₁ / I₀ = 1 / (1.430π)² ≈ 1 / 22 (4.5% of central peak); I₂ / I₀ ≈ 1 / 61 (1.6%); I₃ / I₀ ≈ 1 / 121 (0.8%). Most energy (>90%) is concentrated in the central maximum.'
               ]
             },
             {
-              heading: '2. Double Slit Diffraction & Missing Spectral Orders',
+              heading: '3. Angular Width & Linear Width of Central Maximum',
               paragraphs: [
-                'In Fraunhofer double slit diffraction, two identical parallel slits of width a are separated by an opaque boundary of width b (center-to-center slit separation d = a + b).',
-                'The resultant intensity on the screen is the product of single-slit diffraction envelope and two-beam interference fringes:',
-                'I(θ) = 4 I₀ · [ sin α / α ]² · cos² β, where α = (π a sin θ) / λ and β = (π d sin θ) / λ = [ π (a + b) sin θ ] / λ.',
-                'The factor [ sin α / α ]² represents the diffraction pattern of a single slit of width a, while cos² β represents the sharp interference fringes produced by two coherent point sources separated by distance d = a + b.',
-                'Missing Orders (Absent Spectra): Occur when an interference maximum condition coincides exactly with a single-slit diffraction minimum at the same angle θ.',
-                'Condition for nth Interference Maximum: (a + b) sin θ = n λ',
-                'Condition for mth Diffraction Minimum: a sin θ = m λ',
-                'Dividing the two conditions gives the missing order ratio: (a + b) / a = n / m  ==>  n = m · (a + b) / a.',
-                'For example, if opaque width b equals slit width a (b = a, d = 2a), then n = m(2a)/a = 2m. Thus, the 2nd, 4th, 6th, 8th... interference maxima will be completely absent from the pattern.'
+                'The central maximum extends symmetrically from the first minimum on the left (a sin θ = -λ) to the first minimum on the right (a sin θ = +λ).',
+                'For small diffraction angles θ, sin θ ≈ θ. Therefore, a θ = λ ==> θ = λ / a.',
+                'Angular Width (2θ): The total angular spread of the central maximum is: 2θ = 2λ / a radians.',
+                'Linear Width (β₀): If a lens of focal length f (or screen at distance D) is placed after the slit, the physical linear width on the screen is: β₀ = 2 f θ = 2 f λ / a = 2 D λ / a.',
+                'Inverse Width Scaling: If the slit width a is made narrower, the central maximum spreads out wider. If a >> λ, 2θ → 0 and rectilinear propagation is recovered.'
               ]
             },
             {
-              heading: '3. Circular Aperture Diffraction & Airy Disk Limit',
+              heading: '4. Fraunhofer Diffraction at a Double Slit',
               paragraphs: [
-                'When light of wavelength λ passes through a circular aperture of diameter D, the two-dimensional symmetry produces a bright central circular disk (Airy disk) surrounded by alternating concentric dark and bright rings.',
-                'The intensity distribution is derived using first-order Bessel functions J₁(x): I(θ) = I₀ · [ 2 J₁(ka sin θ) / (ka sin θ) ]².',
-                'The angular radius θ₁ of the first dark minimum ring (Airy ring boundary) is given by:',
-                'sin θ₁ ≈ θ₁ = 1.22 · (λ / D) (where angle θ₁ is measured in radians).',
-                'Linear Radius of Airy Disk on Screen at focal distance f: r_Airy = f · θ₁ = 1.22 · (λ f / D) = 1.22 · λ · (F-number).'
+                'Consider two identical parallel slits, each of width a, separated by an opaque space of width b. The distance between corresponding points of the two slits is d = (a + b).',
+                'The resultant amplitude on the screen is the product of single-slit diffraction of width a and two-slit Young’s interference with slit separation (a + b):',
+                'I(θ) = I₀ (sin α / α)² cos² β,   where α = (π a sin θ) / λ   and   β = (π (a + b) sin θ) / λ.',
+                'Diffraction factor (sin α / α)² acts as an outer intensity envelope that modulates the sharp interference fringes governed by cos² β.',
+                'Interference Maxima Condition: β = ±nπ  ==>  (a + b) sin θ = ±nλ (n = 0, 1, 2, ...).',
+                'Diffraction Minima Condition: α = ±mπ  ==>  a sin θ = ±mλ (m = 1, 2, 3, ...).'
+              ]
+            },
+            {
+              heading: '5. Missing Orders (Absent Spectra) in Double Slit',
+              paragraphs: [
+                'A missing order occurs when the condition for an interference maximum coincides with the condition for a diffraction minimum for the same angle θ.',
+                '(a + b) sin θ = nλ   and   a sin θ = mλ',
+                'Dividing the two equations gives the absent order condition: n / m = (a + b) / a  ==>  n = m (a + b) / a.',
+                'Example: If opaque spacing equals slit width (b = a), then n = m (2a / a) = 2m. Thus for m = 1, 2, 3..., the 2nd, 4th, 6th... interference fringes will be completely absent from the pattern!'
+              ]
+            },
+            {
+              heading: '6. Fraunhofer Diffraction at a Circular Aperture (Airy Pattern)',
+              paragraphs: [
+                'When a circular aperture of diameter D is illuminated by plane waves, symmetry produces a bright central circular disk (the Airy Disk) surrounded by concentric dark and bright rings.',
+                'Mathematical integration using Bessel functions gives the angular radius of the first dark diffraction ring:',
+                'θ₁ = 1.22 λ / D   (where 1.22 is the first zero of the J₁(x)/x Bessel function divided by π).',
+                'The central Airy disk contains 84% of total incident light energy and defines the diffraction limit of lenses.'
               ]
             }
           ],
           formulas: [
             {
-              title: 'Single Slit Minima',
-              latex: 'a \\sin\\theta = m \\lambda \\quad (m = 1, 2, 3, \\dots)',
-              explanation: 'Condition for completely destructive interference at single slit.'
+              title: 'Single Slit Intensity Distribution',
+              latex: 'I(\\theta) = I_0 \\left( \\frac{\\sin\\alpha}{\\alpha} \\right)^2, \\quad \\alpha = \\frac{\\pi a \\sin\\theta}{\\lambda}',
+              explanation: 'Describes diffraction intensity as function of slit width a, wavelength λ, and angle θ.'
             },
             {
-              title: 'Double Slit Intensity Distribution',
-              latex: 'I(\\theta) = I_0 \\left( \\frac{\\sin\\alpha}{\\alpha} \\right)^2 \\cos^2\\beta \\quad \\left( \\alpha = \\frac{\\pi a \\sin\\theta}{\\lambda}, \\beta = \\frac{\\pi(a+b)\\sin\\theta}{\\lambda} \\right)',
-              explanation: 'Modulation of interference fringes by single-slit diffraction envelope.'
+              title: 'Single Slit Minima Condition',
+              latex: 'a \\sin\\theta = \\pm m \\lambda \\quad (m = 1, 2, 3, \\dots)',
+              explanation: 'Gives the diffraction angles where intensity drops to zero.'
+            },
+            {
+              title: 'Double Slit Missing Order Condition',
+              latex: '\\frac{n}{m} = \\frac{a + b}{a} \\implies n = m \\left( 1 + \\frac{b}{a} \\right)',
+              explanation: 'Identifies missing interference order n corresponding to diffraction minimum m.'
             },
             {
               title: 'Airy Disk Angular Radius',
               latex: '\\theta_1 = 1.22 \\frac{\\lambda}{D}',
-              explanation: 'Angular radius of first minimum for circular aperture of diameter D.'
+              explanation: 'Angular radius of first dark ring for circular aperture of diameter D.'
             }
           ],
           example: {
-            problem: 'A screen is placed 2 m away from a single narrow slit of width 0.1 mm illuminated with monochromatic light of 600 nm. Calculate the linear width of the central diffraction maximum on the screen.',
+            problem: 'A slit of width 0.12 mm is illuminated by light of wavelength 600 nm. A screen is placed at a distance of 2.0 m from the slit. Find (i) the angular width, and (ii) the linear width of the central maximum on the screen.',
             solutionSteps: [
-              'Step 1: Slit width a = 0.1 mm = 10^(-4) m; Wavelength λ = 600 nm = 6 * 10^(-7) m; Distance D = 2 m.',
-              'Step 2: First minimum angle: a sin θ ≈ a θ = λ ==> θ = λ / a.',
-              'Step 3: Angular width of central maximum: 2θ = 2λ / a = (2 * 6 * 10^(-7)) / 10^(-4) = 1.2 * 10^(-2) rad.',
-              'Step 4: Linear width W = 2θ * D = 1.2 * 10^(-2) * 2 = 2.4 * 10^(-2) m = 2.4 cm (24 mm).'
+              'Step 1: Given slit width a = 0.12 mm = 0.12 * 10^(-3) m = 1.2 * 10^(-4) m.',
+              'Step 2: Wavelength λ = 600 nm = 600 * 10^(-9) m = 6.0 * 10^(-7) m.',
+              'Step 3: Distance D = 2.0 m.',
+              'Step 4: Angular width 2θ = 2λ / a = (2 * 6.0 * 10^(-7)) / (1.2 * 10^(-4)) = (1.2 * 10^(-6)) / (1.2 * 10^(-4)) = 10^(-2) radians = 0.01 rad.',
+              'Step 5: Linear width β₀ = 2 D θ = D * (2θ) = 2.0 * 0.01 = 0.02 m = 2.0 cm (20 mm).'
             ],
-            finalAnswer: 'Linear width of central maximum = 2.4 cm (24 mm).'
+            finalAnswer: '(i) Angular width = 0.01 rad (0.573°), (ii) Linear width = 2.0 cm.'
           },
           engineeringApplication: {
-            title: 'Laser Beam Divergence & Optical Tweezers',
-            description: 'Laser beams emitted from circular apertures diverge due to diffraction by angle θ = 1.22 λ/D. In optical tweezers, tightly focused laser beams trap biological cells and DNA molecules.',
-            impact: 'Enables nano-manipulation in cellular biology and quantum photonics.'
+            title: 'Extreme Ultraviolet (EUV) Semiconductor Photolithography',
+            description: 'To print sub-3nm transistors on silicon microchips without diffraction blurring, ASML photolithography machines use Extreme Ultraviolet light (λ = 13.5 nm) inside vacuum chambers with multilayer mirrors.',
+            impact: 'Enables fabrication of 50-billion transistor AI processors like Nvidia H100 and Apple M3.'
           },
           commonMistakes: [
             {
-              mistake: 'Confusing single slit minima (a sin θ = m λ) with interference maxima.',
-              correction: 'In single slit diffraction, a sin θ = m λ is the condition for MINIMA (destructive), NOT maxima.',
-              why: 'The slit divides into 2m equal sub-zones that pair-wise cancel out.'
+              mistake: 'Confusing single slit minima condition (a sin θ = mλ) with interference maxima condition (d sin θ = nλ).',
+              correction: 'For a SINGLE SLIT, a sin θ = mλ gives MINIMA (destructive interference across divided half-slits). For INTERFERENCE, d sin θ = nλ gives MAXIMA.',
+              why: 'In single slit, when path difference between top and bottom is λ, the slit divides into two halves having path difference λ/2, cancelling each other out completely.'
             }
           ],
           quickRevision: [
-            'Single slit: I = I_0 (sin α / α)^2.',
-            'Minima: a sin θ = m λ (m = 1, 2, 3...).',
-            'Central maximum width: 2λ / a.',
-            'Double slit missing order: (a+b)/a = n/m.',
-            'Circular aperture 1st dark ring: θ = 1.22 λ / D.'
+            'Fraunhofer: Plane wavefronts, infinite distance (or convex lenses).',
+            'Single slit intensity: I = I₀ (sin α / α)², where α = (π a sin θ) / λ.',
+            'Single slit minima: a sin θ = mλ (m = 1, 2, 3, ...).',
+            'Angular width of central maximum: 2θ = 2λ / a; Linear width: 2λD / a.',
+            'Double slit intensity: I = I₀ (sin α / α)² cos² β, where β = π (a+b) sin θ / λ.',
+            'Missing orders: n/m = (a+b)/a.',
+            'Circular aperture Airy disk: θ = 1.22 λ / D.'
           ],
           examFocus: {
-            questionTypes: ['Derive intensity expression for Fraunhofer single slit diffraction (8 Marks)', 'Explain missing spectra in double slit diffraction (5 Marks)', 'Calculate width of central maximum (5 Marks)'],
-            likelyMarks: '8 Marks',
-            keyTheorems: ['Huygens-Fresnel Principle for Diffraction'],
-            tip: 'Always sketch the combined curve of single slit envelope (sin α/α)^2 containing the rapid cos^2 β double-slit spikes.'
+            questionTypes: [
+              'Derive the expression for Fraunhofer diffraction intensity at a single slit and find conditions for maxima and minima (8 Marks)',
+              'Explain the phenomenon of missing orders in a double-slit diffraction pattern (5 Marks)',
+              'Differentiate between Fresnel and Fraunhofer diffraction with suitable diagrams (4-5 Marks)',
+              'Numerical problem on calculating linear width of central maximum or missing orders (5 Marks)'
+            ],
+            likelyMarks: '8 to 10 Marks',
+            keyTheorems: ['Fraunhofer Single Slit Integration', 'Bessel First Zero for Circular Aperture'],
+            tip: 'Always sketch the single-slit intensity curve showing the broad central maximum and decaying secondary peaks at ±1.43π, ±2.46π.'
           },
           visualType: 'fraunhofer-diffraction',
-          visualCaption: 'Fraunhofer Single & Double Slit Intensity Profiles',
-          visualExplanation: 'Graph showing central peak, secondary maxima decay, and interference fringe modulation inside single-slit envelope.',
-          estimatedMinutes: 25
+          visualCaption: 'Fraunhofer Single & Double Slit Intensity Distribution Curves',
+          visualExplanation: 'Comparison of single-slit diffraction central peak with decaying secondary lobes versus double-slit pattern where cos²β interference fringes are bounded within the single-slit diffraction envelope.',
+          estimatedMinutes: 30
         },
         {
           id: 'phy-u1-t3',
           topicNumber: '1.3',
-          title: 'Diffraction Grating & Resolving Power of Telescope',
-          syllabusText: 'Diffraction, Grating, Rayleigh criterion, resolving power of telescope.',
+          title: 'Plane Transmission Diffraction Grating & Grating Spectra',
+          syllabusText: 'Diffraction, Grating.',
           unitId: 'phy-u1',
           subjectId: 'physics-1',
           subjectCode: '100104',
-          quickDefinition: 'A diffraction grating is an optical device consisting of N closely spaced parallel equidistant slits (grating element d = a + b). Rayleigh’s criterion states that two spectral lines/sources are just resolved when the central maximum of one falls on the first minimum of the other.',
-          whyItMatters: 'Spectrometers with diffraction gratings analyze chemical compositions of distant stars, detect greenhouse gas emissions from orbit, and measure atomic spectral lines.',
+          quickDefinition: 'A plane transmission diffraction grating is an arrangement of a large number N of parallel, equidistant, closely spaced transparent slits of width a separated by opaque rulings of width b. The distance d = (a + b) is called the grating element. It acts as an ultra-high precision disperser that separates composite light into its constituent monochromatic spectral wavelengths.',
+          whyItMatters: 'Diffraction gratings form the core optical engine of high-resolution spectrometers, astronomical spectrographs, Raman spectroscopy lasers, and wavelength division multiplexing (WDM) fiber optic networks.',
           coreConcept: [
             {
-              heading: 'Plane Transmission Grating Equation',
+              heading: '1. Grating Structure & Grating Element (a + b)',
               paragraphs: [
-                'Grating element: (a + b) where a is transparent slit width and b is opaque spacing. Number of lines per unit length N’ = 1 / (a + b).',
-                'Principal Maxima condition: (a + b) sin θ = n λ (n = 0, 1, 2, ... order of spectrum).',
-                'Maximum possible order: n_max <= (a + b) / λ (since sin θ <= 1).'
+                'A commercial diffraction grating is fabricated by ruling tens of thousands of fine parallel grooves on an optical glass plate using a diamond stylus.',
+                'Let a be the width of each clear transparent slit, and b be the width of each opaque ruling.',
+                'The distance between the centers of two adjacent transparent slits is d = (a + b), termed the Grating Element.',
+                'If there are N’ rulings per unit length (e.g. 15,000 lines per inch = 5,905 lines per cm), then the grating element is: (a + b) = 1 / N’.'
               ]
             },
             {
-              heading: 'Rayleigh Criterion for Resolution',
+              heading: '2. Derivation of Grating Equation (Principal Maxima)',
               paragraphs: [
-                'Two close wavelength peaks λ and λ + dλ are just resolved when the central diffraction maximum of λ coincides with the first diffraction minimum of λ + dλ.',
-                'Resolving Power of Grating: RP = λ / dλ = n * N (where n is order, N is total number of illuminated rulings).'
+                'Consider plane waves of wavelength λ incident normally on a grating of N slits.',
+                'The path difference between secondary wavelets emerging at angle θ from corresponding points of two adjacent slits is: Δ = (a + b) sin θ.',
+                'The resultant amplitude of N interfering wavelets is: E(θ) = E₀ (sin α / α) * (sin Nβ / sin β), where α = (π a sin θ) / λ and β = (π (a + b) sin θ) / λ.',
+                'The resultant intensity on the screen is: I(θ) = I₀ (sin α / α)² * (sin² Nβ / sin² β).',
+                'Principal Maxima Condition: When sin β = 0, sin Nβ / sin β becomes indeterminate (0/0). Using L’Hôpital’s rule, lim_{β→nπ} (sin Nβ / sin β) = N.',
+                'Thus, intensity is magnified by N²: I_principal = N² I₀ (sin α / α)²',
+                'The condition for Principal Maxima is β = ±nπ  ==>  (π (a + b) sin θ) / λ = ±nπ  ==>  (a + b) sin θ = ±nλ (n = 0, 1, 2, ... order of spectrum).'
+              ],
+              bulletPoints: [
+                'Zero-Order Maximum (n = 0): θ = 0. All wavelengths coincide at the center to give a sharp white central image.',
+                'First-Order Spectrum (n = 1): (a + b) sin θ₁ = λ. Violet (shorter λ) is diffracted least, and Red (longer λ) is diffracted most, spreading out a continuous rainbow.',
+                'Higher-Order Spectra (n = 2, 3, ...): Dispersion increases proportionally with order n, but spectral brightness decreases as (sin α / α)² decays.'
               ]
             },
             {
-              heading: 'Resolving Power of a Telescope',
+              heading: '3. Secondary Minima & Secondary Maxima',
               paragraphs: [
-                'A telescope objective of diameter D forms Airy disk images of two distant stars with angular separation dθ.',
-                'By Rayleigh criterion: dθ = 1.22 λ / D.',
-                'Resolving Power = 1 / dθ = D / (1.22 λ). Larger aperture diameter D directly gives higher resolving power.'
+                'Between any two adjacent principal maxima, there are (N - 1) secondary minima and (N - 2) faint secondary maxima.',
+                'Condition for Secondary Minima: sin Nβ = 0 but sin β ≠ 0 ==> Nβ = ±mπ (m ≠ nN)  ==>  N (a + b) sin θ = ±mλ.',
+                'Since N is typically very large (~10,000 to 50,000 lines), (N - 1) minima compress tightly around each principal peak, making the spectral lines intensely sharp and needle-thin.'
+              ]
+            },
+            {
+              heading: '4. Maximum Possible Spectral Orders & Absent Spectra',
+              paragraphs: [
+                'Since the maximum possible value of sin θ is 1 (at grazing diffraction θ = 90°):',
+                '(a + b) sin 90° = n_max λ  ==>  n_max <= (a + b) / λ.',
+                'Absent Spectra (Missing Orders): Occur when the condition for a principal maximum coincides with a single-slit diffraction minimum:',
+                '(a + b) sin θ = nλ   and   a sin θ = mλ  ==>  n / m = (a + b) / a.',
+                'Dispersive Power of Grating: Defined as the rate of change of the angle of diffraction with wavelength: dθ / dλ = n / ((a + b) cos θ).'
               ]
             }
           ],
@@ -325,88 +403,228 @@ export const physicsSubject: Subject = {
             {
               title: 'Grating Spectrum Equation',
               latex: '(a + b) \\sin\\theta = n \\lambda \\iff \\frac{1}{N\'} \\sin\\theta = n \\lambda',
-              explanation: 'Gives the angle θ for the nth order spectral line.'
+              explanation: 'Fundamental equation for angular position θ of nth order spectral line.'
             },
             {
-              title: 'Grating Resolving Power',
-              latex: '\\text{RP} = \\frac{\\lambda}{d\\lambda} = n N',
-              explanation: 'Product of spectral order n and total active rulings N.'
+              title: 'Maximum Observable Order',
+              latex: 'n_{\\max} \\le \\frac{a + b}{\\lambda}',
+              explanation: 'Determines highest integer order visible before diffraction angle reaches 90°.'
             },
             {
-              title: 'Telescope Resolving Power',
-              latex: '\\text{RP}_{\\text{telescope}} = \\frac{1}{d\\theta} = \\frac{D}{1.22 \\lambda}',
-              explanation: 'Reciprocal of minimum angular resolution dθ.'
+              title: 'Grating Dispersive Power',
+              latex: '\\frac{d\\theta}{d\\lambda} = \\frac{n}{(a + b) \\cos\\theta} = \\frac{n N\'}{\\cos\\theta}',
+              explanation: 'Angular separation between two wavelengths differing by dλ.'
             }
           ],
           example: {
-            problem: 'Calculate the minimum number of lines on a diffraction grating required to just resolve the sodium D-lines (λ_1 = 589.0 nm and λ_2 = 589.6 nm) in the second order.',
+            problem: 'A plane transmission diffraction grating has 5000 lines per cm. Light of wavelengths 500 nm and 600 nm is incident normally on it. Calculate (i) the angular separation between the two wavelengths in the second order, and (ii) the maximum possible order for 600 nm light.',
             solutionSteps: [
-              'Step 1: Mean wavelength λ = (589.0 + 589.6)/2 = 589.3 nm.',
-              'Step 2: Difference dλ = 589.6 - 589.0 = 0.6 nm.',
-              'Step 3: Required Resolving Power = λ / dλ = 589.3 / 0.6 = 982.17.',
-              'Step 4: Spectral order n = 2.',
-              'Step 5: Since RP = n * N ==> N = RP / n = 982.17 / 2 = 491.08.',
-              'Step 6: Rounding up gives N = 492 lines.'
+              'Step 1: Grating element (a + b) = 1 / N’ = 1 / 5000 cm = 2.0 * 10^(-4) cm = 2.0 * 10^(-6) m = 2000 nm.',
+              'Step 2: For λ₁ = 500 nm in 2nd order (n = 2): sin θ₁ = (2 * 500) / 2000 = 1000 / 2000 = 0.50 ==> θ₁ = sin^(-1)(0.50) = 30.0°.',
+              'Step 3: For λ₂ = 600 nm in 2nd order (n = 2): sin θ₂ = (2 * 600) / 2000 = 1200 / 2000 = 0.60 ==> θ₂ = sin^(-1)(0.60) = 36.87°.',
+              'Step 4: Angular separation Δθ = θ₂ - θ₁ = 36.87° - 30.0° = 6.87° (0.120 rad).',
+              'Step 5: Maximum possible order for 600 nm: n_max <= (a + b) / λ₂ = 2000 / 600 = 3.33 ==> n_max = 3 (3rd order).'
             ],
-            finalAnswer: 'Minimum 492 lines required.'
+            finalAnswer: '(i) Angular separation = 6.87°, (ii) Maximum visible order = 3.'
           },
           engineeringApplication: {
-            title: 'James Webb Space Telescope (JWST) Spectrograph',
-            description: 'JWST’s 6.5-meter gold primary mirror provides extreme angular resolving power D/(1.22 λ) coupled with diffraction gratings to detect atmospheric water vapor and carbon dioxide on exoplanets.',
-            impact: 'Detects habitable biosignature gases across light-years of interstellar space.'
+            title: 'Wavelength Division Multiplexing (WDM) Optical De-Multiplexers',
+            description: 'Fiber-optic core routers use diffraction gratings (Arrayed Waveguide Gratings) to demultiplex 160 distinct infrared laser channels (from 1530 nm to 1565 nm) travelling down a single glass strand into 160 separate photodiodes.',
+            impact: 'Multiplies fiber optic cable transmission capacity to >100 Terabits per second.'
           },
           commonMistakes: [
             {
-              mistake: 'Using total lines per inch instead of total illuminated lines N in RP = nN.',
-              correction: 'N is the TOTAL number of lines illuminated by the beam: N = (lines/cm) * (width of grating in cm).',
-              why: 'Resolving power depends on the spatial breadth of wavelets interfering together.'
+              mistake: 'Using lines per inch directly without converting to meters in (a + b).',
+              correction: 'Always convert N’ into lines/meter: N’ (lines/m) = N’ (lines/inch) / 0.0254.',
+              why: 'Formula consistency requires SI units (meters) when λ is in meters.'
             }
           ],
           quickRevision: [
-            '(a + b) sin θ = n λ.',
-            'Grating RP = λ / dλ = n N.',
-            'Rayleigh criterion: peak of one on valley of other.',
-            'Telescope limit: dθ = 1.22 λ / D.',
-            'Telescope RP = D / (1.22 λ).'
+            'Grating element: (a + b) = 1 / N’.',
+            'Grating equation: (a + b) sin θ = n λ.',
+            'Principal maxima intensity is N² times single slit intensity.',
+            'Between two principal peaks: (N - 1) minima and (N - 2) secondary maxima.',
+            'Dispersive power: dθ/dλ = n / ((a+b) cos θ).',
+            'Maximum order: n_max <= (a+b) / λ.'
           ],
           examFocus: {
-            questionTypes: ['State Rayleigh criterion and derive resolving power of plane diffraction grating (8 Marks)', 'Numerical on resolving sodium D-lines (5 Marks)', 'Define resolving power of telescope (4 Marks)'],
-            likelyMarks: '7 to 8 Marks',
-            keyTheorems: ['Rayleigh Criterion of Limit of Resolution'],
-            tip: 'Remember: Grating dispersive power dθ/dλ = n / [(a+b) cos θ], whereas Resolving power λ/dλ = nN.'
+            questionTypes: [
+              'Derive the plane transmission grating equation and obtain conditions for principal maxima and minima (8 Marks)',
+              'Explain dispersive power of a diffraction grating and deduce its formula (5 Marks)',
+              'Numerical on finding grating element, angles of diffraction, or maximum orders (5 Marks)'
+            ],
+            likelyMarks: '8 Marks',
+            keyTheorems: ['N-Slit Diffraction Interference Theory'],
+            tip: 'Always mention that in a grating spectrum, Violet is diffracted least (innermost) and Red is diffracted most (outermost), which is opposite to a glass prism!'
           },
-          visualType: 'rayleigh-criterion',
-          visualCaption: 'Rayleigh Criterion: Resolved, Just Resolved & Unresolved Spectral Peaks',
-          visualExplanation: 'Graph showing overlap of two diffraction peaks with 19% dip at midpoint when just resolved.',
+          visualType: 'diffraction-grating',
+          visualCaption: 'Plane Transmission Grating & N-Slit Sharp Principal Maxima',
+          visualExplanation: 'Schematic illustrating multi-slit interference producing ultra-sharp discrete spectral lines (n = 0 white, n = 1 and n = 2 color spectra) governed by (a + b) sin θ = n λ.',
           estimatedMinutes: 25
         },
         {
           id: 'phy-u1-t4',
           topicNumber: '1.4',
-          title: 'Polarization, Double Refraction & Nicol Prism',
+          title: 'Rayleigh’s Criterion & Resolving Power of Telescope',
+          syllabusText: 'Rayleigh criterion, resolving power of telescope.',
+          unitId: 'phy-u1',
+          subjectId: 'physics-1',
+          subjectCode: '100104',
+          quickDefinition: 'The resolving power of an optical instrument is its ability to produce distinctly separate images of two closely spaced point objects or spectral wavelengths. According to Lord Rayleigh’s criterion, two point sources/wavelengths are just resolved when the central diffraction maximum of one image coincides exactly with the first diffraction minimum of the other.',
+          whyItMatters: 'Governs the fundamental aperture size of giant astronomical observatories (e.g. Hubble, JWST, E-ELT) and determines the maximum optical magnification achievable before diffraction blur destroys detail.',
+          coreConcept: [
+            {
+              heading: '1. Limit of Resolution vs Resolving Power',
+              paragraphs: [
+                'Limit of Resolution (dθ or dx): The minimum spatial distance or angular separation between two objects/spectral lines at which their images can just be perceived as separate by an optical system.',
+                'Resolving Power (RP): The reciprocal of the limit of resolution: RP = 1 / (Limit of Resolution).',
+                'A smaller limit of resolution directly yields a higher, more superior resolving power.'
+              ]
+            },
+            {
+              heading: '2. Rayleigh’s Criterion for Resolution',
+              paragraphs: [
+                'When two closely spaced point objects are imaged by a circular aperture of diameter D, each forms an Airy disk diffraction pattern.',
+                '• Unresolved: Angular separation θ < 1.22 λ/D. The two central Airy disks overlap heavily, appearing as a single merged blur.',
+                '• Just Resolved (Rayleigh Limit): Angular separation θ = 1.22 λ/D. The central peak of source 1 falls on the first zero-intensity dark ring of source 2. The combined intensity at the midpoint between the two peaks shows a distinct dip of ~19% (midpoint intensity drops to 0.81 of peak value), allowing the human eye or digital sensor to distinguish two distinct peaks.',
+                '• Well Resolved: Angular separation θ > 1.22 λ/D. The two Airy disks are completely separated with a deep valley of near-zero intensity between them.'
+              ]
+            },
+            {
+              heading: '3. Resolving Power of a Telescope (Derivation)',
+              paragraphs: [
+                'Consider a telescope objective of circular aperture diameter D observing two distant point stars having angular separation dθ.',
+                'The objective lens forms two overlapping Airy disk images on its focal plane.',
+                'Applying Rayleigh’s criterion for a circular aperture, the minimum angular separation dθ for the two stars to be just resolved is: dθ = 1.22 λ / D (in radians).',
+                'Therefore, the Resolving Power of the Telescope is: RP_telescope = 1 / dθ = D / (1.22 λ).',
+                'Key Conclusions:',
+                '1. Resolving power is directly proportional to objective diameter D. Doubling the lens/mirror diameter doubles the angular resolution.',
+                '2. Resolving power is inversely proportional to wavelength λ. Shorter optical wavelengths resolve finer detail.'
+              ]
+            },
+            {
+              heading: '4. Resolving Power of a Plane Diffraction Grating',
+              paragraphs: [
+                'For two close spectral lines λ and (λ + dλ), the Resolving Power of a Grating is defined as: RP_grating = λ / dλ.',
+                'By Rayleigh’s criterion, the nth principal maximum of (λ + dλ) at angle (θ + dθ) must fall on the first secondary minimum of λ:',
+                '(a + b) sin (θ + dθ) = n (λ + dλ)   and   N (a + b) sin (θ + dθ) = N n λ + λ',
+                'Multiplying the first by N and equating: N n λ + N n dλ = N n λ + λ  ==>  N n dλ = λ',
+                'Therefore: RP_grating = λ / dλ = n * N (where n is spectral order and N is total active illuminated rulings).'
+              ]
+            }
+          ],
+          formulas: [
+            {
+              title: 'Telescope Angular Limit of Resolution',
+              latex: 'd\\theta = 1.22 \\frac{\\lambda}{D} \\text{ radians}',
+              explanation: 'Minimum angular separation between two resolvable stars.'
+            },
+            {
+              title: 'Resolving Power of Telescope',
+              latex: '\\text{RP}_{\\text{telescope}} = \\frac{1}{d\\theta} = \\frac{D}{1.22 \\lambda}',
+              explanation: 'Directly proportional to aperture diameter D and inversely to wavelength λ.'
+            },
+            {
+              title: 'Resolving Power of Diffraction Grating',
+              latex: '\\text{RP}_{\\text{grating}} = \\frac{\\lambda}{d\\lambda} = n N',
+              explanation: 'Product of spectral order n and total illuminated grating lines N.'
+            }
+          ],
+          example: {
+            problem: 'Calculate the minimum diameter of a telescope objective lens required to resolve two stars having an angular separation of 5.0 * 10^(-6) radians when observing at an average wavelength of 550 nm.',
+            solutionSteps: [
+              'Step 1: Given angular resolution limit dθ = 5.0 * 10^(-6) rad.',
+              'Step 2: Wavelength λ = 550 nm = 550 * 10^(-9) m = 5.5 * 10^(-7) m.',
+              'Step 3: Formula: dθ = 1.22 λ / D ==> D = 1.22 λ / dθ.',
+              'Step 4: Substitute values: D = (1.22 * 5.5 * 10^(-7)) / (5.0 * 10^(-6)) = (6.71 * 10^(-7)) / (5.0 * 10^(-6)) = 0.1342 m = 13.42 cm.'
+            ],
+            finalAnswer: 'Minimum objective diameter D = 13.42 cm (0.134 m).'
+          },
+          engineeringApplication: {
+            title: 'Earth-Observation Spy Satellites & Space Telescopes',
+            description: 'KH-11 reconnaissance satellites and the Hubble Space Telescope use 2.4-meter primary mirrors to achieve sub-meter ground resolution from 400 km orbital altitude, constrained solely by D / (1.22 λ).',
+            impact: 'Enables high-resolution planetary disaster mapping, climate monitoring, and deep-space astrophysics.'
+          },
+          commonMistakes: [
+            {
+              mistake: 'Confusing Dispersive Power (dθ/dλ) with Resolving Power (λ/dλ) of a grating.',
+              correction: 'Dispersive power measures angular spread dθ/dλ = n / ((a+b) cos θ). Resolving power measures ability to separate adjacent lines λ/dλ = nN.',
+              why: 'A grating can have high dispersion but low resolution if it has very few total lines N.'
+            }
+          ],
+          quickRevision: [
+            'Resolving Power = 1 / Limit of Resolution.',
+            'Rayleigh criterion: Central peak of one falls on first minimum of other (~19% dip).',
+            'Telescope limit: dθ = 1.22 λ / D; Resolving power = D / (1.22 λ).',
+            'Grating resolving power: RP = λ / dλ = n N.',
+            'Larger aperture D gives higher resolving power and brighter images.'
+          ],
+          examFocus: {
+            questionTypes: [
+              'State Rayleigh’s criterion for resolution and derive resolving power of a telescope (7-8 Marks)',
+              'Differentiate between dispersive power and resolving power of a diffraction grating (4 Marks)',
+              'Numerical on resolving power of telescope or resolving sodium D-lines (5 Marks)'
+            ],
+            likelyMarks: '7 to 8 Marks',
+            keyTheorems: ['Rayleigh Criterion of Limit of Resolution'],
+            tip: 'Always sketch the three overlapping intensity curves for: (a) Unresolved, (b) Just resolved (showing the 19% dip), and (c) Well resolved.'
+          },
+          visualType: 'rayleigh-criterion',
+          visualCaption: 'Rayleigh Criterion: Resolved, Just Resolved & Unresolved Overlap Curves',
+          visualExplanation: 'Graph showing overlap of two diffraction peaks with characteristic 19% intensity drop at the saddle point when just resolved.',
+          estimatedMinutes: 25
+        },
+        {
+          id: 'phy-u1-t5',
+          topicNumber: '1.5',
+          title: 'Polarization of Light, Double Refracting Crystals & Nicol Prism',
           syllabusText: 'Polarization, double-refracting crystal, Nicol prism.',
           unitId: 'phy-u1',
           subjectId: 'physics-1',
           subjectCode: '100104',
-          quickDefinition: 'Polarization restricts electric field vibrations of a transverse light wave to a single plane. In double-refracting calcite crystals (birefringence), an unpolarized ray splits into Ordinary (O-ray) and Extra-ordinary (E-ray). A Nicol prism eliminates the O-ray via Total Internal Reflection to produce 100% plane-polarized light.',
-          whyItMatters: 'Powers LCD monitors, smartphone touchscreens, 3D cinema glasses, optical stress analysis in mechanical parts, and glare-reduction sunglasses.',
+          quickDefinition: 'Polarization is the phenomenon in which electric field vibrations of a transverse electromagnetic light wave are confined to a single plane. In double-refracting birefringent crystals (e.g. Calcite), unpolarized light splits into two orthogonal plane-polarized beams: the Ordinary ray (O-ray) and Extra-ordinary ray (E-ray). A Nicol prism eliminates the O-ray via Total Internal Reflection to generate 100% pure plane-polarized light.',
+          whyItMatters: 'Powers LCD and OLED displays, anti-glare sunglasses, 3D cinema glasses, optical stress diagnostics in aerospace structures, and polarization-division multiplexing in fiber networks.',
           coreConcept: [
             {
-              heading: 'Double Refraction (Birefringence) in Calcite',
+              heading: '1. Unpolarized vs Plane Polarized Light & Malus’ Law',
               paragraphs: [
-                'When unpolarized light enters a uniaxial calcite crystal, it splits into two refracted rays with perpendicular polarizations:',
-                '1. Ordinary Ray (O-ray): Obeys Snell’s law, travels with constant velocity v_o in all directions (spherical wavefront), refractive index μ_o.',
-                '2. Extra-ordinary Ray (E-ray): Does NOT obey Snell’s law, velocity varies with direction (ellipsoidal wavefront), refractive index μ_e.',
-                'In Calcite (negative crystal): v_e > v_o ==> μ_o > μ_e (μ_o = 1.658, μ_e = 1.486 for sodium light).'
+                'In unpolarized light emitted by thermal sources, the electric field vector E vibrates randomly in all possible directions perpendicular to the propagation axis.',
+                'In linearly (plane) polarized light, electric field vibrations are strictly confined to a single fixed plane perpendicular to the propagation direction.',
+                'Plane of Vibration: The plane containing the electric vector E and the direction of propagation.',
+                'Plane of Polarization: The plane perpendicular to the plane of vibration containing the propagation direction (zero electric vibration).',
+                'Malus’ Law: When completely plane-polarized light of intensity I₀ is incident on an analyzer whose transmission axis makes an angle θ with the polarizer axis, the transmitted intensity is: I = I₀ cos² θ.'
               ]
             },
             {
-              heading: 'Nicol Prism Construction & Working',
+              heading: '2. Polarization by Reflection & Brewster’s Law',
               paragraphs: [
-                'Constructed by cutting a calcite crystal along its shorter diagonal (angles 68° and 112°) and cementing the halves with Canada Balsam resin (μ_CB = 1.550).',
-                'Refractive index order: μ_o (1.658) > μ_CB (1.550) > μ_e (1.486).',
-                'When light enters, the O-ray strikes the Canada Balsam layer at an angle greater than critical angle θ_c = sin^(-1)(1.550 / 1.658) ≈ 69° and undergoes Total Internal Reflection (TIR), absorbed by black casing.',
-                'The E-ray passes straight through because it enters an optically denser medium (1.486 to 1.550), emerging as pure plane-polarized light.'
+                'When unpolarized light is incident on a transparent dielectric medium (e.g. glass, water), the reflected beam becomes partially polarized with electric vibrations parallel to the surface.',
+                'At a specific angle of incidence called the Brewster angle (or polarizing angle i_p), the reflected light is 100% plane-polarized perpendicular to the plane of incidence.',
+                'Brewster’s Law: tan i_p = μ (where μ is the refractive index of the dielectric medium).',
+                'At Brewster’s angle, the reflected and refracted rays are strictly perpendicular to each other: i_p + r_p = 90°.'
+              ]
+            },
+            {
+              heading: '3. Double Refraction (Birefringence) in Calcite Crystals',
+              paragraphs: [
+                'When an unpolarized ray enters an optically anisotropic crystal like Calcite (CaCO₃) or Quartz (SiO₂), it splits into two refracted rays with mutually perpendicular planes of polarization:',
+                '1. Ordinary Ray (O-Ray): Obeys standard Snell’s laws of refraction. Travels with uniform velocity v_o in all directions (spherical wavefront). Refractive index μ_o is constant in all directions.',
+                '2. Extra-Ordinary Ray (E-Ray): Does NOT obey Snell’s law in general. Velocity v_e varies with propagation angle (ellipsoidal wavefront). Refractive index μ_e varies from μ_o to a principal value.',
+                'Optic Axis: A specific direction in the crystal along which both O-ray and E-ray travel with the same velocity (v_o = v_e), exhibiting zero double refraction.',
+                'Calcite is a Negative Uniaxial Crystal: v_e > v_o  ==>  μ_o > μ_e (for sodium light: μ_o = 1.658, μ_e = 1.486).'
+              ]
+            },
+            {
+              heading: '4. Nicol Prism Construction & Working',
+              paragraphs: [
+                'A Nicol prism is an optical device made from a calcite crystal rhomb cut along its shorter diagonal (angles 68° and 112°) and cemented together with a thin layer of transparent Canada Balsam resin (μ_CB = 1.550).',
+                'Refractive index order in the Nicol prism: μ_o (1.658) > μ_CB (1.550) > μ_e (1.486).',
+                'Working Mechanism:',
+                '1. Unpolarized light enters the front face and splits into O-ray and E-ray.',
+                '2. The Ordinary ray travels in calcite (μ_o = 1.658) and strikes the Canada balsam cement (μ_CB = 1.550), moving from an optically denser to rarer medium.',
+                '3. The critical angle for the O-ray is: θ_c = sin⁻¹(μ_CB / μ_o) = sin⁻¹(1.550 / 1.658) ≈ 69.3°.',
+                '4. The crystal is cut so that the O-ray strikes at an angle of incidence > 69.3°, undergoing Total Internal Reflection (TIR) to the side of the prism where it is absorbed by a black coating.',
+                '5. The Extra-ordinary ray travels from μ_e = 1.486 to μ_CB = 1.550 (rarer to denser), hence cannot undergo TIR and transmits straight through as 100% pure plane-polarized light.'
               ]
             }
           ],
@@ -414,7 +632,7 @@ export const physicsSubject: Subject = {
             {
               title: 'Malus’ Law',
               latex: 'I = I_0 \\cos^2\\theta',
-              explanation: 'Intensity of transmitted light through analyzer rotated by angle θ relative to polarizer.'
+              explanation: 'Transmitted intensity through analyzer rotated by angle θ relative to polarizer.'
             },
             {
               title: 'Brewster’s Law',
@@ -428,44 +646,49 @@ export const physicsSubject: Subject = {
             }
           ],
           example: {
-            problem: 'Two polarizers have their transmission axes inclined at 60° to each other. If unpolarized light of intensity I_0 is incident on the first polarizer, find the transmitted intensity from the second.',
+            problem: 'Two polarizers have their transmission axes inclined at 60° to each other. If unpolarized light of intensity I₀ is incident on the first polarizer, find the transmitted intensity emerging from the second polarizer.',
             solutionSteps: [
-              'Step 1: After passing through the 1st polarizer, unpolarized light intensity becomes I_1 = I_0 / 2 (unpolarized rule).',
-              'Step 2: The light is now plane-polarized. Angle between axes θ = 60°.',
-              'Step 3: Apply Malus’ Law for 2nd polarizer: I_2 = I_1 cos^2(60°).',
-              'Step 4: cos(60°) = 1/2 ==> cos^2(60°) = 1/4.',
-              'Step 5: I_2 = (I_0 / 2) * (1/4) = I_0 / 8 = 0.125 I_0 (12.5% of incident intensity).'
+              'Step 1: After passing through the 1st polarizer, unpolarized light intensity becomes I₁ = I₀ / 2 (unpolarized half-intensity rule).',
+              'Step 2: The light is now 100% plane-polarized. Angle between polarizer and analyzer axes is θ = 60°.',
+              'Step 3: Apply Malus’ Law for the 2nd polarizer: I₂ = I₁ cos²(60°).',
+              'Step 4: cos(60°) = 0.5 ==> cos²(60°) = 0.25 = 1/4.',
+              'Step 5: I₂ = (I₀ / 2) * (1/4) = I₀ / 8 = 0.125 I₀ (12.5% of incident unpolarized intensity).'
             ],
-            finalAnswer: 'Transmitted Intensity = I_0 / 8.'
+            finalAnswer: 'Transmitted Intensity = I₀ / 8 (0.125 I₀).'
           },
           engineeringApplication: {
             title: 'Photoelastic Stress Analysis in Structural Engineering',
-            description: 'Transparent acrylic models of bridges, aircraft landing gears, and crane hooks placed between crossed polarizers reveal colorful fringe lines (isochromatics) directly proportional to internal shear stress concentrations.',
-            impact: 'Identifies stress concentration hotspots before casting multimillion-dollar steel components.'
+            description: 'Transparent epoxy models of aircraft turbine blades, automotive gears, and bridges placed between crossed polarizers reveal colorful interference fringe contours (isochromatics) directly proportional to internal mechanical stress concentrations.',
+            impact: 'Reveals hidden structural fatigue points before expensive metal manufacturing.'
           },
           commonMistakes: [
             {
-              mistake: 'Thinking Canada Balsam absorbs the E-ray.',
+              mistake: 'Assuming Canada Balsam absorbs the E-ray.',
               correction: 'Canada Balsam TIRs the ORDINARY ray (O-ray). The Extraordinary ray (E-ray) transmits through cleanly.',
-              why: 'μ_o (1.658) > μ_CB (1.550), satisfying the rarer medium condition for TIR.'
+              why: 'μ_o (1.658) > μ_CB (1.550) satisfies the denser-to-rarer requirement for TIR.'
             }
           ],
           quickRevision: [
-            'O-ray obeys Snell’s law (spherical wavefront); E-ray does not (ellipsoid).',
-            'In calcite: μ_o (1.658) > μ_CB (1.55) > μ_e (1.486).',
-            'O-ray undergoes TIR at Canada Balsam cement.',
-            'Malus’ Law: I = I_0 cos^2 θ.',
-            'Brewster angle: tan i_p = μ.'
+            'Unpolarized through polarizer: I = I₀ / 2.',
+            'Malus’ Law: I = I_polarizer cos² θ.',
+            'Brewster’s Law: tan i_p = μ; Reflected and refracted rays are perpendicular.',
+            'Calcite is negative crystal: μ_o (1.658) > μ_CB (1.550) > μ_e (1.486).',
+            'O-ray undergoes TIR at Canada balsam layer; E-ray passes through.'
           ],
           examFocus: {
-            questionTypes: ['Describe construction and working of Nicol prism with neat ray diagram (7-8 Marks)', 'State Malus’ law and solve numerical (5 Marks)', 'Differentiate between O-ray and E-ray (4 Marks)'],
+            questionTypes: [
+              'Describe the construction and working of a Nicol prism with a neat ray diagram (7-8 Marks)',
+              'State and prove Brewster’s law of polarization by reflection (5 Marks)',
+              'Differentiate between Ordinary and Extraordinary rays in double refraction (4 Marks)',
+              'Numerical on Malus’ law with multiple polarizers (5 Marks)'
+            ],
             likelyMarks: '7 to 8 Marks',
-            keyTheorems: ['Malus’ Law', 'Brewster’s Law of Polarization by Reflection'],
-            tip: 'Draw the Nicol prism showing the 68° and 112° crystal face angles, the Canada balsam split line, TIR of O-ray, and transmission of E-ray.'
+            keyTheorems: ['Brewster’s Law', 'Malus’ Law of Polarization'],
+            tip: 'Draw the calcite rhomb showing face angles 68° and 112°, the Canada balsam split line, TIR of O-ray, and straight transmission of E-ray.'
           },
           visualType: 'nicol-prism',
           visualCaption: 'Nicol Prism Cross-Section & TIR Separation of O-Ray and E-Ray',
-          visualExplanation: 'Diagram illustrating unpolarized ray entering calcite, O-ray TIR reflecting at the Canada balsam interface, and E-ray emerging plane-polarized.',
+          visualExplanation: 'Ray diagram showing unpolarized light entering calcite rhomb, Ordinary ray TIR reflecting off Canada balsam interface into black casing, and Extraordinary ray emerging as pure plane-polarized light.',
           estimatedMinutes: 25
         }
       ]
@@ -478,109 +701,119 @@ export const physicsSubject: Subject = {
       mappedCOs: ['CO2'],
       learningObjectives: [
         'Understand stimulated emission, Einstein’s A & B coefficients, and population inversion.',
-        'Explain construction & working of Ruby, He-Ne, and Semiconductor diode lasers.',
+        'Explain construction, energy level diagrams, and working of Ruby, He-Ne, and Semiconductor lasers.',
         'Analyze optical fiber light propagation, Total Internal Reflection, and Numerical Aperture.',
-        'Evaluate fiber attenuation mechanisms and applications in optical sensors.'
+        'Evaluate fiber attenuation mechanisms, dispersion, and industrial applications in optical sensors.'
       ],
       topics: [
         {
           id: 'phy-u2-t1',
           topicNumber: '2.1',
-          title: 'Laser Principles, Einstein Coefficients & Population Inversion',
+          title: 'Laser Principles, Einstein’s A & B Coefficients & Population Inversion',
           syllabusText: 'Characteristics of laser light, Einstein’s A & B coefficients, Population inversion, pumping mechanism, Optical resonator.',
           unitId: 'phy-u2',
           subjectId: 'physics-1',
           subjectCode: '100104',
-          quickDefinition: 'LASER (Light Amplification by Stimulated Emission of Radiation) produces coherent, monochromatic, directional, and high-intensity light. Einstein showed that transitions involve Spontaneous Absorption (B_12), Spontaneous Emission (A_21), and Stimulated Emission (B_21), with B_12 = B_21.',
-          whyItMatters: 'Foundational for high-speed fiber internet transceivers, laser eye surgery, barcode scanners, lidar in autonomous cars, and precision metal cutting.',
+          quickDefinition: 'LASER (Light Amplification by Stimulated Emission of Radiation) generates highly coherent, monochromatic, directional, and high-intensity electromagnetic radiation. Einstein proved that atomic transitions involve Induced Absorption (B₁₂), Spontaneous Emission (A₂₁), and Stimulated Emission (B₂₁), with equal stimulated transition probabilities B₁₂ = B₂₁.',
+          whyItMatters: 'Underpins modern telecommunications, high-speed fiber transceivers, surgical medicine, LIDAR for autonomous navigation, and precision laser machining.',
           coreConcept: [
             {
-              heading: 'Key Characteristics of Laser Light',
+              heading: '1. Cardinal Characteristics of Laser Radiation',
               paragraphs: [
-                '1. High Monochromaticity: Extreme spectral purity with spectral linewidth Δλ ≈ 10^(-3) nm.',
-                '2. High Coherence: High spatial and temporal coherence with coherence length L_c of many kilometers.',
-                '3. High Directionality: Negligible divergence angle θ ≈ 10^(-4) rad.',
-                '4. High Brightness / Intensity: Tremendous photon density focused into microscopic spots.'
+                '1. High Monochromaticity: Extreme spectral purity with spectral linewidth Δλ ≈ 10^(-3) nm (coherence length L_c of many kilometers).',
+                '2. High Coherence: Spatial coherence (constant phase across wavefront) and Temporal coherence (constant phase over time).',
+                '3. High Directionality: Highly parallel beam with minimal angular divergence (θ ≈ 10^(-4) radians).',
+                '4. Extreme Brightness / Intensity: Tremendous photon density focused to sub-micron diffraction-limited spots.'
               ]
             },
             {
-              heading: 'Einstein’s A and B Coefficients',
+              heading: '2. Derivation of Einstein’s A & B Coefficients',
               paragraphs: [
-                'Consider two energy levels E_1 and E_2 (E_2 > E_1) in thermal equilibrium with blackbody radiation density u(ν):',
-                '• Absorption Rate: R_abs = B_12 * N_1 * u(ν).',
-                '• Spontaneous Emission Rate: R_sp = A_21 * N_2.',
-                '• Stimulated Emission Rate: R_st = B_21 * N_2 * u(ν).',
-                'At thermal equilibrium: R_abs = R_sp + R_st ==> B_12 N_1 u(ν) = A_21 N_2 + B_21 N_2 u(ν).',
-                'Using Boltzmann statistics N_2/N_1 = exp(-hν / kT) and Planck’s radiation law u(ν) = (8π h ν^3 / c^3) / (exp(hν/kT) - 1):',
-                'Result 1: B_12 = B_21 (Probability of stimulated emission equals stimulated absorption).',
-                'Result 2: A_21 / B_21 = 8π h ν^3 / c^3 (Ratio of spontaneous to stimulated emission is proportional to ν^3).'
+                'Consider a two-level atomic system in thermal equilibrium with blackbody radiation density u(ν) at temperature T:',
+                '• Induced Absorption: An atom in lower level E₁ absorbs a photon hν and jumps to E₂. Rate = B₁₂ N₁ u(ν).',
+                '• Spontaneous Emission: An atom in excited level E₂ spontaneously drops to E₁ without external trigger. Rate = A₂₁ N₂.',
+                '• Stimulated Emission: An incident photon of energy hν triggers an excited atom in E₂ to drop to E₁, emitting an IDENTICAL clone photon. Rate = B₂₁ N₂ u(ν).',
+                'At thermal equilibrium: Rate of Absorption = Rate of Total Emission',
+                'B₁₂ N₁ u(ν) = A₂₁ N₂ + B₂₁ N₂ u(ν)  ==>  u(ν) [B₁₂ N₁ - B₂₁ N₂] = A₂₁ N₂',
+                'u(ν) = (A₂₁ N₂) / (B₁₂ N₁ - B₂₁ N₂) = (A₂₁ / B₂₁) / [ (B₁₂/B₂₁) (N₁/N₂) - 1 ]',
+                'According to Boltzmann distribution: N₁ / N₂ = exp((E₂ - E₁) / kT) = exp(hν / kT)',
+                'u(ν) = (A₂₁ / B₂₁) / [ (B₁₂/B₂₁) exp(hν / kT) - 1 ]',
+                'Comparing this with Planck’s Blackbody Radiation Law u(ν) = (8π h ν³ / c³) / [ exp(hν / kT) - 1 ]:',
+                'Result 1: B₁₂ = B₂₁ (Probability of stimulated absorption equals probability of stimulated emission).',
+                'Result 2: A₂₁ / B₂₁ = (8π h ν³) / c³ (Ratio of spontaneous to stimulated emission is proportional to ν³).'
               ]
             },
             {
-              heading: 'Population Inversion & Optical Resonator',
+              heading: '3. Population Inversion & Metastable State',
               paragraphs: [
-                'Normally N_1 > N_2. Population Inversion achieves non-equilibrium state where N_2 > N_1 in a metastable state (lifetime ~10^(-3) s vs 10^(-8) s for ordinary states).',
-                'Pumping methods: Optical pumping (xenon flash lamp), Electrical discharge (electron collision), Direct injection.',
-                'Optical Resonator: Pair of parallel mirrors (one 100% reflective, one 95-99% partially transparent output coupler) creating positive optical feedback and standing waves satisfying L = m (λ / 2).'
+                'Under thermal equilibrium, N₁ > N₂. Population Inversion is the non-equilibrium condition where the population of higher energy state E₂ exceeds lower state E₁ (N₂ > N₁).',
+                'Metastable State: A special excited energy level with an exceptionally long lifetime (~10^(-3) s compared to ordinary excited lifetimes of 10^(-8) s), allowing atoms to accumulate and achieve N₂ > N₁.',
+                'Pumping Methods: Optical pumping (flash lamps), Electrical discharge (electron collision), Resonant collision transfer, Direct semiconductor carrier injection.',
+                'Optical Resonator: Consists of two aligned parallel mirrors (one 100% reflective, one 95-99% partially transmitting output coupler) creating positive optical feedback to sustain standing waves: L = m (λ / 2).'
               ]
             }
           ],
           formulas: [
             {
-              title: 'Einstein’s Relations',
+              title: 'Einstein Relations',
               latex: 'B_{12} = B_{21}, \\quad \\frac{A_{21}}{B_{21}} = \\frac{8\\pi h \\nu^3}{c^3}',
               explanation: 'Fundamental relation linking spontaneous and stimulated transition probabilities.'
             },
             {
-              title: 'Population Ratio (Boltzmann Distribution)',
+              title: 'Boltzmann Population Ratio',
               latex: '\\frac{N_2}{N_1} = e^{-\\frac{E_2 - E_1}{kT}} = e^{-\\frac{h\\nu}{kT}}',
-              explanation: 'At room temperature, N_2 is negligibly small compared to N_1, necessitating pumping.'
+              explanation: 'Thermal equilibrium population ratio requiring external pumping for inversion.'
             },
             {
-              title: 'Cavity Resonance Condition',
-              latex: 'L = m \\frac{\\lambda}{2} \\implies \\nu_m = m \\frac{c}{2L}',
-              explanation: 'Standing wave resonance modes in laser cavity of length L.'
+              title: 'Cavity Longitudinal Mode Spacing',
+              latex: '\\Delta\\nu = \\frac{c}{2L}',
+              explanation: 'Frequency separation between adjacent resonant standing modes in cavity length L.'
             }
           ],
           example: {
-            problem: 'Calculate the ratio of stimulated to spontaneous emission for a laser transitioning at wavelength λ = 694.3 nm (Ruby laser) operating at room temperature T = 300 K.',
+            problem: 'Calculate the ratio of stimulated emission rate to spontaneous emission rate for a transition at wavelength λ = 694.3 nm (Ruby laser) operating in thermal equilibrium at room temperature T = 300 K.',
             solutionSteps: [
-              'Step 1: Energy difference hν = hc / λ = (6.626 * 10^(-34) * 3 * 10^8) / (694.3 * 10^(-9)) = 2.863 * 10^(-19) J = 1.787 eV.',
-              'Step 2: Thermal energy kT = 1.38 * 10^(-23) * 300 = 4.14 * 10^(-21) J = 0.02585 eV.',
-              'Step 3: Ratio of stimulated to spontaneous rate: R_st / R_sp = 1 / (exp(hν / kT) - 1).',
-              'Step 4: Exponent = hν / kT = (2.863 * 10^(-19)) / (4.14 * 10^(-21)) = 69.15.',
-              'Step 5: exp(69.15) ≈ 1.07 * 10^30.',
-              'Step 6: R_st / R_sp = 1 / (1.07 * 10^30) ≈ 9.3 * 10^(-31).'
+              'Step 1: Energy difference hν = hc / λ = (6.626 * 10^(-34) * 3 * 10^8) / (694.3 * 10^(-9)) = 2.863 * 10^(-19) J.',
+              'Step 2: Thermal energy kT = 1.38 * 10^(-23) * 300 = 4.14 * 10^(-21) J.',
+              'Step 3: Ratio = 1 / [ exp(hν / kT) - 1 ].',
+              'Step 4: Exponent hν / kT = (2.863 * 10^(-19)) / (4.14 * 10^(-21)) = 69.15.',
+              'Step 5: exp(69.15) ≈ 1.07 * 10^(30).',
+              'Step 6: Ratio = 1 / (1.07 * 10^(30)) ≈ 9.3 * 10^(-31).'
             ],
-            finalAnswer: 'Ratio in thermal equilibrium is 9.3 * 10^(-31), showing spontaneous emission dominates without external pumping.'
+            finalAnswer: 'Ratio = 9.3 * 10^(-31) (Proves spontaneous emission completely dominates at room temperature, making external pumping indispensable).'
           },
           engineeringApplication: {
-            title: 'Optical Coherence Tomography (OCT) & Eye Surgery',
-            description: 'Femtosecond pulsed lasers deliver ultra-short focused pulses creating photodisruption inside the human cornea to correct vision without damaging surrounding retinal tissue.',
-            impact: 'Enables painless LASIK surgeries restoring 20/20 vision for millions annually.'
+            title: 'Laser Fusion & Photolithography Light Sources',
+            description: 'High-power Nd:YAG and Excimer lasers provide focused petawatt laser pulses in inertial confinement fusion reactors and DUV lithography systems.',
+            impact: 'Paves the path towards zero-carbon fusion energy and next-gen semiconductor microelectronics.'
           },
           commonMistakes: [
             {
-              mistake: 'Assuming stimulated emission photon has random phase and direction.',
-              correction: 'Stimulated emission produces a twin photon having EXACTLY the same energy, phase, polarization, and direction as the triggering photon.',
-              why: 'This quantum clone effect is what gives lasers their extreme coherence.'
+              mistake: 'Assuming a stimulated photon has random direction or phase.',
+              correction: 'The stimulated photon is an EXACT CLONE of the incident photon, identical in frequency, phase, direction, and polarization.',
+              why: 'This quantum coherence replication is the fundamental basis of laser light amplification.'
             }
           ],
           quickRevision: [
-            'Four laser qualities: Monochromatic, Coherent, Directional, High intensity.',
-            'Einstein proof: B_12 = B_21 and A_21/B_21 = 8πhν^3/c^3.',
-            'Population inversion: N_2 > N_1 via metastable state.',
-            '3 elements: Active medium, Pumping source, Optical resonator cavity.'
+            'Laser light: Monochromatic, Coherent, Directional, High intensity.',
+            'Einstein proof: B₁₂ = B₂₁ and A₂₁ / B₂₁ = 8πhν³ / c³.',
+            'Population inversion (N₂ > N₁) requires a metastable state (lifetime ~10^(-3) s).',
+            '3 essential components: Active Medium, Pumping Source, Optical Cavity Resonator.',
+            'Cavity mode condition: L = m (λ / 2).'
           ],
           examFocus: {
-            questionTypes: ['Derive Einstein’s A and B coefficients relations (8 Marks)', 'Explain population inversion and role of metastable state (5 Marks)', 'Numerical on population ratio or cavity mode spacing (5 Marks)'],
+            questionTypes: [
+              'Derive Einstein’s A and B coefficients relations and explain their physical significance (8 Marks)',
+              'Explain the necessity of population inversion and metastable states in laser action (5 Marks)',
+              'Calculate cavity mode spacing or stimulated-to-spontaneous transition ratios (5 Marks)'
+            ],
             likelyMarks: '8 Marks',
-            keyTheorems: ['Einstein’s Quantum Transition Relations'],
-            tip: 'The Einstein A and B coefficient derivation using Planck’s law is one of the most scored 8-mark derivations in BEU exams.'
+            keyTheorems: ['Einstein Quantum Transition Theory'],
+            tip: 'Equating the rate equation to Planck’s blackbody radiation formula step-by-step is the most crucial part of this derivation.'
           },
           visualType: 'laser-resonator',
-          visualCaption: 'Laser Operation: Population Inversion, Stimulated Cascade & Resonator',
-          visualExplanation: 'Diagram illustrating ground vs metastable levels, pumping photon excitation, stimulated photon amplification between parallel cavity mirrors, and output beam.',
+          visualCaption: 'Laser Operation: Population Inversion, Stimulated Cascade & Resonator Feedback',
+          visualExplanation: 'Schematic illustrating ground vs metastable levels, optical pumping, stimulated photon amplification cascade between 100% reflective mirror and partially transmitting output coupler.',
           estimatedMinutes: 30
         },
         {
@@ -591,83 +824,90 @@ export const physicsSubject: Subject = {
           unitId: 'phy-u2',
           subjectId: 'physics-1',
           subjectCode: '100104',
-          quickDefinition: 'Ruby laser is a 3-level solid-state pulsed laser (694.3 nm red), He-Ne laser is a 4-level continuous gas laser (632.8 nm red) using resonant energy transfer between Helium and Neon, and Semiconductor Laser uses forward-biased GaAs p-n junction direct bandgap recombination (850-1550 nm).',
-          whyItMatters: 'Powers barcode scanners, optical disc drives, fiber-optic communication transmitters, and industrial laser welding systems.',
+          quickDefinition: 'Ruby laser is a 3-level solid-state pulsed laser (694.3 nm red) using Cr³⁺ ions in sapphire crystal; He-Ne laser is a 4-level continuous gas laser (632.8 nm red) utilizing resonant collision transfer between Helium and Neon atoms; Semiconductor Laser is a forward-biased direct-bandgap GaAs p-n junction laser (850-1550 nm).',
+          whyItMatters: 'Covers the full technological spectrum of lasers from pulsed industrial welders (Ruby) and precision interferometers (He-Ne) to high-speed fiber-optic telecom transceivers (Semiconductor).',
           coreConcept: [
             {
-              heading: 'Ruby Laser (3-Level Solid State Laser)',
+              heading: '1. Ruby Laser (3-Level Solid State Pulsed Laser)',
               paragraphs: [
-                'Active Medium: Al_2O_3 crystal doped with 0.05% Cr^(3+) ions. End faces silvered (100% and ~95%).',
-                'Pumping: Xenon helical flash lamp excites Cr^(3+) ions from ground level E_1 to broad absorption band E_3.',
-                'Metastable State: Rapid non-radiative radiationless transition (~10^(-8) s) to level E_2 (lifetime ~3 ms).',
-                'Laser Transition: Stimulated emission E_2 -> E_1 produces pulsed red beam at λ = 694.3 nm.'
+                '• Active Medium: Synthetic sapphire crystal (Al₂O₃) doped with 0.05% Chromium ions (Cr³⁺), machined into a cylindrical rod with silvered ends (100% and 95% reflective).',
+                '• Pumping Source: Helical Xenon flash tube emitting green/blue light (~550 nm) surrounding the ruby rod.',
+                '• Energy Level Mechanism: Cr³⁺ ions are optically pumped from ground state E₁ to broad absorption band E₃ (lifetime ~10^(-8) s).',
+                '• Non-Radiative Decay: Atoms quickly transition without radiation to metastable state E₂ (lifetime ~3 * 10^(-3) s).',
+                '• Laser Transition: Stimulated emission occurs between metastable state E₂ and ground state E₁, emitting intense pulsed red laser light at λ = 694.3 nm.',
+                '• Limitation: Since E₁ is the ground state, over 50% of all ground atoms must be excited to achieve population inversion, demanding high pump energy.'
               ]
             },
             {
-              heading: 'He-Ne Laser (4-Level Continuous Gas Laser)',
+              heading: '2. He-Ne Laser (4-Level Continuous Gas Laser)',
               paragraphs: [
-                'Active Medium: Mixture of Helium and Neon gas in 10:1 ratio at low pressure (~1 mm Hg) in quartz discharge tube.',
-                'Pumping: Electric discharge excites He atoms to energetic metastable states 2^1S and 2^3S by electron collision.',
-                'Resonant Energy Transfer: Energetic He atoms collide with Ne atoms, exciting Ne to matching 3s and 2s levels.',
-                'Laser Transition: Ne transition from 3s -> 2p produces continuous red laser light at λ = 632.8 nm.',
-                'Depopulation: 2p -> 1s spontaneous radiation, and 1s -> ground de-excitation via collisions with tube walls.'
+                '• Active Medium: Gas mixture of Helium (He) and Neon (Ne) in a 10:1 ratio at ~1 torr pressure inside a quartz discharge tube.',
+                '• Pumping Mechanism: Electric discharge creates energetic electrons that collide with ground state Helium atoms, exciting them to metastable states 2¹S and 2³S.',
+                '• Resonant Energy Transfer: Energetic He*(2¹S, 2³S) atoms collide with ground Ne atoms, transferring energy resonantly to Ne 3s and 2s levels having nearly identical energy values (ΔE < 0.05 eV).',
+                '• Laser Transition: Neon atoms undergo stimulated emission from 3s to 2p (λ = 632.8 nm red continuous beam) and 2s to 2p (λ = 1.15 μm infrared).',
+                '• De-excitation: Ne atoms undergo spontaneous emission from 2p to 1s, followed by non-radiative collisions with the narrow tube walls to return to ground state.'
               ]
             },
             {
-              heading: 'Semiconductor / Injection Diode Laser',
+              heading: '3. Semiconductor / Injection Diode Laser (GaAs)',
               paragraphs: [
-                'Active Medium: Heavily doped direct bandgap p-n junction (e.g. GaAs, InGaAsP).',
-                'Pumping: Direct electrical forward bias injection of high current density (~10^4 A/cm^2).',
-                'Mechanism: Electrons in conduction band recombine with holes in valence band, emitting photons hν ≈ E_g.',
-                'Cleaved crystal facets act as natural reflecting mirrors.',
-                'Wavelength: λ = hc / E_g (e.g. GaAs with E_g = 1.42 eV emits at ~870 nm in infrared).'
+                '• Active Medium: Heavily doped direct-bandgap p-n junction (e.g. Gallium Arsenide GaAs, InGaAsP).',
+                '• Pumping Mechanism: Direct forward-bias electrical current injection (~10⁴ A/cm²).',
+                '• Laser Action: High current injects electrons into the conduction band and holes into the valence band within the depletion region, achieving population inversion.',
+                '• Radiative Recombination: Electrons recombine with holes, emitting coherent photons with energy hν ≈ E_g.',
+                '• Resonator: Polished parallel cleaved end crystal faces act as natural reflecting mirrors (Fresnel reflection ~35%).',
+                '• Wavelength: λ = hc / E_g = 1240 / E_g (eV) nm (GaAs with E_g = 1.42 eV emits at ~870 nm; InGaAsP emits at 1310/1550 nm).'
               ]
             }
           ],
           formulas: [
             {
               title: 'Semiconductor Laser Wavelength',
-              latex: '\\lambda = \\frac{hc}{E_g} = \\frac{1.24 \\times 10^{-6}}{E_g \\text{ (in eV)}} \\text{ meters} = \\frac{1240}{E_g \\text{ (in eV)}} \\text{ nm}',
-              explanation: 'Emitted photon wavelength determined strictly by semiconductor band gap E_g.'
+              latex: '\\lambda = \\frac{hc}{E_g} = \\frac{1240}{E_g \\text{ (in eV)}} \\text{ nm}',
+              explanation: 'Relates emitted laser wavelength directly to semiconductor bandgap energy.'
             }
           ],
           example: {
-            problem: 'A GaAs semiconductor laser has a band gap of 1.44 eV. Calculate the wavelength of emitted laser light.',
+            problem: 'A GaAs semiconductor laser has an energy bandgap of 1.44 eV at 300 K. Calculate the wavelength of laser emission and determine whether it lies in the visible or infrared region.',
             solutionSteps: [
-              'Step 1: Band gap E_g = 1.44 eV = 1.44 * 1.6 * 10^(-19) J = 2.304 * 10^(-19) J.',
-              'Step 2: Planck’s constant h = 6.626 * 10^(-34) J·s; Speed of light c = 3 * 10^8 m/s.',
-              'Step 3: λ = hc / E_g = (6.626 * 10^(-34) * 3 * 10^8) / (2.304 * 10^(-19)) = 8.628 * 10^(-7) m = 862.8 nm.',
-              'Step 4: Using quick shortcut: λ = 1240 / 1.44 = 861.1 nm.'
+              'Step 1: Energy bandgap E_g = 1.44 eV = 1.44 * 1.602 * 10^(-19) J = 2.307 * 10^(-19) J.',
+              'Step 2: Planck’s constant h = 6.626 * 10^(-34) J·s; Speed of light c = 3.0 * 10^8 m/s.',
+              'Step 3: λ = hc / E_g = (6.626 * 10^(-34) * 3.0 * 10^8) / (2.307 * 10^(-19)) = 8.616 * 10^(-7) m = 861.6 nm.',
+              'Step 4: Spectral check: Visible range is 400 nm to 700 nm. Since 861.6 nm > 700 nm, it lies in the near-infrared spectrum.'
             ],
-            finalAnswer: 'Wavelength λ ≈ 862.8 nm (Near Infrared).'
+            finalAnswer: 'Wavelength λ = 861.6 nm (Near Infrared).'
           },
           engineeringApplication: {
-            title: 'Fiber Optic Transceivers for Global Internet Subsea Cables',
-            description: 'InGaAsP Distributed Feedback (DFB) semiconductor lasers emit continuous 1550 nm light modulated at 800 Gbps per wavelength channel, carrying terabytes of internet data across transatlantic undersea cables.',
-            impact: 'Enables global cloud computing and real-time planetary communication.'
+            title: 'Subsea Fiber-Optic Transceivers & Barcode Scanners',
+            description: 'He-Ne lasers provide continuous optical reference beams in metrology, while 1550 nm DFB InGaAsP semiconductor lasers power global subsea fiber cables.',
+            impact: 'Carries terabits of transcontinental internet traffic per second.'
           },
           commonMistakes: [
             {
-              mistake: 'Thinking Helium atoms produce the laser light in He-Ne laser.',
-              correction: 'Neon (Ne) atoms emit the laser photons! Helium acts purely as an energy transfer buffer to pump Neon efficiently.',
-              why: 'Helium metastable levels match Neon energy states with less than 0.05 eV difference.'
+              mistake: 'Assuming Helium emits the laser light in He-Ne laser.',
+              correction: 'Neon (Ne) emits the laser beam. Helium acts exclusively as an energy transfer agent to pump Neon efficiently.',
+              why: 'Helium has long-lived metastable states that perfectly match Neon excitation levels.'
             }
           ],
           quickRevision: [
-            'Ruby: 3-level, solid state, pulsed, Cr^(3+) ions, λ = 694.3 nm.',
-            'He-Ne: 4-level, gas, continuous, He pumps Ne, λ = 632.8 nm.',
-            'Semiconductor: Direct bandgap p-n junction, forward bias injection, λ = hc/E_g.',
-            'Direct bandgap (GaAs) is required; indirect (Si, Ge) cannot lase.'
+            'Ruby: 3-level, solid state, pulsed, Cr³⁺ active ions, λ = 694.3 nm.',
+            'He-Ne: 4-level, gas, continuous, He pumps Ne via collisions, λ = 632.8 nm.',
+            'Semiconductor: Direct bandgap p-n junction, forward bias injection, λ = hc / E_g.',
+            'Direct bandgap (GaAs) is mandatory; indirect (Si, Ge) cannot lase.'
           ],
           examFocus: {
-            questionTypes: ['Explain construction, working and energy level diagram of He-Ne laser (8 Marks)', 'Explain Ruby laser with energy level diagram (7 Marks)', 'Explain Semiconductor diode laser and compute wavelength from bandgap (5-7 Marks)'],
+            questionTypes: [
+              'Explain the construction, working, and energy level diagram of He-Ne laser (8 Marks)',
+              'Explain the working of Ruby laser with neat energy level transitions (7-8 Marks)',
+              'Describe the construction and working principle of semiconductor diode laser (6-7 Marks)'
+            ],
             likelyMarks: '8 Marks',
-            keyTheorems: ['4-level laser population inversion advantage over 3-level'],
-            tip: 'Drawing clean energy level diagrams with arrows for pumping, resonant transfer, and laser transitions earns full marks in BEU exams.'
+            keyTheorems: ['4-Level Laser Pumping Advantage'],
+            tip: 'Drawing complete energy level transition diagrams with clear labels for pumping, resonant transfer, and laser emission guarantees full marks.'
           },
           visualType: 'laser-types',
           visualCaption: 'Energy Level Transitions: Ruby (3-Level), He-Ne (4-Level) & GaAs Diode',
-          visualExplanation: 'Comparison of energy level diagrams for Ruby laser, resonant collision transfer in He-Ne laser, and bandgap electron-hole recombination in GaAs diode.',
+          visualExplanation: 'Comparative diagrams illustrating optical pumping in Ruby, resonant collision transfer in He-Ne, and bandgap electron-hole recombination in GaAs diode.',
           estimatedMinutes: 30
         },
         {
@@ -678,31 +918,37 @@ export const physicsSubject: Subject = {
           unitId: 'phy-u2',
           subjectId: 'physics-1',
           subjectCode: '100104',
-          quickDefinition: 'An optical fiber is a cylindrical dielectric waveguide consisting of an inner Core of refractive index n_1 surrounded by a Cladding of slightly lower index n_2 (n_1 > n_2). Light is guided along the core via Total Internal Reflection (TIR).',
-          whyItMatters: 'Carries >99% of global internet and telecommunication traffic with near-zero electromagnetic interference, ultra-low loss, and gigabit-to-terabit bandwidth.',
+          quickDefinition: 'An optical fiber is a cylindrical dielectric waveguide consisting of an inner Core of refractive index n₁ surrounded by a Cladding of slightly lower index n₂ (n₁ > n₂). Light propagates along the core via repeated Total Internal Reflection (TIR). Numerical Aperture (NA) measures the light-gathering capacity of the fiber.',
+          whyItMatters: 'Optical fibers form the backbone of the global internet, medical endoscopes, submarine communication links, and smart sensor grids.',
           coreConcept: [
             {
-              heading: 'Optical Fiber Structure & TIR Condition',
+              heading: '1. Fiber Structure & TIR Condition',
               paragraphs: [
-                'Structure consists of: Core (high refractive index n_1, silica glass/plastic), Cladding (lower index n_2, keeps light trapped), Silicone buffer coating, and Kevlar protective jacket.',
-                'TIR Condition: Light traveling in the core strikes the core-cladding boundary at angle φ >= critical angle φ_c = sin^(-1)(n_2 / n_1).'
+                'Structure: (1) Core (silica glass with high index n₁), (2) Cladding (silica with lower index n₂), (3) Silicone buffer coating, (4) Outer Kevlar protective sheath.',
+                'TIR Criterion: Light propagating inside the core must strike the core-cladding interface at an angle φ greater than or equal to the critical angle φ_c: φ >= φ_c = sin⁻¹(n₂ / n₁).'
               ]
             },
             {
-              heading: 'Acceptance Angle & Numerical Aperture (NA)',
+              heading: '2. Derivation of Acceptance Angle (θ_a) & Numerical Aperture (NA)',
               paragraphs: [
-                'Acceptance Angle (θ_a): The maximum angle of incidence at the fiber launch face in air (n_0 = 1) for which light undergoes TIR inside the core.',
-                'Derivation: At launch face, sin θ_a / sin r = n_1 / n_0. Inside core, triangle gives r = 90° - φ_c. Thus sin r = cos φ_c = sqrt(1 - sin^2 φ_c) = sqrt(1 - (n_2/n_1)^2) = sqrt(n_1^2 - n_2^2) / n_1.',
-                'Therefore: sin θ_a = sqrt(n_1^2 - n_2^2) / n_0. For air (n_0 = 1): sin θ_a = sqrt(n_1^2 - n_2^2).',
-                'Numerical Aperture (NA): The light-gathering power of the optical fiber: NA = sin θ_a = sqrt(n_1^2 - n_2^2) = n_1 sqrt(2 Δ), where Δ = (n_1 - n_2) / n_1 is the fractional index difference.'
+                'Consider a ray entering the fiber core from a medium of refractive index n₀ (air, n₀ = 1) at launch angle θ.',
+                'At the entrance face, Snell’s law gives: n₀ sin θ = n₁ sin r.',
+                'In the right-angled triangle inside the core, the angle of reflection at the cladding boundary is φ = 90° - r  ==>  r = 90° - φ.',
+                'Thus: sin r = sin (90° - φ) = cos φ = √(1 - sin² φ).',
+                'For Total Internal Reflection at the critical angle: sin φ_c = n₂ / n₁.',
+                'cos φ_c = √(1 - (n₂ / n₁)²) = √(n₁² - n₂²) / n₁.',
+                'Substituting cos φ_c into Snell’s law: n₀ sin θ_a = n₁ [ √(n₁² - n₂²) / n₁ ] = √(n₁² - n₂²).',
+                'For launch in air (n₀ = 1): sin θ_a = √(n₁² - n₂²).',
+                'Acceptance Angle (θ_a): The maximum launch angle in air for which light undergoes TIR inside the core: θ_a = sin⁻¹(√(n₁² - n₂²)).',
+                'Numerical Aperture (NA): The light gathering efficiency of the fiber: NA = sin θ_a = √(n₁² - n₂²) = n₁ √(2Δ), where Δ = (n₁ - n₂) / n₁ is the fractional index difference.'
               ]
             },
             {
-              heading: 'Classification / Types of Optical Fibers',
+              heading: '3. Fiber Classification (SMF, MMF & GRIN)',
               paragraphs: [
-                '1. Step Index Single Mode Fiber (SMF): Core diameter ~8-10 μm, carries only 1 fundamental mode (HE_11). Zero intermodal dispersion, ideal for long-distance telecom (>100 km).',
-                '2. Step Index Multimode Fiber (MMF): Core diameter ~50-100 μm, carries hundreds of modes, suffers high intermodal dispersion.',
-                '3. Graded Index (GRIN) Multimode Fiber: Core index decreases parabolically from center to cladding n(r) = n_1 [1 - 2Δ(r/a)^2]^(1/2). Outer rays travel faster through lower-index glass, equalizing propagation times and dramatically reducing intermodal dispersion.'
+                '1. Step-Index Single Mode Fiber (SMF): Core diameter ~8-10 μm, carries only 1 fundamental mode (HE₁₁). Zero intermodal dispersion, ideal for long-haul telecom (>100 km).',
+                '2. Step-Index Multimode Fiber (MMF): Core diameter ~50-100 μm, carries hundreds of modes, suffers high intermodal dispersion.',
+                '3. Graded-Index (GRIN) Multimode Fiber: Core refractive index decreases parabolically from center to cladding: n(r) = n₁ [ 1 - 2Δ(r/a)² ]^(1/2). Outer rays travel faster through lower-index outer layers, equalizing propagation times and dramatically minimizing intermodal dispersion.'
               ]
             }
           ],
@@ -710,143 +956,159 @@ export const physicsSubject: Subject = {
             {
               title: 'Numerical Aperture (NA)',
               latex: '\\text{NA} = \\sin\\theta_a = \\sqrt{n_1^2 - n_2^2} \\approx n_1 \\sqrt{2\\Delta}',
-              explanation: 'Fundamental light gathering metric of the fiber.'
+              explanation: 'Fundamental light gathering metric of an optical fiber.'
             },
             {
-              title: 'Fractional Refractive Index Difference Δ',
+              title: 'Fractional Index Difference Δ',
               latex: '\\Delta = \\frac{n_1 - n_2}{n_1}',
-              explanation: 'Typically 0.001 to 0.02 (0.1% to 2%) for optical communication fibers.'
+              explanation: 'Typically 0.001 to 0.02 (0.1% to 2%) in communication fibers.'
             },
             {
               title: 'Normalized Frequency (V-Number)',
               latex: 'V = \\frac{2\\pi a}{\\lambda} \\text{NA} = \\frac{2\\pi a}{\\lambda} \\sqrt{n_1^2 - n_2^2}',
-              explanation: 'V <= 2.405 ensures single-mode fiber operation.'
+              explanation: 'Single-mode operation is guaranteed when V <= 2.405.'
             }
           ],
           example: {
-            problem: 'An optical fiber has a core refractive index n_1 = 1.50 and cladding index n_2 = 1.47. Calculate (i) Critical angle at core-cladding boundary, (ii) Acceptance angle, (iii) Numerical Aperture, and (iv) Fractional index difference Δ.',
+            problem: 'An optical fiber has a core refractive index n₁ = 1.50 and cladding index n₂ = 1.47. Calculate (i) Critical angle at core-cladding boundary, (ii) Numerical Aperture, (iii) Acceptance angle in air, and (iv) Fractional index difference Δ.',
             solutionSteps: [
-              'Step 1: Critical angle φ_c = sin^(-1)(n_2 / n_1) = sin^(-1)(1.47 / 1.50) = sin^(-1)(0.98) = 78.52°.',
-              'Step 2: NA = sqrt(n_1^2 - n_2^2) = sqrt(1.50^2 - 1.47^2) = sqrt(2.25 - 2.1609) = sqrt(0.0891) = 0.2985.',
-              'Step 3: Acceptance angle θ_a = sin^(-1)(NA) = sin^(-1)(0.2985) = 17.37°.',
-              'Step 4: Fractional index difference Δ = (n_1 - n_2) / n_1 = (1.50 - 1.47) / 1.50 = 0.03 / 1.50 = 0.02 (2%).'
+              'Step 1: Critical angle φ_c = sin⁻¹(n₂ / n₁) = sin⁻¹(1.47 / 1.50) = sin⁻¹(0.98) = 78.52°.',
+              'Step 2: NA = √(n₁² - n₂²) = √(1.50² - 1.47²) = √(2.25 - 2.1609) = √(0.0891) = 0.2985.',
+              'Step 3: Acceptance angle θ_a = sin⁻¹(NA) = sin⁻¹(0.2985) = 17.37°.',
+              'Step 4: Fractional index difference Δ = (n₁ - n₂) / n₁ = (1.50 - 1.47) / 1.50 = 0.03 / 1.50 = 0.02 (2.0%).'
             ],
-            finalAnswer: '(i) φ_c = 78.52°, (ii) θ_a = 17.37°, (iii) NA = 0.2985, (iv) Δ = 0.02 (2%).'
+            finalAnswer: '(i) φ_c = 78.52°, (ii) NA = 0.2985, (iii) θ_a = 17.37°, (iv) Δ = 0.02 (2%).'
           },
           engineeringApplication: {
-            title: '5G Mobile Backhaul & FTTH (Fiber To The Home)',
-            description: 'Fiber-to-the-home GPON networks deploy single-mode optical fibers delivering 1 Gbps broadband to millions of residential users with negligible latency.',
-            impact: 'Eliminates copper wire electromagnetic interference and supports ultra-broadband connectivity.'
+            title: '5G Mobile Backhaul & FTTH Broadband Networks',
+            description: 'Fiber-To-The-Home (FTTH) Gigabit Passive Optical Networks (GPON) use single-mode silica fibers to deliver gigabit internet speeds to millions of households.',
+            impact: 'Provides zero-loss, EMI-immune digital transmission across continents.'
           },
           commonMistakes: [
             {
-              mistake: 'Using n_2^2 - n_1^2 under the square root for NA.',
-              correction: 'NA = sqrt(n_1^2 - n_2^2) because Core index n_1 is ALWAYS greater than Cladding index n_2.',
-              why: 'TIR can only occur when light travels from denser medium (core) towards rarer medium (cladding).'
+              mistake: 'Putting n₂² - n₁² under the square root in the NA formula.',
+              correction: 'NA = √(n₁² - n₂²) because Core index n₁ is ALWAYS strictly greater than Cladding index n₂.',
+              why: 'Total Internal Reflection requires light to travel from denser to rarer media.'
             }
           ],
           quickRevision: [
-            'Core n_1 > Cladding n_2 is mandatory for TIR.',
-            'Critical angle: φ_c = sin^(-1)(n_2/n_1).',
-            'NA = sin θ_a = sqrt(n_1^2 - n_2^2) = n_1 sqrt(2Δ).',
-            'Acceptance cone semi-angle is θ_a.',
-            'Single mode: V <= 2.405; GRIN fiber reduces modal dispersion.'
+            'Core n₁ > Cladding n₂ is mandatory for TIR.',
+            'Critical angle: φ_c = sin⁻¹(n₂ / n₁).',
+            'Numerical Aperture: NA = sin θ_a = √(n₁² - n₂²) = n₁ √(2Δ).',
+            'Single mode cutoff: V <= 2.405.',
+            'GRIN fiber uses parabolic index profiling to eliminate modal dispersion.'
           ],
           examFocus: {
-            questionTypes: ['Define and derive Acceptance Angle and Numerical Aperture (8 Marks)', 'Differentiate between Step-index and Graded-index fibers with index profiles and ray paths (7 Marks)', 'Numerical on calculating NA, θ_a, Δ, and V-number (5 Marks)'],
+            questionTypes: [
+              'Define and derive expressions for Acceptance Angle and Numerical Aperture of an optical fiber (8 Marks)',
+              'Differentiate between Step Index and Graded Index fibers with ray paths and refractive index profiles (7 Marks)',
+              'Numerical problem calculating NA, θ_a, Δ, and V-number (5 Marks)'
+            ],
             likelyMarks: '8 to 10 Marks',
-            keyTheorems: ['Derivation of Numerical Aperture from Snell’s Law'],
-            tip: 'Always state n_0 = 1 for air when deriving NA = sin θ_a.'
+            keyTheorems: ['Optical Waveguide Total Internal Reflection Derivation'],
+            tip: 'Always draw the acceptance cone and internal TIR zigzag ray path when deriving NA in exams.'
           },
           visualType: 'optical-fiber-tir',
           visualCaption: 'Optical Fiber Ray Geometry: Acceptance Cone, Critical Angle & TIR',
-          visualExplanation: 'Diagram depicting launch light entering core within acceptance cone angle θ_a, propagating via repeated core-cladding boundary TIR reflections.',
+          visualExplanation: 'Ray tracing showing launch angle within acceptance cone θ_a entering core, reflecting via repeated Total Internal Reflection at core-cladding boundary.',
           estimatedMinutes: 30
         },
         {
           id: 'phy-u2-t4',
           topicNumber: '2.4',
-          title: 'Light Propagation, Attenuation & Fiber Optic Sensors',
+          title: 'Propagation Mechanism, Attenuation Losses & Fiber Optic Sensors',
           syllabusText: 'Propagation mechanism of light in fibre, Attenuation in optical fibres, Applications of optical fibres, Fibre optic sensors.',
           unitId: 'phy-u2',
           subjectId: 'physics-1',
           subjectCode: '100104',
-          quickDefinition: 'Attenuation is the reduction in optical power as light travels through a fiber (expressed in dB/km). Signal degradation occurs due to absorption, Rayleigh scattering, and bending losses. Fiber optic sensors modulate light intensity, phase, or wavelength to measure physical parameters.',
-          whyItMatters: 'Determines optical repeater/amplifier spacing across undersea networks and provides immune-to-EMI structural monitoring in aircraft wings and oil pipelines.',
+          quickDefinition: 'Attenuation is the reduction of optical signal power as light propagates through a fiber (measured in dB/km). Losses arise from material absorption, Rayleigh scattering, and micro/macrobending. Fiber optic sensors utilize changes in light intensity, phase, or wavelength to measure temperature, pressure, strain, and rotation.',
+          whyItMatters: 'Governs optical amplifier spacing in subsea telecom cables and enables explosion-proof, EMI-immune structural health monitoring in aerospace and power plants.',
           coreConcept: [
             {
-              heading: 'Attenuation Mechanisms & Formula',
+              heading: '1. Attenuation Mechanisms & Formula',
               paragraphs: [
-                'Attenuation coefficient α (dB/km) = (10 / L) * log_10 (P_in / P_out).',
+                'Attenuation Coefficient (α in dB/km): α = (10 / L) log₁₀ (P_in / P_out).',
                 'Loss Mechanisms:',
-                '1. Material Absorption: Intrinsic UV/IR absorption and extrinsic impurity absorption (hydroxyl OH^- radical absorption peaks at 1380 nm).',
-                '2. Rayleigh Scattering: Microscopic density fluctuations in molten silica freeze into random refractive index variations, scattering light with loss α_R ∝ 1 / λ^4. This makes 1550 nm the lowest-loss telecommunication window (~0.2 dB/km).',
-                '3. Bending Losses: Macrobending (visible fiber bends radiating light out of cladding) and Microbending (microscopic pressure crimping).'
+                '1. Material Absorption: Intrinsic electronic UV/IR absorption and extrinsic impurity absorption (hydroxyl OH⁻ radical absorption peak at 1.38 μm).',
+                '2. Rayleigh Scattering: Microscopic density variations in molten silica freeze into random refractive index fluctuations, scattering light with loss α_R ∝ 1 / λ⁴. This creates the ultra-low loss telecommunication window at 1550 nm (~0.2 dB/km).',
+                '3. Bending Losses: Macrobending (visible fiber curvature radiating energy out of cladding) and Microbending (microscopic pressure crimping of the core).'
               ]
             },
             {
-              heading: 'Fiber Optic Sensors (Intrinsic vs Extrinsic)',
+              heading: '2. Optical Dispersion in Fibers',
               paragraphs: [
-                'Intrinsic Sensors: The optical fiber itself acts as the sensing element (e.g. Fiber Bragg Grating [FBG] strain sensor, Sagnac optical gyroscope). Parameter changes alter core refractive index or grating period.',
-                'Extrinsic Sensors: Fiber acts merely as a light conduit carrying light to/from an external sensing region (e.g. liquid level, temperature probe).'
+                'Dispersion causes light pulses to broaden in time as they travel along the fiber, causing Inter-Symbol Interference (ISI) and limiting data bandwidth.',
+                '• Intermodal Dispersion: Higher-order modes travel longer zigzag paths than axial modes in step-index MMF: Δt_modal = (L n₁ Δ) / c.',
+                '• Intramodal (Chromatic) Dispersion: Different spectral components travel at different speeds due to material dispersion and waveguide geometry. Governs pulse broadening in single-mode fibers.'
+              ]
+            },
+            {
+              heading: '3. Fiber Optic Sensors (Intrinsic vs Extrinsic)',
+              paragraphs: [
+                '• Intrinsic Sensors: The optical fiber itself acts as the sensing transducer. Parameter changes alter the core refractive index, phase, or grating period (e.g. Fiber Bragg Grating [FBG] strain sensor λ_B = 2 n_eff Λ, Sagnac optical gyroscope).',
+                '• Extrinsic Sensors: The fiber acts purely as a passive light pipe carrying light to and from an external sensing head (e.g. optical liquid level probes, displacement sensors).'
               ]
             }
           ],
           formulas: [
             {
-              title: 'Attenuation in dB/km',
+              title: 'Fiber Attenuation Coefficient',
               latex: '\\alpha (\\text{dB/km}) = \\frac{10}{L} \\log_{10}\\left( \\frac{P_{\\text{in}}}{P_{\\text{out}}} \\right)',
-              explanation: 'Quantifies optical power loss over fiber length L in kilometers.'
+              explanation: 'Quantifies optical signal power loss over distance L in kilometers.'
             },
             {
-              title: 'Rayleigh Scattering Loss Dependence',
+              title: 'Rayleigh Scattering Loss',
               latex: '\\alpha_{\\text{Rayleigh}} \\propto \\frac{1}{\\lambda^4}',
-              explanation: 'Loss drops by factor of 16 when doubling wavelength.'
+              explanation: 'Power loss drops by a factor of 16 when doubling wavelength.'
             },
             {
-              title: 'Fiber Bragg Grating (FBG) Resonance',
+              title: 'Fiber Bragg Grating (FBG) Reflection',
               latex: '\\lambda_B = 2 n_{\\text{eff}} \\Lambda',
-              explanation: 'Reflected Bragg wavelength shifts with strain and temperature changes.'
+              explanation: 'Bragg wavelength shifts linearly with strain and temperature changes.'
             }
           ],
           example: {
-            problem: 'An optical signal of power 10 mW is launched into a 20 km long optical fiber. If the fiber has an attenuation coefficient of 0.5 dB/km, calculate the output power at the end of the fiber.',
+            problem: 'An optical power of 10 mW is launched into a 20 km long single-mode optical fiber having an attenuation coefficient of 0.5 dB/km. Calculate the output power emerging at the receiver.',
             solutionSteps: [
-              'Step 1: Input power P_in = 10 mW; Length L = 20 km; α = 0.5 dB/km.',
+              'Step 1: Given P_in = 10 mW, length L = 20 km, attenuation α = 0.5 dB/km.',
               'Step 2: Total loss in dB = α * L = 0.5 * 20 = 10 dB.',
-              'Step 3: Apply formula: 10 = 10 * log_10(P_in / P_out) ==> log_10(P_in / P_out) = 1.',
-              'Step 4: P_in / P_out = 10^1 = 10.',
-              'Step 5: P_out = P_in / 10 = 10 mW / 10 = 1 mW.'
+              'Step 3: Formula: 10 dB = 10 * log₁₀(P_in / P_out)  ==>  log₁₀(P_in / P_out) = 1.',
+              'Step 4: P_in / P_out = 10¹ = 10.',
+              'Step 5: Output power P_out = P_in / 10 = 10 mW / 10 = 1.0 mW.'
             ],
-            finalAnswer: 'Output Power = 1 mW (90% power attenuated over 20 km).'
+            finalAnswer: 'Output Power P_out = 1.0 mW (90% power attenuated over 20 km).'
           },
           engineeringApplication: {
-            title: 'Structural Health Monitoring of Bridges & Dams',
-            description: 'Fiber Bragg Grating (FBG) optical sensors embedded inside concrete bridge decks monitor micro-strain and thermal expansion continuously without electrical sparking hazard.',
-            impact: 'Provides early warning of structural cracks before catastrophic collapse.'
+            title: 'Structural Health Monitoring of Railway Bridges & Aircraft Wings',
+            description: 'Fiber Bragg Grating (FBG) optical sensor arrays embedded inside bridge pillars and composite aircraft wings measure micro-strain and thermal stress continuously without electrical sparking hazard.',
+            impact: 'Provides real-time warning of structural microcracks before catastrophic failure.'
           },
           commonMistakes: [
             {
-              mistake: 'Using natural logarithm ln instead of log_10 in the dB attenuation formula.',
-              correction: 'dB is defined with base-10 logarithm: 10 * log_10(P_in / P_out).',
-              why: 'Decibels are standardized on a base-10 logarithmic scale.'
+              mistake: 'Using natural log ln instead of base-10 log in the dB attenuation formula.',
+              correction: 'Decibels are strictly base-10: α = (10/L) log₁₀(P_in / P_out).',
+              why: 'Standard decibel definition uses base-10 logarithmic scaling.'
             }
           ],
           quickRevision: [
-            'Attenuation α = (10/L) log_10(P_in/P_out) dB/km.',
-            'Lowest loss window is 1550 nm (~0.2 dB/km) due to 1/λ^4 Rayleigh drop.',
-            'OH^- impurity causes absorption peak around 1.38 μm.',
-            'Intrinsic sensor: fiber is transducer; Extrinsic: fiber is only light pipe.'
+            'Attenuation α = (10/L) log₁₀(P_in / P_out) dB/km.',
+            'Lowest loss telecommunication window: 1550 nm (~0.2 dB/km) due to 1/λ⁴ Rayleigh drop.',
+            'OH⁻ impurity creates absorption peak at 1.38 μm.',
+            'Intrinsic sensor: fiber is transducer; Extrinsic sensor: fiber is light guide.'
           ],
           examFocus: {
-            questionTypes: ['Explain various losses/attenuation mechanisms in optical fibers (7 Marks)', 'Numerical on optical power attenuation and fiber length (5 Marks)', 'Explain principle and applications of fiber optic sensors (5-7 Marks)'],
+            questionTypes: [
+              'Explain the various loss mechanisms and attenuation in optical fibers (7-8 Marks)',
+              'Explain the principle and classification of fiber optic sensors with applications (6-7 Marks)',
+              'Numerical problem on attenuation coefficient, optical power, and fiber length (5 Marks)'
+            ],
             likelyMarks: '7 to 8 Marks',
-            keyTheorems: ['Rayleigh Scattering 1/λ^4 Law'],
-            tip: 'Draw the attenuation vs wavelength curve showing the 3 optical communication windows (850 nm, 1310 nm, 1550 nm).'
+            keyTheorems: ['Rayleigh Scattering 1/λ⁴ Law'],
+            tip: 'Draw the attenuation vs wavelength spectral curve showing the three optical telecom windows (850 nm, 1310 nm, 1550 nm).'
           },
           visualType: 'fiber-attenuation',
           visualCaption: 'Optical Fiber Loss Spectrum: Absorption Peaks & Rayleigh 1/λ⁴ Curve',
-          visualExplanation: 'Graph illustrating attenuation vs wavelength showing UV/IR tails, OH⁻ absorption peaks, and the 1550 nm minimum loss window.',
+          visualExplanation: 'Attenuation curve showing UV absorption tail, OH⁻ water absorption peaks at 1380 nm, and the 1550 nm minimum loss telecommunication window.',
           estimatedMinutes: 25
         }
       ]
@@ -858,10 +1120,10 @@ export const physicsSubject: Subject = {
       hours: 8,
       mappedCOs: ['CO3'],
       learningObjectives: [
-        'Apply Gauss’s Law in dielectric media and calculate capacitor capacitance.',
-        'Classify magnetic materials (dia, para, ferromagnetic) based on magnetic susceptibility.',
-        'State and derive Maxwell’s four equations in differential and integral forms.',
-        'Analyze electromagnetic wave propagation in vacuum/dielectrics and Poynting Theorem.'
+        'Apply Gauss’s Law in dielectric media and analyze capacitor configurations.',
+        'Classify magnetic materials (dia, para, ferromagnetic) and understand B-H hysteresis.',
+        'Derive Maxwell’s four equations in differential and integral forms and understand displacement current.',
+        'Analyze electromagnetic wave propagation in vacuum/dielectrics and derive the Poynting Theorem.'
       ],
       topics: [
         {
@@ -872,111 +1134,127 @@ export const physicsSubject: Subject = {
           unitId: 'phy-u3',
           subjectId: 'physics-1',
           subjectCode: '100104',
-          quickDefinition: 'Gauss’s Law states that the total electric flux out of a closed surface equals the enclosed charge divided by ε_0. In dielectric media, electric polarization P induces bound charges, introducing the Electric Displacement vector D = ε_0 E + P.',
-          whyItMatters: 'Crucial for designing high-density DRAM capacitors, touch sensors, high-voltage insulator bushings, and power transmission lines.',
+          quickDefinition: 'Gauss’s Law states that the total electric flux out of a closed surface equals the enclosed free charge divided by ε₀. In dielectric media, an applied electric field induces atomic dipole moments producing Polarization vector P, leading to the Electric Displacement vector D = ε₀ E + P.',
+          whyItMatters: 'Essential for designing high-density DRAM storage capacitors, high-voltage insulator bushings, touchscreens, and advanced CMOS gate dielectrics.',
           coreConcept: [
             {
-              heading: 'Gauss’s Law in Free Space & Dielectrics',
+              heading: '1. Gauss’s Law in Free Space & Dielectrics',
               paragraphs: [
-                'Free space: ∮ E • dA = Q_enc / ε_0 or differential form ∇ • E = ρ / ε_0.',
-                'In Dielectric Media: External electric field E induces atomic dipole moments producing polarization vector P = ε_0 χ_e E (where χ_e is electric susceptibility).',
-                'Electric Displacement Vector: D = ε_0 E + P = ε_0 (1 + χ_e) E = ε_0 ε_r E = ε E.',
-                'Gauss’s Law in Dielectrics: ∮ D • dA = Q_free,enc or ∇ • D = ρ_free (independent of bound polarization charges).'
+                'In Free Space: ∮ E • dA = Q_enc / ε₀  ==>  ∇ • E = ρ / ε₀.',
+                'Dielectric Polarization: An external electric field E aligns atomic dipoles, inducing polarization vector P = ε₀ χ_e E (where χ_e is electric susceptibility).',
+                'Bound Charges: Non-uniform polarization produces bound volume charge ρ_b = -∇ • P and bound surface charge σ_b = P • n̂.',
+                'Electric Displacement Vector: D = ε₀ E + P = ε₀ (1 + χ_e) E = ε₀ ε_r E = ε E.',
+                'Gauss’s Law in Dielectrics: ∮ D • dA = Q_free,enc  ==>  ∇ • D = ρ_free (strictly independent of bound polarization charges).'
               ]
             },
             {
-              heading: 'Dielectrics in Capacitors',
+              heading: '2. Capacitance with Dielectric Slabs',
               paragraphs: [
-                'Parallel plate capacitor with dielectric slab of constant ε_r (or K) and thickness t < d:',
-                'C = ε_0 A / (d - t + t/K).',
-                'When slab completely fills gap (t = d): C = K * C_0 = (K ε_0 A) / d. Capacitance increases by factor K while electric field drops to E_0 / K.'
+                'Parallel plate capacitor of plate area A and separation d with a dielectric slab of thickness t < d and dielectric constant K (or ε_r):',
+                'Electric field in air gap: E₀ = V₀ / d. Electric field inside dielectric slab: E = E₀ / K.',
+                'Total potential difference: V = E₀ (d - t) + E t = E₀ (d - t + t/K).',
+                'Capacitance: C = Q / V = (ε₀ A E₀) / [ E₀ (d - t + t/K) ] = ε₀ A / (d - t + t/K).',
+                'When the dielectric fills the entire plate separation (t = d): C = K C₀ = (K ε₀ A) / d.'
               ]
             }
           ],
           formulas: [
             {
-              title: 'Gauss’s Law in Dielectric Form',
+              title: 'Gauss’s Law in Dielectric Media',
               latex: '\\nabla \\cdot \\vec{D} = \\rho_{\\text{free}} \\iff \\oint_S \\vec{D} \\cdot d\\vec{A} = Q_{\\text{free,enc}}',
-              explanation: 'Applies purely to free charges, absorbing polarization effects into D.'
+              explanation: 'Applies purely to free charges, encapsulating bound polarization charges in D.'
             },
             {
-              title: 'Displacement Vector & Polarization',
+              title: 'Electric Displacement & Polarization',
               latex: '\\vec{D} = \\varepsilon_0 \\vec{E} + \\vec{P} = \\varepsilon_0 \\varepsilon_r \\vec{E}',
-              explanation: 'Fundamental constituent relation in linear isotropic dielectrics.'
+              explanation: 'Fundamental constituent relation in linear isotropic dielectric materials.'
             },
             {
               title: 'Capacitance with Dielectric Slab',
               latex: 'C = \\frac{\\varepsilon_0 A}{d - t + \\frac{t}{K}}',
-              explanation: 'General formula for partially filled dielectric capacitor.'
+              explanation: 'General capacitance formula for capacitor partially filled with dielectric slab.'
             }
           ],
           example: {
-            problem: 'A parallel plate capacitor has plate area 100 cm^2 and separation 2 mm. A dielectric slab of thickness 1 mm and dielectric constant K = 5 is inserted. Calculate the new capacitance.',
+            problem: 'A parallel plate capacitor has plate area 100 cm² and separation 2.0 mm. A dielectric slab of thickness 1.0 mm and dielectric constant K = 5.0 is inserted between the plates. Calculate the new capacitance.',
             solutionSteps: [
-              'Step 1: Plate area A = 100 * 10^(-4) m^2 = 0.01 m^2.',
-              'Step 2: Separation d = 2 mm = 2 * 10^(-3) m; Slab thickness t = 1 mm = 10^(-3) m; K = 5.',
-              'Step 3: Effective spacing d’ = d - t + t/K = 2 - 1 + 1/5 = 1 + 0.2 = 1.2 mm = 1.2 * 10^(-3) m.',
-              'Step 4: C = ε_0 A / d’ = (8.854 * 10^(-12) * 0.01) / (1.2 * 10^(-3)) = (8.854 * 10^(-14)) / (1.2 * 10^(-3)) = 7.378 * 10^(-11) F = 73.8 pF.',
-              'Step 5: For comparison, vacuum capacitance C_0 = 44.3 pF (increase of 66.7%).'
+              'Step 1: Area A = 100 cm² = 100 * 10^(-4) m² = 0.01 m².',
+              'Step 2: Separation d = 2.0 mm = 2.0 * 10^(-3) m; Slab thickness t = 1.0 mm = 1.0 * 10^(-3) m; K = 5.0.',
+              'Step 3: Effective spacing d’ = d - t + t/K = 2.0 - 1.0 + 1.0/5.0 = 1.0 + 0.2 = 1.2 mm = 1.2 * 10^(-3) m.',
+              'Step 4: C = ε₀ A / d’ = (8.854 * 10^(-12) * 0.01) / (1.2 * 10^(-3)) = (8.854 * 10^(-14)) / (1.2 * 10^(-3)) = 7.378 * 10^(-11) F = 73.78 pF.'
             ],
-            finalAnswer: 'New Capacitance C = 73.8 pF.'
+            finalAnswer: 'New Capacitance C = 73.78 pF (Vacuum capacitance was 44.27 pF).'
           },
           engineeringApplication: {
-            title: 'High-k Dielectrics in 3nm MOSFET Gate Capacitors',
-            description: 'Modern Intel and Apple processors replace traditional SiO_2 with Hafnium Oxide (HfO_2, K ≈ 25) gate dielectrics to achieve high gate capacitance without quantum tunneling leakage current.',
-            impact: 'Allows billion-transistor CPU chips to run cool with high clock frequencies.'
+            title: 'High-k Dielectrics in 3nm FinFET / GAAFET Microprocessors',
+            description: 'Advanced Intel and TSMC semiconductor chips replace SiO₂ with Hafnium Oxide (HfO₂, K ≈ 25) gate dielectrics to achieve ultra-high gate capacitance without quantum tunneling leakage.',
+            impact: 'Enables high-performance smartphone and AI computing with low power dissipation.'
           },
           commonMistakes: [
             {
-              mistake: 'Using total charge (free + bound) with D in Gauss’s law.',
-              correction: '∇ • D = ρ_free ONLY. Total charge ρ_total is used with E: ∇ • E = ρ_total / ε_0.',
-              why: 'Vector D is defined specifically to encapsulate polarization bound charges.'
+              mistake: 'Using total charge (free + bound) with displacement vector D in Gauss’s law.',
+              correction: '∇ • D = ρ_free ONLY. Vector D is specifically constructed to absorb polarization bound charges.',
+              why: '∇ • E = (ρ_free + ρ_bound) / ε₀, but ∇ • D = ρ_free.'
             }
           ],
           quickRevision: [
-            'D = ε_0 E + P = ε_0 ε_r E.',
+            'D = ε₀ E + P = ε₀ ε_r E.',
             '∇ • D = ρ_free.',
-            'Dielectric slab increases capacitance: C = ε_0 A / (d - t + t/K).',
-            'Polarization P = ε_0 χ_e E.'
+            'Dielectric slab increases capacitance: C = ε₀ A / (d - t + t/K).',
+            'Polarization P = ε₀ χ_e E.'
           ],
           examFocus: {
-            questionTypes: ['Derive relation D = ε_0 E + P and Gauss’s law in dielectrics (7 Marks)', 'Find capacitance of parallel plate capacitor with dielectric slab (5-7 Marks)'],
+            questionTypes: [
+              'Derive the relation D = ε₀ E + P and state Gauss’s law in dielectrics (7 Marks)',
+              'Calculate the capacitance of a parallel plate capacitor containing a dielectric slab (5-7 Marks)'
+            ],
             likelyMarks: '7 Marks',
-            keyTheorems: ['Gauss’s Law in Dielectrics'],
-            tip: 'Define electric susceptibility χ_e = ε_r - 1 clearly before writing D = ε_0 ε_r E.'
+            keyTheorems: ['Gauss’s Law in Dielectric Media'],
+            tip: 'Always define electric susceptibility χ_e = ε_r - 1 clearly before establishing D = ε₀ ε_r E.'
           },
           visualType: 'dielectric-polarization',
           visualCaption: 'Dielectric Polarization & Bound Surface Charges in Electric Field',
-          visualExplanation: 'Shows aligned atomic dipoles inside dielectric material creating opposing internal bound electric field E_ind.',
+          visualExplanation: 'Diagram illustrating applied electric field aligning atomic dipoles inside a dielectric material, inducing opposing internal bound charge electric field E_ind.',
           estimatedMinutes: 25
         },
         {
           id: 'phy-u3-t2',
           topicNumber: '3.2',
-          title: 'Magnetic Fields, Magnetic Materials (Dia, Para, Ferro)',
-          syllabusText: 'Magnetic fields & Magnetic Materials (Diamagnetic, Paramagnetic, Ferromagnetic).',
+          title: 'Magnetic Fields, Magnetic Materials (Dia, Para, Ferro) & Hysteresis',
+          syllabusText: 'Magnetic fields & Magnetic Materials.',
           unitId: 'phy-u3',
           subjectId: 'physics-1',
           subjectCode: '100104',
-          quickDefinition: 'Magnetic materials are classified by their response to an external magnetic field H: Diamagnetic (weakly repelled, χ < 0, μ_r < 1), Paramagnetic (weakly attracted, χ > 0 small, Curie law χ ∝ 1/T), and Ferromagnetic (strongly magnetized with hysteresis domains, χ >> 1).',
-          whyItMatters: 'Essential for transformer core steels, hard disk drive magnetic storage, electric motor permanent magnets, and MRI scanner superconducting magnets.',
+          quickDefinition: 'Magnetic materials are classified according to their response to an applied magnetic field H: Diamagnetic (weakly repelled, χ_m < 0, temperature-independent), Paramagnetic (weakly attracted, χ_m > 0 small, Curie’s Law χ_m ∝ 1/T), and Ferromagnetic (strongly magnetized with spontaneous domain alignment, χ_m >> 1, exhibiting B-H hysteresis loops).',
+          whyItMatters: 'Essential for transformer laminated silicon steel cores, hard disk magnetic storage, electric vehicle motor permanent magnets, and MRI superconducting magnets.',
           coreConcept: [
             {
-              heading: 'Magnetic Vectors & Relations',
+              heading: '1. Magnetic Field Vectors & Constituent Relations',
               paragraphs: [
-                'B = Magnetic Flux Density (Tesla or Wb/m^2).',
-                'H = Magnetic Field Intensity (A/m).',
-                'M = Magnetization vector (magnetic dipole moment per unit volume, A/m).',
-                'Relation: B = μ_0 (H + M) = μ_0 (1 + χ_m) H = μ_0 μ_r H.',
-                'Magnetic Susceptibility: χ_m = M / H (dimensionless).'
+                '• Magnetic Flux Density (B): Total magnetic field in Tesla (Wb/m²).',
+                '• Magnetic Field Intensity (H): External magnetizing field in A/m.',
+                '• Magnetization Vector (M): Induced magnetic dipole moment per unit volume (A/m).',
+                'Fundamental Relation: B = μ₀ (H + M) = μ₀ (1 + χ_m) H = μ₀ μ_r H.',
+                'Magnetic Susceptibility: χ_m = M / H (dimensionless ratio).'
               ]
             },
             {
-              heading: 'Comparison of Dia, Para, and Ferromagnetic Materials',
+              heading: '2. Classification of Dia, Para, and Ferromagnetic Materials',
               paragraphs: [
-                '1. Diamagnetic: Paired electrons (no permanent dipole). Induced dipole opposes applied field. χ_m is small, negative (-10^(-5)), independent of temperature (e.g. Bismuth, Copper, Water). Superconductors exhibit perfect diamagnetism (Meissner effect, χ = -1).',
-                '2. Paramagnetic: Unpaired electrons (permanent atomic dipole moments). Random thermal orientation aligned by field. χ_m is small, positive (+10^(-4)), obeys Curie Law χ = C / T (e.g. Aluminum, Platinum, Liquid Oxygen).',
-                '3. Ferromagnetic: Spontaneous domain magnetization due to quantum exchange coupling. χ_m is huge (~10^3 to 10^5), exhibits Hysteresis (B-H curve, retentivity, coercivity), obeys Curie-Weiss Law χ = C / (T - T_c) above Curie temperature T_c (e.g. Iron, Cobalt, Nickel, NdFeB).'
+                '1. Diamagnetic Materials: Atoms have paired electrons with zero permanent dipole moment. An external field induces opposing dipoles (Larmor precession). Susceptibility χ_m is small, negative (~ -10^(-5)), and independent of temperature (e.g. Bismuth, Copper, Water). Superconductors exhibit perfect diamagnetism (Meissner effect, χ_m = -1).',
+                '2. Paramagnetic Materials: Atoms possess permanent dipole moments due to unpaired electron spins. An external field aligns dipoles against thermal agitation. Susceptibility χ_m is small, positive (~ +10^(-4)), and obeys Curie’s Law: χ_m = C / T (e.g. Aluminum, Platinum, Liquid Oxygen).',
+                '3. Ferromagnetic Materials: Spontaneous parallel alignment of atomic dipoles into magnetic domains due to quantum mechanical exchange coupling. Susceptibility χ_m is huge (~10³ to 10⁵) and temperature-dependent, obeying the Curie-Weiss Law χ_m = C / (T - T_c) above Curie temperature T_c (e.g. Iron, Cobalt, Nickel, NdFeB).'
+              ]
+            },
+            {
+              heading: '3. Magnetic Hysteresis Loop (B-H Curve)',
+              paragraphs: [
+                'When a ferromagnetic material is subjected to a cyclic magnetizing field H, magnetic flux density B lags behind H (Hysteresis):',
+                '• Retentivity (Residual Magnetism, B_r): The value of flux density remaining in the core when external field H is reduced to zero.',
+                '• Coercivity (Coercive Force, H_c): The reverse magnetic field required to demagnetize the material completely (reduce B to zero).',
+                '• Hysteresis Loss: Energy dissipated as heat per cycle is equal to the area of the B-H loop: W_h = Area of B-H loop * Frequency f.',
+                '• Soft Magnetic Materials (e.g. Silicon steel): Narrow B-H loop, low coercivity, high permeability, low hysteresis loss (used in transformers and AC motors).',
+                '• Hard Magnetic Materials (e.g. Alnico, NdFeB): Broad B-H loop, high retentivity and coercivity, used for permanent magnets.'
               ]
             }
           ],
@@ -990,6 +1268,11 @@ export const physicsSubject: Subject = {
               title: 'Curie and Curie-Weiss Laws',
               latex: '\\chi_{\\text{para}} = \\frac{C}{T}, \\quad \\chi_{\\text{ferro}} = \\frac{C}{T - T_c} \\quad (T > T_c)',
               explanation: 'Temperature dependence of paramagnetic and ferromagnetic susceptibility.'
+            },
+            {
+              title: 'Hysteresis Power Loss',
+              latex: 'P_h = \\eta B_{\\max}^{1.6} f V \\quad \\text{(Steinmetz Empirical Law)}',
+              explanation: 'Calculates core hysteresis power loss as function of peak flux B_max and frequency f.'
             }
           ],
           example: {
@@ -997,210 +1280,239 @@ export const physicsSubject: Subject = {
             solutionSteps: [
               'Step 1: Relation between μ_r and χ_m: μ_r = 1 + χ_m ==> χ_m = μ_r - 1.',
               'Step 2: χ_m = 500 - 1 = 499 (positive and large, hence ferromagnetic).',
-              'Step 3: Magnetization M = χ_m * H = 499 * 200 = 99,800 A/m = 9.98 * 10^4 A/m.',
-              'Step 4: Magnetic flux density B = μ_0 μ_r H = (4π * 10^(-7)) * 500 * 200 = 0.1257 Tesla.'
+              'Step 3: Magnetization M = χ_m * H = 499 * 200 = 99,800 A/m = 9.98 * 10⁴ A/m.'
             ],
-            finalAnswer: '(i) χ_m = 499, (ii) M = 99,800 A/m.'
+            finalAnswer: '(i) χ_m = 499, (ii) Magnetization M = 9.98 * 10⁴ A/m.'
           },
           engineeringApplication: {
-            title: 'Transformer Core Soft Magnetic Silicon Steel',
-            description: 'Transformers use soft ferromagnetic materials (silicon steel) with narrow hysteresis loops (low coercivity) to minimize cyclic hysteresis energy dissipation loss during 50 Hz AC grid cycles.',
-            impact: 'Prevents massive power grid thermal energy waste across national utility networks.'
+            title: 'Grain-Oriented Silicon Steel in Grid Power Transformers',
+            description: 'Transformer cores use grain-oriented silicon steel laminations having narrow B-H hysteresis loops to minimize core heat dissipation in mega-watt power distribution grids.',
+            impact: 'Saves gigawatt-hours of electrical energy across national electrical power grids.'
           },
           commonMistakes: [
             {
-              mistake: 'Stating that diamagnetism depends on temperature.',
-              correction: 'Diamagnetism is TEMPERATUE-INDEPENDENT because it arises from electron orbital precession (Lenz’s law at atomic scale).',
-              why: 'Thermal vibrations do not disrupt induced orbital paired diamagnetism.'
+              mistake: 'Confusing Diamagnetic with Paramagnetic susceptibility signs.',
+              correction: 'Diamagnetic χ_m is always NEGATIVE and temperature-independent. Paramagnetic χ_m is POSITIVE and decreases as 1/T.',
+              why: 'Diamagnetism originates from induced opposing orbital moments, while paramagnetism aligns pre-existing spin dipoles.'
             }
           ],
           quickRevision: [
-            'B = μ_0 (H + M) = μ_0 μ_r H.',
-            'Dia: χ < 0, independent of T, repelled.',
-            'Para: χ > 0 small, χ ∝ 1/T (Curie law), attracted.',
-            'Ferro: χ >> 1, domain structure, hysteresis, Curie-Weiss law χ = C/(T-T_c).'
+            'B = μ₀ (H + M) = μ₀ μ_r H.',
+            'Diamagnetic: χ_m < 0, temperature independent; Paramagnetic: χ_m > 0, χ = C/T.',
+            'Ferromagnetic: Spontaneous domains, B-H hysteresis loop, χ = C/(T - T_c).',
+            'Soft magnets: Narrow loop, low loss; Hard magnets: Broad loop, permanent magnets.'
           ],
           examFocus: {
-            questionTypes: ['Compare Dia, Para, and Ferromagnetic materials on basis of susceptibility, permeability, and temperature (7-8 Marks)', 'Explain Hysteresis B-H loop, Retentivity, and Coercivity (7 Marks)'],
+            questionTypes: [
+              'Compare diamagnetic, paramagnetic, and ferromagnetic materials in a tabular format (7-8 Marks)',
+              'Explain the B-H hysteresis loop and define retentivity and coercivity (6-7 Marks)',
+              'Numerical on susceptibility χ_m, permeability μ_r, and magnetization M (5 Marks)'
+            ],
             likelyMarks: '7 to 8 Marks',
-            keyTheorems: ['Domain Theory of Ferromagnetism', 'Curie-Weiss Law'],
-            tip: 'Draw the comparison table covering 5 parameters: dipoles, χ, μ_r, temperature effect, and examples.'
+            keyTheorems: ['Domain Theory of Ferromagnetism'],
+            tip: 'Always include the 3-column comparison table (Origin, Susceptibility, Temperature dependence, Examples) for full marks.'
           },
-          visualType: 'magnetic-hysteresis',
-          visualCaption: 'B-H Hysteresis Loop: Retentivity, Coercivity & Saturation',
-          visualExplanation: 'Graph showing ferromagnetic domain alignment, remanent flux B_r, coercive field H_c, and enclosed hysteresis loss loop.',
+          visualType: 'bh-hysteresis',
+          visualCaption: 'B-H Hysteresis Curve: Saturation, Retentivity & Coercivity',
+          visualExplanation: 'Graph showing ferromagnetic flux density B lagging behind magnetic field H, highlighting saturation point, remanence retentivity B_r, and coercive force H_c.',
           estimatedMinutes: 25
         },
         {
           id: 'phy-u3-t3',
           topicNumber: '3.3',
-          title: 'Maxwell’s Equations (Differential & Integral Forms)',
-          syllabusText: 'Maxwell’s Equations (Gauss’ law for electricity and magnetism, Faraday’s law, Ampere-Maxwell law, Displacement current).',
+          title: 'Maxwell’s Equations & Displacement Current',
+          syllabusText: 'Maxwell’s Equations.',
           unitId: 'phy-u3',
           subjectId: 'physics-1',
           subjectCode: '100104',
-          quickDefinition: 'Maxwell’s four equations unify electricity and magnetism into electrodynamics. Maxwell modified Ampere’s Law by adding the Displacement Current density J_D = ∂D/∂t, resolving the capacitor charging continuity paradox.',
-          whyItMatters: 'Predicts the existence of electromagnetic waves (light, radio, Wi-Fi, X-rays) propagating at speed c = 1 / sqrt(μ_0 ε_0).',
+          quickDefinition: 'Maxwell’s Equations are the four fundamental partial differential equations that unify electricity, magnetism, and optics into classical electrodynamics. Maxwell resolved the mathematical inconsistency in Ampere’s Law for time-varying fields by introducing Displacement Current Density J_D = ∂D/∂t.',
+          whyItMatters: 'Foundational framework for all wireless communications (5G, Wi-Fi, Bluetooth), radar, microwave circuits, satellite antennas, and photonics.',
           coreConcept: [
             {
-              heading: 'The Four Maxwell Equations',
+              heading: '1. Inconsistency in Ampere’s Law & Displacement Current',
               paragraphs: [
-                '1. Gauss’s Law for Electricity: ∇ • D = ρ_free  |  ∮ D • dA = Q_free.',
-                '   Physical meaning: Electric field lines originate on positive charges and terminate on negative charges.',
-                '2. Gauss’s Law for Magnetism: ∇ • B = 0  |  ∮ B • dA = 0.',
-                '   Physical meaning: Magnetic monopoles do not exist; magnetic field lines are continuous closed loops.',
-                '3. Faraday’s Law of Induction: ∇ x E = -∂B/∂t  |  ∮ E • dr = -d/dt ∬ B • dA.',
-                '   Physical meaning: A time-varying magnetic field creates a circulating electric field.',
-                '4. Ampere-Maxwell Law: ∇ x H = J_c + ∂D/∂t  |  ∮ H • dr = I_c + ∬ (∂D/∂t) • dA.',
-                '   Physical meaning: Magnetic fields are produced by both conduction current J_c and time-varying electric displacement current J_D = ∂D/∂t.'
+                'Ampere’s Circuital Law in original differential form: ∇ × B = μ₀ J.',
+                'Taking the divergence of both sides: ∇ • (∇ × B) = μ₀ (∇ • J).',
+                'Since the divergence of any curl is identically zero, this requires: ∇ • J = 0.',
+                'However, the fundamental Equation of Continuity for charge conservation states: ∇ • J = -∂ρ/∂t.',
+                'For time-varying fields (e.g. charging a capacitor), ∂ρ/∂t ≠ 0, leading to a direct mathematical contradiction!',
+                'Maxwell’s Resolution: Using Gauss’s Law ∇ • E = ρ / ε₀  ==>  ∂ρ/∂t = ε₀ ∇ • (∂E/∂t).',
+                'Substituting into continuity: ∇ • J + ∇ • (ε₀ ∂E/∂t) = 0  ==>  ∇ • [ J + ε₀ ∂E/∂t ] = 0.',
+                'Maxwell added the missing Displacement Current Density: J_D = ε₀ ∂E/∂t = ∂D/∂t.',
+                'Modified Ampere-Maxwell Law: ∇ × H = J_free + ∂D/∂t.'
               ]
             },
             {
-              heading: 'Displacement Current Concept',
+              heading: '2. The Four Maxwell Equations (Differential & Integral Forms)',
               paragraphs: [
-                'During charging of a capacitor, conduction current I_c flows in wires but zero current flows across the dielectric gap. Ampere’s original law ∇ x B = μ_0 J violates continuity equation ∇ • J = -∂ρ/∂t.',
-                'Maxwell realized that changing electric field in the gap produces an equivalent displacement current I_D = ε_0 (dΦ_E / dt) = A (∂D/∂t), ensuring continuity of total current everywhere.'
+                '1. Gauss’s Law for Electricity: ∇ • D = ρ_free  <==>  ∮ D • dA = Q_free,enc. (Physical significance: Electric charges are sources and sinks of electric displacement; isolated electric charges exist).',
+                '2. Gauss’s Law for Magnetism: ∇ • B = 0  <==>  ∮ B • dA = 0. (Physical significance: Magnetic flux lines are continuous closed loops; isolated magnetic monopoles do NOT exist in nature).',
+                '3. Faraday’s Law of Electromagnetic Induction: ∇ × E = -∂B/∂t  <==>  ∮ E • dl = -dΦ_B / dt. (Physical significance: A time-varying magnetic field induces a circulating non-conservative electric field).',
+                '4. Ampere-Maxwell Law: ∇ × H = J_free + ∂D/∂t  <==>  ∮ H • dl = I_free + ∫ (∂D/∂t) • dA. (Physical significance: Magnetic fields are produced both by physical electric conduction currents and time-varying electric displacement fields).'
               ]
             }
           ],
           formulas: [
             {
-              title: 'Maxwell’s Equations in Differential Form',
-              latex: '\\begin{aligned} 1.\\quad & \\nabla \\cdot \\vec{D} = \\rho \\\\ 2.\\quad & \\nabla \\cdot \\vec{B} = 0 \\\\ 3.\\quad & \\nabla \\times \\vec{E} = -\\frac{\\partial \\vec{B}}{\\partial t} \\\\ 4.\\quad & \\nabla \\times \\vec{H} = \\vec{J} + \\frac{\\partial \\vec{D}}{\\partial t} \\end{aligned}',
-              explanation: 'Fundamental laws of classical electrodynamics.'
-            },
-            {
               title: 'Displacement Current Density',
               latex: '\\vec{J}_D = \\frac{\\partial \\vec{D}}{\\partial t} = \\varepsilon_0 \\frac{\\partial \\vec{E}}{\\partial t}',
-              explanation: 'Source of magnetic field produced by changing electric flux.'
+              explanation: 'Appears inside time-varying dielectric media and vacuum charging gaps.'
+            },
+            {
+              title: 'Maxwell’s Equations (Differential Form)',
+              latex: '\\nabla \\cdot \\vec{D} = \\rho_f, \\quad \\nabla \\cdot \\vec{B} = 0, \\quad \\nabla \\times \\vec{E} = -\\frac{\\partial \\vec{B}}{\\partial t}, \\quad \\nabla \\times \\vec{H} = \\vec{J}_f + \\frac{\\partial \\vec{D}}{\\partial t}',
+              explanation: 'Unifies electrodynamics in compact differential vector notation.'
             }
           ],
           example: {
-            problem: 'A parallel plate capacitor with circular plates of radius R = 10 cm is charged by a current of 2 A. Calculate the displacement current density J_D between the plates.',
+            problem: 'A parallel plate capacitor with circular plates of radius 10 cm is being charged by a conduction current of 2.0 A. Calculate the displacement current density J_D between the plates.',
             solutionSteps: [
-              'Step 1: Total displacement current between plates equals conduction current: I_D = I_c = 2 A.',
-              'Step 2: Area of circular plates A = π R^2 = π * (0.1)^2 = 0.01 π m^2 ≈ 0.0314 m^2.',
-              'Step 3: Displacement current density J_D = I_D / A = 2 / 0.0314 = 63.66 A/m^2.',
-              'Step 4: J_D = 63.66 A/m^2 uniformly distributed across the dielectric cross-section.'
+              'Step 1: Plate radius R = 10 cm = 0.10 m ==> Area A = π R² = π * (0.10)² = 0.0314 m².',
+              'Step 2: Total displacement current between capacitor plates equals the conduction charging current: I_D = I_c = 2.0 A.',
+              'Step 3: Displacement current density J_D = I_D / A = 2.0 / 0.0314 = 63.69 A/m².'
             ],
-            finalAnswer: 'Displacement current density J_D = 63.66 A/m^2.'
+            finalAnswer: 'Displacement Current Density J_D = 63.69 A/m².'
           },
           engineeringApplication: {
-            title: 'Wireless Power Transfer & Wi-Fi Antennas',
-            description: 'Alternating currents in antenna conductors create time-varying E and B fields that detach and self-propagate as radio waves via Maxwell’s coupled equations.',
-            impact: 'Enables global wireless networks, satellite TV, radar, and smartphone connectivity.'
+            title: 'RF & Microwave Wireless Antenna Design',
+            description: 'Maxwell’s curl equations govern how alternating electric currents in smartphone 5G phased-array antennas launch propagating electromagnetic waves into free space.',
+            impact: 'Enables high-bandwidth wireless telecommunication across the globe.'
           },
           commonMistakes: [
             {
-              mistake: 'Omitting displacement current ∂D/∂t in Ampere’s Law.',
-              correction: 'Always include ∂D/∂t (or ε_0 ∂E/∂t) in ∇ x H = J + ∂D/∂t.',
-              why: 'Without displacement current, electromagnetic waves cannot self-propagate through vacuum.'
+              mistake: 'Assuming displacement current involves physical motion of electric charges.',
+              correction: 'Displacement current is NOT a flow of electrons! It is the time rate of change of the electric field (∂D/∂t) producing a magnetic field.',
+              why: 'It exists even in absolute vacuum inside a charging capacitor.'
             }
           ],
           quickRevision: [
-            '∇ • D = ρ (Gauss law E).',
+            'Ampere inconsistency resolved by Displacement Current: J_D = ∂D/∂t.',
+            '∇ • D = ρ_f (Gauss Electricity).',
             '∇ • B = 0 (No magnetic monopoles).',
-            '∇ x E = -∂B/∂t (Faraday law).',
-            '∇ x H = J + ∂D/∂t (Ampere-Maxwell law).',
-            'Displacement current J_D = ∂D/∂t.'
+            '∇ × E = -∂B/∂t (Faraday Law).',
+            '∇ × H = J_f + ∂D/∂t (Ampere-Maxwell Law).'
           ],
           examFocus: {
-            questionTypes: ['State Maxwell’s equations in differential and integral forms with physical significance (8-10 Marks)', 'Explain displacement current and prove total current continuity in capacitor (7 Marks)'],
-            likelyMarks: '8 to 10 Marks',
-            keyTheorems: ['Maxwell’s Electromagnetic Field Equations'],
-            tip: 'Memorize the 4-row table with columns: Name, Differential Form, Integral Form, and Physical Significance.'
+            questionTypes: [
+              'State Maxwell’s four equations in differential and integral forms and explain their physical significance (8 Marks)',
+              'Explain displacement current and prove that total current (conduction + displacement) is continuous (7-8 Marks)',
+              'Numerical problem on calculating displacement current between capacitor plates (5 Marks)'
+            ],
+            likelyMarks: '8 Marks',
+            keyTheorems: ['Maxwell’s Formulation of Electrodynamics'],
+            tip: 'Write both differential and integral forms side-by-side in a 2-column table with physical meaning for maximum exam marks.'
           },
           visualType: 'maxwell-equations',
-          visualCaption: 'Maxwell’s Equations: Coupled Oscillating Electric & Magnetic Fields',
-          visualExplanation: 'Diagram depicting self-sustaining orthogonal oscillation of E and B fields creating an electromagnetic wave propagating along z-axis.',
+          visualCaption: 'Maxwell’s Equations: Flux, Curl & Propagating Electromagnetic Wave',
+          visualExplanation: 'Diagram depicting coupled oscillating orthogonal electric and magnetic fields self-propagating through free space at the speed of light.',
           estimatedMinutes: 30
         },
         {
           id: 'phy-u3-t4',
           topicNumber: '3.4',
           title: 'Electromagnetic Waves & Poynting Theorem',
-          syllabusText: 'Electromagnetic waves & Poynting Theorem (Wave equation in vacuum, Poynting vector, Energy transport).',
+          syllabusText: 'Electromagnetic waves & Poynting Theorem.',
           unitId: 'phy-u3',
           subjectId: 'physics-1',
           subjectCode: '100104',
-          quickDefinition: 'From Maxwell’s equations in vacuum, wave equations ∇^2 E = μ_0 ε_0 (∂^2 E / ∂t^2) emerge, establishing that EM waves propagate at c = 1 / sqrt(μ_0 ε_0) = 3 x 10^8 m/s. The Poynting vector S = E x H represents the instantaneous directional energy flux per unit area (W/m^2).',
-          whyItMatters: 'Fundamental for calculating solar panel power capture, 5G wireless radiation safety standards, laser weapon power delivery, and radar cross-sections.',
+          quickDefinition: 'Electromagnetic waves are self-sustaining oscillations of mutually perpendicular electric (E) and magnetic (B) fields propagating through vacuum at the speed of light c = 1/√(μ₀ε₀). The Poynting Vector S = E × H represents the directional rate of electromagnetic energy transport per unit area.',
+          whyItMatters: 'Governs satellite telemetry, microwave radar cross-sections, solar radiation pressure, optical waveguides, and RF energy harvesting.',
           coreConcept: [
             {
-              heading: 'Derivation of EM Wave Equation in Free Space',
+              heading: '1. Derivation of 3D Wave Equation in Free Space',
               paragraphs: [
-                'In source-free vacuum (ρ = 0, J = 0): ∇ • E = 0, ∇ • B = 0, ∇ x E = -∂B/∂t, ∇ x B = μ_0 ε_0 (∂E/∂t).',
-                'Take curl of Faraday’s law: ∇ x (∇ x E) = -∂/∂t (∇ x B) = -∂/∂t [μ_0 ε_0 ∂E/∂t] = -μ_0 ε_0 (∂^2 E / ∂t^2).',
-                'Using vector identity ∇ x (∇ x E) = ∇(∇ • E) - ∇^2 E = 0 - ∇^2 E:',
-                'Wave Equation: ∇^2 E = μ_0 ε_0 (∂^2 E / ∂t^2) ==> c = 1 / sqrt(μ_0 ε_0) ≈ 3 * 10^8 m/s.',
-                'E and B are mutually perpendicular to each other and to the direction of propagation k̂ (Transverse wave nature), with E_0 / B_0 = c.'
+                'In charge-free, non-conducting vacuum: ρ = 0, J = 0, D = ε₀ E, B = μ₀ H.',
+                'Maxwell’s Equations become: (1) ∇ • E = 0, (2) ∇ • B = 0, (3) ∇ × E = -∂B/∂t, (4) ∇ × B = μ₀ ε₀ ∂E/∂t.',
+                'Taking curl of equation (3): ∇ × (∇ × E) = -∂/∂t (∇ × B).',
+                'Using vector identity ∇ × (∇ × E) = ∇(∇ • E) - ∇²E, and since ∇ • E = 0:',
+                '-∇²E = -∂/∂t (μ₀ ε₀ ∂E/∂t)  ==>  ∇²E = μ₀ ε₀ ∂²E/∂t².',
+                'Comparing with standard 3D wave equation ∇²E = (1/v²) ∂²E/∂t²:',
+                'Speed of electromagnetic waves in vacuum: c = 1 / √(μ₀ ε₀) = 1 / √(4π * 10^(-7) * 8.854 * 10^(-12)) ≈ 3.0 * 10⁸ m/s.'
               ]
             },
             {
-              heading: 'Poynting Theorem & Poynting Vector',
+              heading: '2. Transverse Nature & Wave Impedance',
               paragraphs: [
-                'Poynting Vector: S = E x H = (1 / μ_0) (E x B). Magnitude has units Watts/m^2.',
-                'Poynting Theorem (Conservation of Energy): -∬_S (E x H) • n̂ dA = d/dt ∭_V (1/2 ε_0 E^2 + 1/2 μ_0 H^2) dV + ∭_V (J • E) dV.',
-                'Interpretation: The rate of energy flowing out of volume V equals the rate of decrease in stored EM energy minus Joule heating work done on charges (J • E).'
+                'For a plane wave propagating along z-axis: E = E₀ exp(i(kz - ωt)) î and B = B₀ exp(i(kz - ωt)) ĵ.',
+                'Since ∇ • E = 0 and ∇ • B = 0, the longitudinal field components E_z = 0 and B_z = 0. Thus, EM waves are strictly transverse.',
+                'Relation between E and B amplitudes: E₀ / B₀ = c  ==>  E₀ / H₀ = μ₀ c = √(μ₀ / ε₀) = η₀.',
+                'Intrinsic Wave Impedance of Free Space: η₀ = √(μ₀ / ε₀) = √(4π * 10^(-7) / 8.854 * 10^(-12)) ≈ 376.73 Ω ≈ 120π Ω.'
+              ]
+            },
+            {
+              heading: '3. Poynting Vector & Poynting Theorem Derivation',
+              paragraphs: [
+                'Poynting Vector: S = E × H (Units: Watts / m²). Direction of S represents the direction of wave propagation and energy flow.',
+                'Time-Averaged Poynting Vector: <S> = 1/2 Re(E × H*) = (E₀² / 2η₀) k̂.',
+                'Poynting Theorem (Conservation of EM Energy):',
+                'Take dot product of E with ∇ × H and H with ∇ × E:',
+                'E • (∇ × H) - H • (∇ × E) = -∇ • (E × H) = -∇ • S.',
+                'Substituting Maxwell’s curl equations:',
+                '-∇ • S = E • [ J + ε₀ ∂E/∂t ] - H • [ -μ₀ ∂H/∂t ] = E • J + ∂/∂t [ 1/2 ε₀ E² + 1/2 μ₀ H² ].',
+                'Integrating over volume V: -∮_S S • dA = ∫_V (E • J) dV + ∂/∂t ∫_V [ 1/2 ε₀ E² + 1/2 μ₀ H² ] dV.',
+                'Physical Statement: The total electromagnetic power flowing into a volume equals the rate of ohmic dissipation (J • E heating) plus the rate of increase of stored electric and magnetic energy.'
               ]
             }
           ],
           formulas: [
             {
-              title: 'Poynting Vector',
-              latex: '\\vec{S} = \\vec{E} \\times \\vec{H} = \\frac{1}{\\mu_0} (\\vec{E} \\times \\vec{B}) \\quad [\\text{W/m}^2]',
-              explanation: 'Direction and magnitude of electromagnetic power flow density.'
-            },
-            {
               title: 'Speed of Light in Vacuum',
-              latex: 'c = \\frac{1}{\\sqrt{\\mu_0 \\varepsilon_0}} = \\frac{1}{\\sqrt{(4\\pi \\times 10^{-7})(8.854 \\times 10^{-12})}} \\approx 3 \\times 10^8 \\text{ m/s}',
-              explanation: 'Fundamental constant proving light is an electromagnetic wave.'
+              latex: 'c = \\frac{1}{\\sqrt{\\mu_0 \\varepsilon_0}} \\approx 3 \\times 10^8 \\text{ m/s}',
+              explanation: 'Fundamental speed of electromagnetic wave propagation.'
             },
             {
-              title: 'Average Poynting Flux / Intensity',
-              latex: '\\langle S \\rangle = I = \\frac{1}{2} \\varepsilon_0 c E_0^2 = \\frac{E_0^2}{2 \\eta_0} \\quad (\\eta_0 = \\sqrt{\\mu_0/\\varepsilon_0} \\approx 377\\, \\Omega)',
-              explanation: 'Time-averaged wave power where η_0 is intrinsic impedance of free space.'
+              title: 'Intrinsic Impedance of Free Space',
+              latex: '\\eta_0 = \\sqrt{\\frac{\\mu_0}{\\varepsilon_0}} \\approx 377\\ \\Omega \\approx 120\\pi\\ \\Omega',
+              explanation: 'Ratio of electric to magnetic field amplitudes E/H in free space.'
+            },
+            {
+              title: 'Poynting Theorem',
+              latex: '-\\nabla \\cdot \\vec{S} = \\frac{\\partial u_{\\text{em}}}{\\partial t} + \\vec{J} \\cdot \\vec{E}, \\quad \\vec{S} = \\vec{E} \\times \\vec{H}',
+              explanation: 'Work-energy theorem for electromagnetic fields and energy conservation.'
             }
           ],
           example: {
-            problem: 'The electric field of a plane EM wave in free space is E = 50 sin(ωt - kz) ĵ V/m. Calculate (i) the magnetic field B, and (ii) the average Poynting vector <S>.',
+            problem: 'A plane electromagnetic wave traveling in free space has a peak electric field amplitude E₀ = 100 V/m. Calculate (i) the peak magnetic field intensity H₀, (ii) the peak magnetic flux density B₀, and (iii) the average power carried per unit area (intensity).',
             solutionSteps: [
-              'Step 1: E is along y-axis (ĵ) and wave travels in +z direction (k̂).',
-              'Step 2: Since S = E x H is along +z, H must be along -x axis (-î) because ĵ x (-î) = +k̂.',
-              'Step 3: B_0 = E_0 / c = 50 / (3 * 10^8) = 1.667 * 10^(-7) Tesla.',
-              'Step 4: B(z, t) = -1.667 * 10^(-7) sin(ωt - kz) î Tesla.',
-              'Step 5: Average Poynting vector <S> = (1/2) * (E_0^2 / η_0) k̂ = (1/2) * (2500 / 377) k̂ = 3.315 k̂ W/m^2.'
+              'Step 1: Peak electric field E₀ = 100 V/m.',
+              'Step 2: Peak magnetic field intensity H₀ = E₀ / η₀ = 100 / 377 ≈ 0.265 A/m.',
+              'Step 3: Peak magnetic flux density B₀ = E₀ / c = 100 / (3.0 * 10⁸) = 3.33 * 10^(-7) T (0.333 μT).',
+              'Step 4: Average power intensity <S> = E₀² / (2 η₀) = (100)² / (2 * 377) = 10000 / 754 = 13.26 W/m².'
             ],
-            finalAnswer: '(i) B = -1.67 * 10^(-7) sin(ωt - kz) î T, (ii) <S> = 3.315 k̂ W/m^2.'
+            finalAnswer: '(i) H₀ = 0.265 A/m, (ii) B₀ = 3.33 * 10^(-7) T, (iii) Average Intensity = 13.26 W/m².'
           },
           engineeringApplication: {
-            title: 'Solar Photovoltaic Energy Harvesting & Spacecraft Solar Sails',
-            description: 'Solar constant at Earth’s orbit is <S> ≈ 1361 W/m^2. Poynting flux determines solar panel power output and exerts radiation pressure P = <S>/c propelling deep space solar sail probes.',
-            impact: 'Enables propellant-free exploration missions to outer planets.'
+            title: 'Solar Cell Power Harvesting & Radar Range Calculations',
+            description: 'Solar constant calculation (<S> ≈ 1361 W/m² in upper atmosphere) and military radar target tracking use the Poynting vector to determine received power density.',
+            impact: 'Enables sizing of satellite solar arrays and long-range air traffic control.'
           },
           commonMistakes: [
             {
-              mistake: 'Writing S = E • H instead of cross product E x H.',
-              correction: 'Poynting vector is a VECTOR CROSS PRODUCT: S = E x H.',
-              why: 'Energy propagates perpendicular to both electric and magnetic field oscillations.'
+              mistake: 'Forgetting the factor of 1/2 when computing time-averaged power <S> from peak amplitudes.',
+              correction: '<S> = 1/2 E₀ H₀ = E₀² / (2η₀) for peak values. If RMS values are used, <S> = E_rms H_rms = E_rms² / η₀.',
+              why: 'The time average of cos²(ωt) over a full period is 1/2.'
             }
           ],
           quickRevision: [
-            'Wave equation: ∇^2 E = μ_0 ε_0 ∂^2E/∂t^2.',
-            'Speed c = 1 / sqrt(μ_0 ε_0) = 3 x 10^8 m/s.',
-            'Intrinsic impedance of vacuum: η_0 = sqrt(μ_0/ε_0) ≈ 377 Ω.',
-            'Poynting vector S = E x H (W/m^2).',
-            'Poynting theorem: Conservation of EM energy.'
+            'EM wave equation: ∇²E = μ₀ ε₀ ∂²E/∂t².',
+            'Speed of light: c = 1/√(μ₀ ε₀) ≈ 3 * 10⁸ m/s.',
+            'Wave impedance: η₀ = √(μ₀ / ε₀) ≈ 377 Ω.',
+            'Poynting vector: S = E × H (W/m²); <S> = E₀² / (2η₀).',
+            'Poynting theorem: -∇ • S = ∂u_em/∂t + J • E.'
           ],
           examFocus: {
-            questionTypes: ['Derive EM wave equation from Maxwell’s equations and deduce speed of light (8 Marks)', 'State and prove Poynting Theorem with physical interpretation (8 Marks)', 'Numerical on calculating Poynting vector and B field (5 Marks)'],
+            questionTypes: [
+              'Derive the 3D electromagnetic wave equation from Maxwell’s equations and calculate speed of light (8 Marks)',
+              'State and prove Poynting Theorem and explain the physical significance of each term (8 Marks)',
+              'Numerical problem calculating Poynting vector, E/H ratio, and power flow (5 Marks)'
+            ],
             likelyMarks: '8 to 10 Marks',
             keyTheorems: ['Poynting Energy Conservation Theorem'],
-            tip: 'When deriving Poynting theorem, start with vector identity ∇ • (E x H) = H • (∇ x E) - E • (∇ x H).'
+            tip: 'Always state that EM waves are transverse because ∇ • E = 0 forces the longitudinal field component to vanish.'
           },
-          visualType: 'poynting-vector',
-          visualCaption: 'Poynting Vector & Orthogonal Wave Vectors (E, B, S)',
-          visualExplanation: '3D vector diagram showing electric vector along y, magnetic vector along x, and Poynting energy flow S along z-axis.',
+          visualType: 'em-wave-poynting',
+          visualCaption: 'Poynting Vector S = E × H & Transverse EM Wave Propagation',
+          visualExplanation: 'Diagram illustrating orthogonal electric vector E and magnetic vector H propagating in the z-direction with Poynting energy vector S = E × H.',
           estimatedMinutes: 30
         }
       ]
@@ -1212,202 +1524,245 @@ export const physicsSubject: Subject = {
       hours: 8,
       mappedCOs: ['CO5'],
       learningObjectives: [
-        'Explain De-Broglie matter waves and Heisenberg Uncertainty Principle.',
-        'Understand wave function ψ, Born probability interpretation, and normalization.',
-        'Derive time-dependent and time-independent Schrödinger wave equations.',
-        'Calculate quantized energy eigenvalues for a Particle in a 1D Box and analyze Quantum Tunneling.'
+        'Understand the breakdown of classical physics, de-Broglie hypothesis, and Davisson-Germer experiment.',
+        'Apply Heisenberg’s uncertainty principle to physical engineering problems.',
+        'Interpret the physical significance of wave functions and Schrödinger wave equations.',
+        'Calculate quantized energy levels for a particle in a 1D potential box and analyze quantum tunneling.'
       ],
       topics: [
         {
           id: 'phy-u4-t1',
           topicNumber: '4.1',
-          title: 'De-Broglie Hypothesis & Heisenberg Uncertainty Principle',
+          title: 'Breakdown of Classical Physics, De-Broglie Hypothesis & Uncertainty Principle',
           syllabusText: 'Introduction to Quantum Mechanics, De-Broglie hypothesis, Heisenberg uncertainty principle.',
           unitId: 'phy-u4',
           subjectId: 'physics-1',
           subjectCode: '100104',
-          quickDefinition: 'De Broglie postulated that every moving matter particle exhibits wave nature with de Broglie wavelength λ = h / p. Heisenberg’s Uncertainty Principle states that position x and momentum p cannot be simultaneously measured with arbitrary precision: Δx * Δp >= ℏ / 2.',
-          whyItMatters: 'Underpins Transmission Electron Microscopy (TEM, resolving individual atoms), quantum computing qubits, and explains why electrons do not collapse into the atomic nucleus.',
+          quickDefinition: 'Classical mechanics failed to explain blackbody radiation (ultraviolet catastrophe), the photoelectric effect, and atomic spectra. Louis de Broglie hypothesized that moving matter possesses dual wave-particle properties with wavelength λ = h/p. Heisenberg’s Uncertainty Principle establishes that the simultaneous position x and momentum p_x of a quantum particle cannot be measured with arbitrary precision: Δx · Δp_x >= ħ/2.',
+          whyItMatters: 'Foundational for quantum computing, transmission electron microscopes (TEM), Scanning Tunneling Microscopy (STM), and nanoelectronics.',
           coreConcept: [
             {
-              heading: 'De-Broglie Matter Waves',
+              heading: '1. Inadequacies of Classical Physics',
               paragraphs: [
-                'Dual nature of radiation (wave-particle) led de Broglie to propose that moving matter possesses wave character.',
-                'Wavelength: λ = h / p = h / (m v) = h / sqrt(2 m E) = h / sqrt(2 m q V).',
-                'For an electron accelerated through potential V volts: λ = 1.227 / sqrt(V) nm (e.g. at 100 V, λ = 0.123 nm, comparable to X-rays and atomic crystal lattices).',
-                'Experimental proof: Davisson-Germer electron diffraction experiment verified Bragg peaks for nickel crystal.'
+                '• Ultraviolet Catastrophe: Classical Rayleigh-Jeans law predicted infinite blackbody radiation energy at high frequencies (u(ν) ∝ ν²). Max Planck resolved this by postulating that energy is quantized: E = n h ν.',
+                '• Photoelectric Effect: Instantaneous electron ejection by light above threshold frequency ν₀ proved light consists of discrete energy packets (photons) of energy E = hν.',
+                '• Atomic Line Spectra: Classical electrodynamics predicted revolving electrons would radiate energy continuously and collapse into the nucleus within 10^(-11) s. Niels Bohr established quantized stationary orbits.'
               ]
             },
             {
-              heading: 'Heisenberg Uncertainty Principle',
+              heading: '2. De-Broglie Matter Wave Hypothesis',
               paragraphs: [
-                'Fundamental limit of quantum measurement arising from non-commuting operators [x, p] = iℏ.',
-                'Position-Momentum: Δx * Δp >= ℏ / 2 (where ℏ = h / (2π) = 1.054 * 10^(-34) J·s).',
-                'Energy-Time: ΔE * Δt >= ℏ / 2 (explains natural spectral line broadening and virtual particle creation).',
-                'Application: Proves non-existence of free electrons inside atomic nucleus (if Δx ≈ 10^(-14) m, electron kinetic energy would exceed 20 MeV, but observed beta decay energies are < 4 MeV).'
+                'In 1924, Louis de Broglie proposed that nature exhibits symmetry: if radiation behaves as both waves and particles, matter particles (electrons, protons) must also exhibit wave properties.',
+                'For a photon: E = hν = hc / λ and E = p c  ==>  p = h / λ  ==>  λ = h / p.',
+                'For a matter particle of mass m moving with velocity v:',
+                'De-Broglie Wavelength: λ = h / p = h / (m v).',
+                'In terms of kinetic energy E: E = p² / (2m)  ==>  p = √(2m E)  ==>  λ = h / √(2m E).',
+                'For an electron accelerated through potential difference V volts:',
+                'λ = h / √(2 m q V) = (6.626 * 10^(-34)) / √(2 * 9.109 * 10^(-31) * 1.602 * 10^(-19) * V) = 1.227 / √V nm = 12.27 / √V Å.'
+              ],
+              bulletPoints: [
+                'Davisson-Germer Experiment (1927): Accelerated electrons scattered from a nickel crystal produced constructive diffraction peaks at 54 V and 50° angle, confirming de Broglie’s wavelength λ = 1.67 Å experimentally.'
+              ]
+            },
+            {
+              heading: '3. Heisenberg’s Uncertainty Principle & Applications',
+              paragraphs: [
+                'Werner Heisenberg showed that wave-particle duality imposes an inescapable quantum limit on simultaneous measurement of conjugate variables:',
+                '• Position-Momentum: Δx · Δp_x >= ħ / 2   (where ħ = h / 2π = 1.054 * 10^(-34) J·s).',
+                '• Energy-Time: ΔE · Δt >= ħ / 2.',
+                '• Angular Position-Angular Momentum: Δθ · ΔL_z >= ħ / 2.',
+                'Key Applications in Engineering Physics:',
+                '1. Non-existence of Free Electrons in the Nucleus: The nuclear diameter is ~10^(-14) m (Δx ≈ 10^(-14) m). Uncertainty principle requires minimum electron momentum Δp >= ħ / (2 Δx) ≈ 5.27 * 10^(-21) kg·m/s, giving kinetic energy E ≈ 20 MeV. Since beta-decay electrons have energies < 4 MeV, free electrons cannot reside inside the nucleus!',
+                '2. Finite Natural Linewidth of Spectral Lines: An atom remains in an excited state for finite lifetime Δt ~ 10^(-8) s. Thus ΔE >= ħ / (2 Δt) produces intrinsic frequency broadening Δν = ΔE / h.'
               ]
             }
           ],
           formulas: [
             {
-              title: 'De-Broglie Wavelength',
-              latex: '\\lambda = \\frac{h}{p} = \\frac{h}{\\sqrt{2mE}} = \\frac{1.227}{\\sqrt{V \\text{ (volts)}}} \\text{ nm (for electron)}',
-              explanation: 'Wavelength of moving electron accelerated across voltage V.'
+              title: 'De-Broglie Matter Wavelength',
+              latex: '\\lambda = \\frac{h}{p} = \\frac{h}{mv} = \\frac{h}{\\sqrt{2mE}} = \\frac{1.227}{\\sqrt{V \\text{ (in Volts)}}} \\text{ nm}',
+              explanation: 'Calculates matter wavelength of particles and accelerated electrons.'
             },
             {
-              title: 'Heisenberg Uncertainty Principle',
-              latex: '\\Delta x \\cdot \\Delta p \\ge \\frac{\\hbar}{2} = \\frac{h}{4\\pi}, \\quad \\Delta E \\cdot \\Delta t \\ge \\frac{\\hbar}{2}',
-              explanation: 'Inherent quantum lower bound on simultaneous conjugate measurements.'
+              title: 'Heisenberg Uncertainty Relations',
+              latex: '\\Delta x \\cdot \\Delta p_x \\ge \\frac{\\hbar}{2}, \\quad \\Delta E \\cdot \\Delta t \\ge \\frac{\\hbar}{2}',
+              explanation: 'Fundamental quantum limit on simultaneous measurement precision.'
             }
           ],
           example: {
-            problem: 'Calculate the de Broglie wavelength of an electron accelerated through a potential difference of 100 Volts. If its position is localized within 0.1 nm, find the minimum uncertainty in its velocity.',
+            problem: 'Calculate the de Broglie wavelength of an electron accelerated from rest through a potential difference of 100 Volts.',
             solutionSteps: [
-              'Step 1: De-Broglie wavelength λ = 1.227 / sqrt(100) = 1.227 / 10 = 0.1227 nm = 1.227 * 10^(-10) m.',
-              'Step 2: Given position uncertainty Δx = 0.1 nm = 10^(-10) m.',
-              'Step 3: Δp >= ℏ / (2 Δx) = (1.054 * 10^(-34)) / (2 * 10^(-10)) = 5.27 * 10^(-25) kg·m/s.',
-              'Step 4: Electron mass m = 9.1 * 10^(-31) kg.',
-              'Step 5: Velocity uncertainty Δv = Δp / m = (5.27 * 10^(-25)) / (9.1 * 10^(-31)) = 5.79 * 10^5 m/s (~579 km/s).'
+              'Step 1: Accelerating potential V = 100 Volts.',
+              'Step 2: Using the electron wavelength formula: λ = 1.227 / √V nm.',
+              'Step 3: √V = √100 = 10.',
+              'Step 4: λ = 1.227 / 10 = 0.1227 nm = 1.227 Å (0.1227 * 10^(-9) m).'
             ],
-            finalAnswer: 'λ = 0.1227 nm; Velocity uncertainty Δv = 5.79 * 10^5 m/s.'
+            finalAnswer: 'De-Broglie Wavelength λ = 1.227 Å (0.1227 nm).'
           },
           engineeringApplication: {
-            title: 'Transmission Electron Microscope (TEM)',
-            description: 'Optical microscopes are limited by visible light wavelength (~500 nm). Accelerating electrons at 200 kV gives de Broglie wavelength λ ≈ 0.0025 nm, magnifying semiconductor chips up to 10,000,000x to image individual silicon atoms.',
-            impact: 'Essential for defect inspection in modern 3nm semiconductor manufacturing.'
+            title: 'Transmission Electron Microscopy (TEM)',
+            description: 'TEM accelerates electrons to 200 keV, achieving an ultra-short de Broglie wavelength λ ≈ 0.0025 nm (100,000x shorter than visible light), enabling atomic resolution imaging of virus structures and 2nm transistor gates.',
+            impact: 'Empowers nanotechnology, virology, and material science discoveries.'
           },
           commonMistakes: [
             {
-              mistake: 'Using h instead of ℏ/2 in the modern Heisenberg inequality.',
-              correction: 'Standard quantum lower bound is Δx Δp >= ℏ/2 = h / (4π).',
-              why: 'Standard deviations of wave packets satisfy Robertson-Schrödinger relation with ℏ/2.'
+              mistake: 'Using non-relativistic formula for macroscopic objects vs electrons.',
+              correction: 'De Broglie wavelength applies to all matter, but for macro objects (e.g. cricket ball), λ is ~10^(-34) m and completely undetectable.',
+              why: 'Planck’s constant h is astronomically small in SI units.'
             }
           ],
           quickRevision: [
-            'De Broglie: λ = h/p = h/sqrt(2mE).',
-            'Electron accelerated by V: λ = 1.227 / sqrt(V) nm.',
-            'Heisenberg: Δx Δp >= ℏ/2 and ΔE Δt >= ℏ/2.',
-            'Proof of non-existence of electron in nucleus using uncertainty principle.'
+            'De-Broglie wavelength: λ = h / p = h / √(2mE).',
+            'Accelerated electron: λ = 12.27 / √V Å.',
+            'Heisenberg principle: Δx · Δp >= ħ/2, ΔE · Δt >= ħ/2.',
+            'Electrons cannot reside in nucleus because required zero-point energy (>20 MeV) exceeds beta-decay energy.'
           ],
           examFocus: {
-            questionTypes: ['State de Broglie hypothesis and derive λ = h/sqrt(2mqV) (5-7 Marks)', 'Prove non-existence of electrons inside nucleus using Heisenberg uncertainty (7 Marks)', 'Numerical on electron wavelength and position/velocity uncertainty (5 Marks)'],
-            likelyMarks: '7 to 8 Marks',
-            keyTheorems: ['De-Broglie Hypothesis', 'Heisenberg Uncertainty Principle'],
-            tip: 'The 7-mark question proving electrons cannot reside in nucleus by assuming nucleus radius R = 10^(-14) m is an exam staple.'
+            questionTypes: [
+              'State de Broglie hypothesis and derive matter wavelength for an accelerated electron (7-8 Marks)',
+              'State Heisenberg’s uncertainty principle and prove non-existence of electrons in the nucleus (7-8 Marks)',
+              'Numerical problem calculating de Broglie wavelength or uncertainty limits (5 Marks)'
+            ],
+            likelyMarks: '8 Marks',
+            keyTheorems: ['De-Broglie Dual Hypothesis', 'Heisenberg Uncertainty Principle'],
+            tip: 'Always state the uncertainty derivation step-by-step with SI numerical values when proving the non-existence of electrons inside the nucleus.'
           },
-          visualType: 'matter-wave',
-          visualCaption: 'Wave-Particle Wavepacket & Heisenberg Measurement Localization',
-          visualExplanation: 'Visualizes localized quantum wave packet: narrowing spatial envelope Δx broadens spatial frequency/momentum spectrum Δk.',
+          visualType: 'heisenberg-uncertainty',
+          visualCaption: 'Matter Wavepacket & Heisenberg Conjugate Uncertainty Δx · Δp',
+          visualExplanation: 'Diagram depicting localized quantum wave packet: narrowing spatial position Δx broadens momentum spectrum Δp in Fourier domain.',
           estimatedMinutes: 25
         },
         {
           id: 'phy-u4-t2',
           topicNumber: '4.2',
-          title: 'Wave Function, Schrödinger Equation & Particle in a Box',
+          title: 'Wave Functions, Schrödinger Wave Equation & Particle in a Box',
           syllabusText: 'Wave function and its characteristics, Schrödinger’s equation (time-dependent and independent), Particle in a box, Energy Eigen values and Eigen functions, Potential barrier and Tunneling.',
           unitId: 'phy-u4',
           subjectId: 'physics-1',
           subjectCode: '100104',
-          quickDefinition: 'The wave function ψ(x, t) describes the quantum state of a particle, with |ψ|^2 representing probability density (Born interpretation). Schrödinger’s equation governs ψ. For a particle confined in a 1D box of width L, boundary conditions enforce discrete quantized energy levels E_n = n^2 h^2 / (8 m L^2).',
-          whyItMatters: 'Explains quantum dot displays (QLED TVs), energy band gaps in semiconductors, radioactive alpha decay, and Flash memory operation via quantum tunneling.',
+          quickDefinition: 'The state of a quantum particle is completely described by a complex wave function Ψ(r, t), where |Ψ|² represents the probability density of finding the particle (Born interpretation). The Schrödinger equation governs the wave function’s temporal and spatial evolution. For a particle confined in a 1D infinite potential box of width L, energy is quantized as E_n = n²h² / (8mL²).',
+          whyItMatters: 'Foundational for understanding quantum dots, resonant tunneling diodes, electron energy quantization in nanoscale transistors, and quantum computing qubits.',
           coreConcept: [
             {
-              heading: 'Wave Function Characteristics & Born Interpretation',
+              heading: '1. Wave Function Ψ and Born Probability Interpretation',
               paragraphs: [
-                'Max Born Interpretation: The quantity P(x) = |ψ(x)|^2 = ψ* ψ represents the probability density of finding the particle at position x.',
-                'Conditions for well-behaved wave function: (1) ψ must be continuous and single-valued everywhere, (2) ∂ψ/∂x must be continuous, (3) ψ must be square-integrable (normalizable: ∫_{-∞}^∞ |ψ|^2 dx = 1).'
+                'In quantum mechanics, a particle is represented by a complex wave function Ψ(r, t).',
+                'Max Born Interpretation: The wave function Ψ itself has no direct physical reality, but the square of its absolute magnitude |Ψ(r, t)|² = Ψ* Ψ represents the Probability Density (probability per unit volume) of finding the particle at position r at time t.',
+                'Normalization Condition: Since the particle must exist somewhere in all space: ∫_{-∞}^{+∞} |Ψ|² dV = 1.',
+                'Boundary Conditions for Well-Behaved Wave Functions:',
+                '1. Ψ must be Finite and Single-Valued everywhere.',
+                '2. Ψ must be Continuous throughout space.',
+                '3. The first spatial derivative ∂Ψ/∂x must be Continuous (except where potential V becomes infinite).'
               ]
             },
             {
-              heading: 'Schrödinger Wave Equations',
+              heading: '2. Time-Dependent & Time-Independent Schrödinger Equations',
               paragraphs: [
-                'Time-Dependent (1D): iℏ (∂ψ/∂t) = - (ℏ^2 / 2m) (∂^2ψ/∂x^2) + V(x) ψ.',
-                'Time-Independent (Stationary States ψ(x, t) = ψ(x) e^(-iEt/ℏ)):',
-                'd^2ψ/dx^2 + (2m / ℏ^2) [E - V(x)] ψ = 0.'
+                'Time-Dependent Schrödinger Equation (TDSE): iħ ∂Ψ/∂t = Ĥ Ψ = [ - (ħ² / 2m) ∇² + V ] Ψ.',
+                'Using separation of variables for stationary states: Ψ(x, t) = ψ(x) exp(-i E t / ħ).',
+                'Time-Independent Schrödinger Equation (TISE):',
+                '- (ħ² / 2m) (d²ψ / dx²) + V(x) ψ(x) = E ψ(x)  <==>  d²ψ/dx² + (2m / ħ²) (E - V) ψ = 0.'
               ]
             },
             {
-              heading: 'Particle in a 1D Infinite Potential Well (Box of Width L)',
+              heading: '3. Particle in a 1D Infinite Potential Well (Rigid Box)',
               paragraphs: [
-                'Potential: V(x) = 0 for 0 < x < L, and V(x) = ∞ elsewhere.',
-                'Inside box: d^2ψ/dx^2 + k^2 ψ = 0 where k = sqrt(2mE) / ℏ.',
-                'Boundary conditions ψ(0) = 0 and ψ(L) = 0 require k L = n π ==> k_n = n π / L (n = 1, 2, 3, ...).',
-                'Energy Eigenvalues: E_n = n^2 π^2 ℏ^2 / (2 m L^2) = n^2 h^2 / (8 m L^2). (Energy is QUANTIZED).',
-                'Normalized Eigenfunctions: ψ_n(x) = sqrt(2 / L) * sin(n π x / L).',
-                'Zero-point energy: E_1 = h^2 / (8 m L^2) ≠ 0 (particle can never be at absolute rest).'
+                'Consider a particle of mass m confined inside a 1D box of width L with infinitely rigid walls:',
+                'V(x) = 0 for 0 <= x <= L,  and  V(x) = ∞ for x < 0 and x > L.',
+                'Inside the box (V = 0): d²ψ/dx² + k² ψ = 0, where k² = 2mE / ħ².',
+                'General solution: ψ(x) = A sin(kx) + B cos(kx).',
+                'Applying boundary condition at x = 0: ψ(0) = 0 ==> B = 0.',
+                'Applying boundary condition at x = L: ψ(L) = A sin(kL) = 0.',
+                'Since A ≠ 0 (otherwise ψ = 0 everywhere): k L = n π  ==>  k_n = n π / L (n = 1, 2, 3, ...).',
+                'Quantized Energy Eigenvalues:',
+                'k_n² = 2m E_n / ħ² = n² π² / L²  ==>  E_n = (n² π² ħ²) / (2m L²) = (n² h²) / (8m L²)  (n = 1, 2, 3, ...).',
+                'Normalized Eigenfunctions: Applying ∫₀^L |ψ_n|² dx = 1 gives A = √(2/L):',
+                'ψ_n(x) = √(2/L) sin (n π x / L).',
+                'Zero-Point Energy (Ground State, n = 1): E₁ = h² / (8mL²) > 0. The particle can never have zero kinetic energy, confirming Heisenberg’s principle.'
               ]
             },
             {
-              heading: 'Potential Barrier & Quantum Tunneling',
+              heading: '4. Potential Barrier & Quantum Tunneling',
               paragraphs: [
-                'When a particle with energy E < V_0 encounters a finite potential barrier of width a and height V_0, classical mechanics predicts 100% reflection.',
-                'Quantum mechanics proves the wave function decays exponentially inside the barrier (ψ ∝ e^(-κ x)) but emerges with non-zero amplitude on the other side.',
-                'Transmission Coefficient: T ≈ exp(-2 κ a) where κ = sqrt(2m(V_0 - E)) / ℏ. This is Quantum Tunneling.'
+                'Consider a particle of energy E incident on a rectangular potential barrier of height V₀ > E and thickness a.',
+                'Classically, the particle is 100% reflected because it lacks sufficient energy to overcome V₀.',
+                'In Quantum Mechanics, the wave function decays exponentially inside the barrier: ψ_II(x) = C exp(-κx) where κ = √(2m(V₀ - E)) / ħ.',
+                'If the barrier thickness a is small (nanometer scale), the wave function does not completely decay to zero and emerges on the other side with non-zero amplitude.',
+                'Transmission Coefficient (Tunneling Probability): T ≈ 16 (E/V₀) (1 - E/V₀) exp(-2 κ a).',
+                'Applications: Scanning Tunneling Microscopy (atomic-scale imaging), Alpha-particle decay from radioactive nuclei (Gamow theory), Flash Memory Fowler-Nordheim floating-gate tunneling, and Tunnel Diodes.'
               ]
             }
           ],
           formulas: [
             {
-              title: 'Time-Independent Schrödinger Equation',
-              latex: '-\\frac{\\hbar^2}{2m} \\frac{d^2\\psi(x)}{dx^2} + V(x)\\psi(x) = E\\psi(x)',
-              explanation: 'Energy eigenvalue equation in Hamiltonian form Ĥ ψ = E ψ.'
+              title: 'Time-Independent Schrödinger Equation (TISE)',
+              latex: '-\\frac{\\hbar^2}{2m} \\frac{d^2\\psi}{dx^2} + V(x)\\psi(x) = E\\psi(x)',
+              explanation: 'Fundamental eigenvalue equation for stationary energy states.'
             },
             {
-              title: '1D Box Quantized Energy Eigenvalues',
+              title: 'Quantized Energy Eigenvalues (1D Box)',
               latex: 'E_n = \\frac{n^2 h^2}{8 m L^2} = \\frac{n^2 \\pi^2 \\hbar^2}{2 m L^2} \\quad (n = 1, 2, 3, \\dots)',
-              explanation: 'Discrete energy levels where n is the principal quantum number.'
+              explanation: 'Discrete energy levels for a particle confined in a 1D box of width L.'
             },
             {
-              title: '1D Box Normalized Wavefunctions',
-              latex: '\\psi_n(x) = \\sqrt{\\frac{2}{L}} \\sin\\left( \\frac{n\\pi x}{L} \\right) \\quad (0 \\le x \\le L)',
-              explanation: 'Normalized spatial probability wavefunctions.'
+              title: 'Normalized Wave Functions (1D Box)',
+              latex: '\\psi_n(x) = \\sqrt{\\frac{2}{L}} \\sin\\left( \\frac{n\\pi x}{L} \\right)',
+              explanation: 'Spatial probability amplitude for nth quantum state in 1D box.'
             },
             {
-              title: 'Quantum Tunneling Transmission Probability',
-              latex: 'T \\approx e^{-2\\kappa a} \\quad \\text{where } \\kappa = \\frac{\\sqrt{2m(V_0 - E)}}{\\hbar}',
+              title: 'Quantum Tunneling Transmission Coefficient',
+              latex: 'T \\approx e^{-2\\kappa a}, \\quad \\kappa = \\frac{\\sqrt{2m(V_0 - E)}}{\\hbar}',
               explanation: 'Exponential tunneling probability through potential barrier of height V_0 and width a.'
             }
           ],
           example: {
-            problem: 'An electron is trapped in an infinite 1D potential well of width L = 0.1 nm (1 Å). Calculate (i) the ground state energy E_1 in eV, (ii) the first excited state energy E_2, and (iii) the probability of finding the electron in the middle half of the box (L/4 to 3L/4) in the ground state.',
+            problem: 'An electron is confined in a 1D infinite potential well of width L = 0.10 nm (1.0 Å). Calculate (i) the ground state energy E₁, and (ii) the energy of the first excited state E₂ in electron-volts (eV).',
             solutionSteps: [
-              'Step 1: Electron mass m = 9.1 * 10^(-31) kg; h = 6.626 * 10^(-34) J·s; L = 10^(-10) m.',
-              'Step 2: Ground state energy E_1 = h^2 / (8 m L^2) = (6.626 * 10^(-34))^2 / (8 * 9.1 * 10^(-31) * (10^(-10))^2) = 6.026 * 10^(-18) J.',
-              'Step 3: In eV: E_1 = (6.026 * 10^(-18)) / (1.6 * 10^(-19)) = 37.66 eV.',
-              'Step 4: First excited state E_2 = 2^2 * E_1 = 4 * 37.66 = 150.64 eV.',
-              'Step 5: Probability in ground state: P = ∫_{L/4}^{3L/4} (2/L) sin^2(π x / L) dx = [x/L - (sin(2πx/L))/(2π)]_{L/4}^{3L/4} = 1/2 + 1/π ≈ 0.5 + 0.318 = 0.818 (81.8%).'
+              'Step 1: Given mass m = 9.109 * 10^(-31) kg, L = 0.10 * 10^(-9) m, Planck’s h = 6.626 * 10^(-34) J·s.',
+              'Step 2: Ground state energy (n = 1): E₁ = h² / (8 m L²).',
+              'Step 3: h² = (6.626 * 10^(-34))² = 4.390 * 10^(-67).',
+              'Step 4: 8 m L² = 8 * (9.109 * 10^(-31)) * (1.0 * 10^(-10))² = 7.287 * 10^(-50).',
+              'Step 5: E₁ = (4.390 * 10^(-67)) / (7.287 * 10^(-50)) = 6.025 * 10^(-18) J.',
+              'Step 6: Convert to eV: E₁ = (6.025 * 10^(-18)) / (1.602 * 10^(-19)) = 37.61 eV.',
+              'Step 7: First excited state (n = 2): E₂ = 2² * E₁ = 4 * 37.61 eV = 150.44 eV.'
             ],
-            finalAnswer: '(i) E_1 = 37.66 eV, (ii) E_2 = 150.64 eV, (iii) Probability = 81.8%.'
+            finalAnswer: '(i) Ground state E₁ = 37.61 eV, (ii) First excited state E₂ = 150.44 eV.'
           },
           engineeringApplication: {
-            title: 'Flash Memory (NAND Flash SSDs) & Tunnel Diodes',
-            description: 'Solid State Drives (SSDs) write data bits by tunneling electrons through a 10 nm silicon dioxide insulating barrier into a floating gate under high electric field, retaining data for 10+ years without power.',
-            impact: 'Enables high-capacity, shock-proof storage in all modern laptops and smartphones.'
+            title: 'NAND Flash Memory & Scanning Tunneling Microscopes (STM)',
+            description: 'Modern SSD storage cells trap and erase charge carriers on floating gates using Fowler-Nordheim quantum tunneling through a 7nm SiO₂ barrier.',
+            impact: 'Enables high-density solid-state drives (SSDs) and sub-atomic STM surface manipulation.'
           },
           commonMistakes: [
             {
-              mistake: 'Allowing n = 0 in particle in a box energy eigenvalues.',
-              correction: 'n must start from 1: n = 1, 2, 3... (n = 0 yields ψ = 0 everywhere, meaning NO particle exists).',
-              why: 'Zero wavefunction violates the normalization condition ∫ |ψ|^2 dx = 1.'
+              mistake: 'Using n = 0 as a valid quantum state for a particle in a box.',
+              correction: 'Quantum number n starts strictly from n = 1, 2, 3... (n = 0 gives ψ = 0 everywhere, meaning no particle exists).',
+              why: 'n = 0 would violate the uncertainty principle by requiring zero momentum and zero uncertainty.'
             }
           ],
           quickRevision: [
-            '|ψ|^2 is probability density; ∫ |ψ|^2 dx = 1.',
-            'Schrödinger equation: - (ℏ^2/2m) d^2ψ/dx^2 + Vψ = Eψ.',
-            'Box energy: E_n = n^2 h^2 / (8 m L^2).',
-            'Box wavefunctions: ψ_n = sqrt(2/L) sin(n π x / L).',
-            'Tunneling: particle penetrates barrier V_0 > E with T ∝ exp(-2κa).'
+            'Probability density: P(x) = |ψ(x)|² = ψ* ψ.',
+            'Normalization: ∫ |ψ|² dx = 1.',
+            '1D box energy: E_n = n²h² / (8mL²).',
+            '1D box wave function: ψ_n(x) = √(2/L) sin(nπx / L).',
+            'Ground state energy: E₁ = h² / (8mL²) > 0 (Zero-point energy).',
+            'Tunneling: T ∝ exp(-2κa), where κ = √(2m(V₀ - E)) / ħ.'
           ],
           examFocus: {
-            questionTypes: ['Derive time-independent Schrödinger equation and solve for particle in 1D box (8-10 Marks)', 'Derive energy eigenvalues and normalize wavefunctions (8 Marks)', 'Explain quantum tunneling and tunnel diode concept (5-7 Marks)'],
+            questionTypes: [
+              'Derive normalized wave functions and energy eigenvalues for a particle in a 1D box (8 Marks)',
+              'Explain the physical significance of wave function and state boundary conditions (5 Marks)',
+              'Explain quantum tunneling and its engineering applications (5-7 Marks)',
+              'Numerical calculating energy levels and transition wavelengths for a particle in a box (5 Marks)'
+            ],
             likelyMarks: '8 to 10 Marks',
-            keyTheorems: ['Particle in a Box Quantization Derivation', 'Born Probability Postulate'],
-            tip: 'Draw the first 3 wavefunctions ψ_1, ψ_2, ψ_3 alongside their corresponding probability densities |ψ_1|^2, |ψ_2|^2, |ψ_3|^2.'
+            keyTheorems: ['Particle in a Box Quantization', 'Quantum Barrier Tunneling'],
+            tip: 'Sketch the wave function ψ_n(x) and probability density |ψ_n(x)|² for n = 1, 2, and 3 alongside your derivations.'
           },
-          visualType: 'particle-in-box',
-          visualCaption: 'Particle in 1D Infinite Box: Quantized Energy Levels & Wavefunctions',
-          visualExplanation: 'Diagram illustrating standing wave probability densities |ψ_n(x)|² for ground state (n=1), first excited (n=2), and second excited (n=3) states.',
-          estimatedMinutes: 35
+          visualType: 'schrodinger-box',
+          visualCaption: 'Particle in 1D Box: Normalized Wavefunctions ψₙ & Probability Densities |ψₙ|²',
+          visualExplanation: 'Graph showing discrete sinusoidal standing wave functions and probability densities for quantum states n = 1, n = 2, and n = 3 inside an infinite potential well.',
+          estimatedMinutes: 30
         }
       ]
     },
@@ -1416,290 +1771,637 @@ export const physicsSubject: Subject = {
       unitNumber: 5,
       title: 'Semiconductors & Nano-materials',
       hours: 10,
-      mappedCOs: ['CO4', 'CO5'],
+      mappedCOs: ['CO4'],
       learningObjectives: [
-        'Compare band structures of metals, insulators, and semiconductors.',
-        'Distinguish intrinsic/extrinsic semiconductors, drift/diffusion currents, and Fermi level.',
-        'Explain operating principles of photodiode, LED, solar cells, and Hall Effect.',
-        'Understand nanoscience, quantum confinement, and classification into 0D, 1D, 2D nanomaterials.'
+        'Compare energy band structures of metals, insulators, and semiconductors.',
+        'Distinguish between drift and diffusion currents and evaluate Fermi level positions.',
+        'Analyze P-N junction diodes, Photodiodes, LEDs, and BJT transistors.',
+        'Derive Hall effect equations and evaluate solar cell photovoltaic characteristics.',
+        'Classify nanomaterials (0D, 1D, 2D, 3D) and understand quantum confinement & surface-to-volume ratio scaling.'
       ],
       topics: [
         {
           id: 'phy-u5-t1',
           topicNumber: '5.1',
-          title: 'Band Theory, Intrinsic & Extrinsic Semiconductors and Fermi Level',
-          syllabusText: 'Introduction, Types of materials (metal, semiconductor and insulator), Intrinsic and extrinsic semiconductors, P-type and N-type semiconductors, Diffusion, Drift and Fermi level.',
+          title: 'Energy Band Theory & Classification of Materials',
+          syllabusText: 'Introduction, Types of materials (metal, semiconductor and insulator).',
           unitId: 'phy-u5',
           subjectId: 'physics-1',
           subjectCode: '100104',
-          quickDefinition: 'Energy bands arise from splitting of atomic orbitals in crystals. Insulators have large band gap E_g > 3 eV, semiconductors have narrow gap E_g ≈ 1 eV, and metals have overlapping bands. Doping creates N-type (donor) and P-type (acceptor) semiconductors, shifting the Fermi level E_F.',
-          whyItMatters: 'Foundational physics behind every microchip, microprocessor transistor, memory cell, and power inverter in the world.',
+          quickDefinition: 'According to the band theory of solids, periodic atomic potentials split discrete atomic energy levels into continuous energy bands: the filled Valence Band (VB) and the empty/partially-filled Conduction Band (CB), separated by a Forbidden Energy Gap E_g. Materials are classified as Conductors (E_g = 0), Insulators (E_g > 3 eV), or Semiconductors (E_g ≈ 1 eV).',
+          whyItMatters: 'Forms the foundational solid-state physics basis of all modern electronics, integrated microprocessors, LEDs, and solar cells.',
           coreConcept: [
             {
-              heading: 'Band Structure Classification',
+              heading: '1. Formation of Energy Bands in Solids',
               paragraphs: [
-                '1. Metals: Conduction band overlaps valence band or is partially filled (E_g = 0). Extremely high conductivity (10^7 S/m).',
-                '2. Insulators: Completely filled valence band separated from empty conduction band by wide forbidden gap E_g > 3 eV (e.g. Diamond E_g = 5.5 eV).',
-                '3. Semiconductors: Narrow forbidden gap E_g ≈ 1.1 eV (Silicon) or 0.67 eV (Germanium). Thermally excited electrons jump into conduction band at room temperature.'
+                'In an isolated atom, electron energy levels are discrete.',
+                'When N atoms assemble to form a crystalline solid lattice, interatomic spacing decreases, causing overlapping of outer valence electron wave functions.',
+                'By the Pauli Exclusion Principle, each discrete atomic energy level splits into N closely spaced sub-levels, forming continuous Energy Bands.',
+                '• Valence Band (VB): The highest occupied energy band formed by valence electrons.',
+                '• Conduction Band (CB): The lowest unoccupied/partially filled band where electrons are free to conduct electricity.',
+                '• Forbidden Energy Gap (E_g): The forbidden energy zone between VB and CB containing zero permissible electron states.'
               ]
             },
             {
-              heading: 'Intrinsic vs Extrinsic Semiconductors & Fermi Level',
+              heading: '2. Classification of Metals, Insulators & Semiconductors',
               paragraphs: [
-                'Intrinsic: Pure semiconductor (n = p = n_i). Fermi level E_F lies exactly at mid-gap: E_F = (E_c + E_v)/2.',
-                'N-type: Doped with pentavalent donors (P, As, Sb). Electrons are majority carriers (n ≈ N_d >> p). Donor level E_d lies just below conduction band; E_F shifts upwards near E_c.',
-                'P-type: Doped with trivalent acceptors (B, Ga, In). Holes are majority carriers (p ≈ N_a >> n). Acceptor level E_a lies just above valence band; E_F shifts downwards near E_v.'
+                '1. Conductors (Metals): Conduction band and valence band overlap directly (E_g = 0), or the conduction band is partially filled (e.g. Copper, Aluminum). Free electron density is high (~10²⁸ m⁻³), giving high conductivity σ > 10⁷ S/m with a negative temperature coefficient of resistance (conductivity decreases with temperature due to lattice phonon scattering).',
+                '2. Insulators: A wide forbidden energy gap E_g > 3 eV separates the full valence band from the empty conduction band (e.g. Diamond E_g = 5.4 eV, Quartz E_g = 9 eV). At room temperature, thermal energy kT ≈ 0.026 eV is completely insufficient to excite electrons across E_g, yielding near-infinite resistivity ρ > 10¹² Ω·cm.',
+                '3. Semiconductors: A narrow forbidden gap E_g ≈ 1 eV separates VB and CB (e.g. Silicon E_g = 1.12 eV, Germanium E_g = 0.67 eV, Gallium Arsenide E_g = 1.42 eV). At 0 K, semiconductors behave as perfect insulators. At room temperature, thermal energy excites a small number of electrons across E_g into the conduction band, leaving equal holes in the valence band, giving a positive temperature coefficient of conductivity.'
               ]
             },
             {
-              heading: 'Carrier Transport: Drift vs Diffusion Current',
+              heading: '3. Direct vs Indirect Bandgap Semiconductors',
               paragraphs: [
-                'Drift Current: Movement of charge carriers under the influence of an applied electric field E. Current density J_drift = (n q μ_n + p q μ_p) E = σ E.',
-                'Diffusion Current: Movement of carriers from regions of high concentration to low concentration due to random thermal motion. Current density J_diff = q D_n (dn/dx) - q D_p (dp/dx).',
-                'Einstein Relation: D_n / μ_n = D_p / μ_p = k T / q = V_T (Thermal voltage ≈ 26 mV at 300 K).'
+                '• Direct Bandgap Semiconductors: The maximum of the valence band and minimum of the conduction band occur at the EXACT same crystal momentum (k = 0). Electron-hole recombination emits a photon directly without phonon assistance (e.g. GaAs, InP, GaN). Ideal for optoelectronic LEDs and lasers.',
+                '• Indirect Bandgap Semiconductors: The VB maximum and CB minimum occur at DIFFERENT crystal momenta (k ≠ 0). Recombination requires a simultaneous photon emission and crystal lattice vibration (phonon), dissipating energy primarily as heat (e.g. Silicon, Germanium). Inefficient for light emission, but excellent for electronic logic switches.'
               ]
             }
           ],
           formulas: [
             {
-              title: 'Intrinsic Carrier Concentration & Mass Action Law',
-              latex: 'n \\cdot p = n_i^2 = N_c N_v e^{-\\frac{E_g}{kT}}',
-              explanation: 'Product of electron and hole concentrations is invariant for a given semiconductor at temperature T.'
-            },
-            {
-              title: 'Total Semiconductor Current Density',
-              latex: 'J_{\\text{total}} = (n q \\mu_n + p q \\mu_p) E + q D_n \\frac{dn}{dx} - q D_p \\frac{dp}{dx}',
-              explanation: 'Combines field-driven drift and concentration-driven diffusion currents.'
-            },
-            {
-              title: 'Einstein Diffusion Relation',
-              latex: '\\frac{D}{\\mu} = \\frac{kT}{q} = V_T \\approx 26 \\text{ mV at } 300\\text{ K}',
-              explanation: 'Links diffusivity D with carrier mobility μ.'
+              title: 'Forbidden Energy Gap Scaling',
+              latex: 'E_g = E_c - E_v',
+              explanation: 'Energy difference between conduction band bottom E_c and valence band top E_v.'
             }
           ],
           example: {
-            problem: 'A silicon sample is doped with 10^17 arsenic atoms/cm^3. If intrinsic carrier concentration n_i = 1.5 * 10^10 cm^(-3), calculate (i) electron concentration n, (ii) hole concentration p, and (iii) the shift in Fermi level relative to intrinsic Fermi level E_i at T = 300 K.',
+            problem: 'The forbidden energy gap of Silicon is 1.12 eV at 300 K. Calculate the maximum wavelength of light that can excite an electron from the valence band to the conduction band.',
             solutionSteps: [
-              'Step 1: Arsenic is a pentavalent donor ==> N_d = 10^17 cm^(-3).',
-              'Step 2: Since N_d >> n_i, majority electron concentration n ≈ N_d = 10^17 cm^(-3).',
-              'Step 3: By Law of Mass Action: p = n_i^2 / n = (1.5 * 10^10)^2 / 10^17 = (2.25 * 10^20) / 10^17 = 2.25 * 10^3 holes/cm^3.',
-              'Step 4: Fermi level shift: E_F - E_i = kT * ln(N_d / n_i) = 0.0259 eV * ln(10^17 / (1.5 * 10^10)) = 0.0259 * ln(6.67 * 10^6) = 0.0259 * 15.71 = 0.407 eV above mid-gap.'
+              'Step 1: Energy gap E_g = 1.12 eV = 1.12 * 1.602 * 10^(-19) J = 1.794 * 10^(-19) J.',
+              'Step 2: Formula: λ_max = hc / E_g.',
+              'Step 3: Substitute constants: λ_max = (6.626 * 10^(-34) * 3.0 * 10^8) / (1.794 * 10^(-19)) = 1.108 * 10^(-6) m = 1.108 μm (1108 nm).',
+              'Step 4: Shortcut: λ_max = 1240 / 1.12 ≈ 1107 nm.'
             ],
-            finalAnswer: 'n = 10^17 cm^(-3), p = 2250 cm^(-3), E_F shifts 0.407 eV towards conduction band.'
+            finalAnswer: 'Maximum Wavelength λ_max = 1108 nm (Infrared radiation).'
           },
           engineeringApplication: {
-            title: 'Thermoelectric Energy Harvesters (Seebeck Generators)',
-            description: 'P-type and N-type semiconductor legs connected electrically in series and thermally in parallel generate electricity directly from automotive exhaust waste heat.',
-            impact: 'Reclaims electrical power to improve vehicle fuel efficiency.'
+            title: 'Silicon vs GaN in Power Electronics',
+            description: 'Wide-bandgap Gallium Nitride (GaN, E_g = 3.4 eV) transistors handle 10x higher breakdown electric fields than Silicon, enabling compact 100W ultra-fast laptop chargers.',
+            impact: 'Reduces power dissipation and charger size by 70%.'
           },
           commonMistakes: [
             {
-              mistake: 'Thinking N-type semiconductor has a net negative electrical charge.',
-              correction: 'N-type and P-type semiconductors are electrically NEUTRAL overall.',
-              why: 'Every mobile conduction electron is balanced by a fixed positive donor ion in the crystal lattice.'
+              mistake: 'Assuming Silicon can be used to make high-efficiency laser diodes.',
+              correction: 'Silicon is an INDIRECT bandgap semiconductor and cannot efficiently emit photons. Direct bandgap materials (GaAs, InP) are mandatory for lasers and LEDs.',
+              why: 'Indirect transitions require three-body collisions (electron + hole + phonon) with very low probability.'
             }
           ],
           quickRevision: [
-            'Insulator E_g > 3 eV; Semiconductor E_g ≈ 1 eV; Metal E_g = 0.',
-            'Law of Mass Action: n * p = n_i^2.',
-            'Intrinsic: E_F is at middle of band gap.',
-            'N-type: E_F rises near E_c; P-type: E_F drops near E_v.',
-            'Einstein relation: D/μ = kT/q.'
+            'Conductor: Overlapping bands, E_g = 0.',
+            'Insulator: Wide gap, E_g > 3 eV (Diamond 5.4 eV).',
+            'Semiconductor: Narrow gap, E_g ~ 1 eV (Si 1.12 eV, Ge 0.67 eV, GaAs 1.42 eV).',
+            'Direct bandgap (GaAs): Efficient photon emission (LEDs/lasers); Indirect bandgap (Si): Thermal dissipation.'
           ],
           examFocus: {
-            questionTypes: ['Distinguish conductors, semiconductors and insulators using energy band diagrams (5 Marks)', 'Derive carrier concentration and Fermi level expression for intrinsic semiconductor (8 Marks)', 'Numerical on finding hole/electron density and Fermi level shift (5 Marks)'],
-            likelyMarks: '8 Marks',
-            keyTheorems: ['Law of Mass Action', 'Fermi-Dirac Distribution Law'],
-            tip: 'Always state the temperature assumption (T = 300 K where kT/q ≈ 0.026 V) in numerical problems.'
+            questionTypes: [
+              'Compare metals, semiconductors, and insulators based on energy band diagrams (7 Marks)',
+              'Differentiate between direct and indirect bandgap semiconductors with E-k diagrams (5-7 Marks)'
+            ],
+            likelyMarks: '7 Marks',
+            keyTheorems: ['Energy Band Theory of Solids'],
+            tip: 'Draw the three band diagrams side-by-side showing VB, CB, and E_g labels clearly.'
           },
-          visualType: 'energy-band-gap',
-          visualCaption: 'Energy Band Gap Comparison: Metal, Semiconductor & Insulator',
-          visualExplanation: 'Diagram comparing valence and conduction band alignments, highlighting overlapping bands in metals vs wide forbidden gap in insulators.',
-          estimatedMinutes: 30
+          visualType: 'energy-bands',
+          visualCaption: 'Energy Band Diagrams: Metals, Insulators & Semiconductors',
+          visualExplanation: 'Diagram illustrating bandgap comparison: overlapping bands in conductors, wide gap E_g > 3 eV in insulators, and narrow gap E_g ~ 1 eV in semiconductors.',
+          estimatedMinutes: 25
         },
         {
           id: 'phy-u5-t2',
           topicNumber: '5.2',
-          title: 'Optoelectronic Devices (Photodiode, LED, Solar Cell) & Hall Effect',
-          syllabusText: 'Photodiode, P-N junction transistor, LED, Hall effect, Solar cell and its characteristics.',
+          title: 'Carrier Transport: Intrinsic/Extrinsic Semiconductors, Fermi Level, Drift & Diffusion',
+          syllabusText: 'Intrinsic and extrinsic semiconductors, P-type and N-type semiconductors, Diffusion, Drift and Fermi level.',
           unitId: 'phy-u5',
           subjectId: 'physics-1',
           subjectCode: '100104',
-          quickDefinition: 'Optoelectronic devices interconvert optical photons and electrical carriers: LEDs emit light under forward bias via radiative recombination, Photodiodes detect light under reverse bias via photogeneration, and Solar Cells generate power under photovoltaic effect. Hall Effect measures transverse voltage V_H to determine carrier type and density.',
-          whyItMatters: 'Powers renewable solar green energy, smartphone LED displays, fiber-optic receivers, and brushless DC motor magnetic position sensors.',
+          quickDefinition: 'Intrinsic semiconductors are pure crystals where electron and hole concentrations are equal (n = p = n_i). Extrinsic semiconductors are doped with impurities: N-type (Group V donors, n >> p) and P-type (Group III acceptors, p >> n). Carrier transport occurs via Drift (under electric fields) and Diffusion (driven by concentration gradients). The Fermi Level E_F represents the electrochemical potential of electrons.',
+          whyItMatters: 'Governs all electronic conduction, transistor switching speeds, diode forward currents, and CMOS digital chip design.',
           coreConcept: [
             {
-              heading: 'Light Emitting Diode (LED) & Photodiode',
+              heading: '1. Intrinsic & Extrinsic Semiconductors',
               paragraphs: [
-                'LED: Forward-biased direct bandgap p-n junction (GaAsP, GaN). Injected electrons and holes recombine radiatively at junction, emitting photons hν = E_g (λ = 1240 / E_g nm).',
-                'Photodiode: Operates under REVERSE BIAS. Photons with energy hν >= E_g create electron-hole pairs in the depletion region, swept by internal electric field to generate a reverse photocurrent I_p proportional to light intensity.'
+                '• Intrinsic Semiconductor: Pure silicon or germanium crystal without impurities. Thermal generation creates electron-hole pairs: n = p = n_i. Intrinsic carrier concentration: n_i = √(N_c N_v) exp(-E_g / 2kT). For Silicon at 300 K, n_i ≈ 1.5 * 10¹⁰ cm⁻³.',
+                '• N-Type Semiconductor: Doped with pentavalent donor atoms (P, As, Sb). Each donor atom contributes one free electron to the conduction band without creating a hole: n ≈ N_D >> p. Majority carriers: electrons; Minority carriers: holes.',
+                '• P-Type Semiconductor: Doped with trivalent acceptor atoms (B, Al, Ga, In). Each acceptor creates a vacant hole in the valence band: p ≈ N_A >> n. Majority carriers: holes; Minority carriers: electrons.',
+                '• Law of Mass Action: At thermal equilibrium in any non-degenerate semiconductor: n * p = n_i² (constant at a given temperature).'
               ]
             },
             {
-              heading: 'Solar Cell & I-V Characteristics',
+              heading: '2. Fermi-Dirac Distribution & Fermi Level Positions',
               paragraphs: [
-                'Unbiased p-n junction with large surface area. Photovoltaic effect generates electron-hole pairs near junction. Built-in electric field separates them, generating open-circuit voltage V_oc and short-circuit current I_sc.',
-                'Fill Factor (FF) = (V_m * I_m) / (V_oc * I_sc).',
-                'Efficiency η = (V_m * I_m) / P_in = (FF * V_oc * I_sc) / P_in.'
+                'The probability f(E) that an available quantum state of energy E is occupied by an electron at temperature T is given by the Fermi-Dirac Distribution: f(E) = 1 / [ 1 + exp((E - E_F) / kT) ].',
+                'Fermi Level (E_F): The energy level at which the probability of electron occupancy is exactly 50% (f(E_F) = 0.5).',
+                '• Intrinsic Semiconductor: E_Fi lies almost exactly at the middle of the forbidden bandgap: E_Fi ≈ (E_c + E_v) / 2.',
+                '• N-Type Semiconductor: Doping increases electron concentration, shifting the Fermi level upwards near the conduction band: E_F = E_c - kT ln(N_c / N_D).',
+                '• P-Type Semiconductor: Doping increases hole concentration, shifting the Fermi level downwards near the valence band: E_F = E_v + kT ln(N_v / N_A).'
               ]
             },
             {
-              heading: 'Hall Effect Principle & Applications',
+              heading: '3. Carrier Transport: Drift Current & Diffusion Current',
               paragraphs: [
-                'When a current-carrying semiconductor strip (current I along x) is placed in a perpendicular magnetic field B along z, the Lorentz force F = q (v x B) deflects carriers along y, creating a transverse Hall electric field E_H and Hall voltage V_H.',
-                'Hall Coefficient: R_H = 1 / (n q) (for N-type, R_H < 0) and R_H = 1 / (p q) (for P-type, R_H > 0).',
-                'Hall Voltage: V_H = (R_H * I * B) / w (where w is sample thickness).',
-                'Applications: (1) Determines type of semiconductor (N-type or P-type), (2) Calculates carrier concentration n = 1/(q R_H), (3) Measures carrier mobility μ = σ |R_H|, (4) Measures magnetic field B (Hall probe).'
+                '• Drift Current: Flow of charge carriers driven by an applied external electric field E. Drift current density: J_drift = q (n μ_n + p μ_p) E = σ E, where μ_n and μ_p are electron and hole mobilities.',
+                '• Diffusion Current: Flow of charge carriers driven by a spatial concentration gradient (dn/dx or dp/dx), moving from high to low concentration. Diffusion current density: J_diff = q D_n (dn/dx) - q D_p (dp/dx), where D_n and D_p are diffusion coefficients.',
+                '• Total Current Density: J_total = J_drift + J_diff.',
+                '• Einstein Relation: Connects mobility and diffusion coefficient at thermal equilibrium: D_n / μ_n = D_p / μ_p = kT / q = V_T (where V_T ≈ 25.9 mV at 300 K is the thermal voltage).'
               ]
             }
           ],
           formulas: [
             {
-              title: 'Hall Voltage & Hall Coefficient',
-              latex: 'V_H = \\frac{R_H I B}{w}, \\quad R_H = \\frac{1}{n q} \\text{ (or } \\frac{1}{p q}\\text{)}',
-              explanation: 'Transverse voltage generated across semiconductor strip of thickness w.'
+              title: 'Law of Mass Action',
+              latex: 'n \\cdot p = n_i^2 = N_c N_v e^{-\\frac{E_g}{kT}}',
+              explanation: 'Product of electron and hole concentrations is constant at thermal equilibrium.'
             },
             {
-              title: 'Hall Mobility',
-              latex: '\\mu_H = \\sigma |R_H| = \\frac{R_H}{\\rho}',
-              explanation: 'Product of electrical conductivity and Hall coefficient.'
+              title: 'Fermi-Dirac Distribution',
+              latex: 'f(E) = \\frac{1}{1 + e^{\\frac{E - E_F}{kT}}}',
+              explanation: 'Probability of electron occupying quantum state of energy E.'
             },
             {
-              title: 'Solar Cell Efficiency & Fill Factor',
-              latex: '\\eta = \\frac{P_{\\text{max}}}{P_{\\text{in}}} = \\frac{V_m I_m}{P_{\\text{in}}} = \\frac{\\text{FF} \\cdot V_{\\text{oc}} I_{\\text{sc}}}{P_{\\text{in}}}',
-              explanation: 'Ratio of maximum usable electrical power output to incident solar power.'
+              title: 'Total Semiconductor Current Density',
+              latex: 'J = q(n\\mu_n + p\\mu_p)E + q D_n \\frac{dn}{dx} - q D_p \\frac{dp}{dx}',
+              explanation: 'Sum of electric field drift and concentration gradient diffusion current densities.'
+            },
+            {
+              title: 'Einstein Relation',
+              latex: '\\frac{D_n}{\\mu_n} = \\frac{D_p}{\\mu_p} = \\frac{kT}{q} = V_T',
+              explanation: 'Links carrier mobility to diffusion coefficient via thermal voltage V_T.'
             }
           ],
           example: {
-            problem: 'A flat strip of n-type semiconductor of width 1 cm and thickness 1 mm carries a current of 10 mA in a perpendicular magnetic field B = 0.5 Tesla. If the measured Hall voltage is 2.5 mV, calculate (i) the Hall coefficient R_H, and (ii) the electron concentration n.',
+            problem: 'A Silicon sample is doped with 1.0 * 10¹⁶ donor atoms/cm³. If intrinsic carrier concentration n_i = 1.5 * 10¹⁰ cm⁻³, calculate (i) majority carrier concentration, and (ii) minority carrier concentration at 300 K.',
             solutionSteps: [
-              'Step 1: Current I = 10 mA = 10^(-2) A; B = 0.5 T; Thickness w = 1 mm = 10^(-3) m; V_H = 2.5 mV = 2.5 * 10^(-3) V.',
-              'Step 2: Formula V_H = (R_H * I * B) / w ==> R_H = (V_H * w) / (I * B).',
-              'Step 3: R_H = (2.5 * 10^(-3) * 10^(-3)) / (10^(-2) * 0.5) = (2.5 * 10^(-6)) / (5 * 10^(-3)) = 5 * 10^(-4) m^3/C.',
-              'Step 4: Electron concentration n = 1 / (q * R_H) = 1 / (1.6 * 10^(-19) * 5 * 10^(-4)) = 1 / (8 * 10^(-23)) = 1.25 * 10^22 m^(-3) = 1.25 * 10^16 cm^(-3).'
+              'Step 1: N_D = 1.0 * 10¹⁶ cm⁻³; n_i = 1.5 * 10¹⁰ cm⁻³.',
+              'Step 2: Since N_D >> n_i, majority electron concentration n ≈ N_D = 1.0 * 10¹⁶ cm⁻³.',
+              'Step 3: Apply Law of Mass Action: n * p = n_i²  ==>  p = n_i² / n.',
+              'Step 4: p = (1.5 * 10¹⁰)² / (1.0 * 10¹⁶) = (2.25 * 10²⁰) / (1.0 * 10¹⁶) = 2.25 * 10⁴ cm⁻³.'
             ],
-            finalAnswer: '(i) R_H = 5 * 10^(-4) m^3/C, (ii) n = 1.25 * 10^16 cm^(-3).'
+            finalAnswer: '(i) Majority electron concentration n = 1.0 * 10¹⁶ cm⁻³, (ii) Minority hole concentration p = 2.25 * 10⁴ cm⁻³.'
           },
           engineeringApplication: {
-            title: 'Electric Vehicle BLDC Motor Rotor Angle Hall Sensors',
-            description: 'Brushless DC electric motors in Tesla and EV drivetrains use integrated Hall effect IC sensors to detect rotor magnetic pole positions every microsecond, enabling optimal electronic commutation switching.',
-            impact: 'Provides 95%+ motor energy efficiency and smooth acceleration.'
+            title: 'CMOS Inverters in Microprocessors',
+            description: 'Complementary MOS logic combines N-type (NMOS) and P-type (PMOS) transistors on a single silicon die to achieve near-zero static power dissipation during digital logic switching.',
+            impact: 'Forms the universal foundation of all microprocessors, smartphones, and supercomputers.'
           },
           commonMistakes: [
             {
-              mistake: 'Using sample width instead of sample THICKNESS w in Hall voltage formula.',
-              correction: 'V_H = (R_H I B) / w where w is the dimension PARALLEL to the magnetic field B (thickness).',
-              why: 'Width cancels out during integration of transverse electric field.'
+              mistake: 'Thinking N-type semiconductor has an overall negative electrical charge.',
+              correction: 'N-type and P-type semiconductors are electrically NEUTRAL! Every donor ion carries a +q charge that balances the -q free electron.',
+              why: 'Total positive charges (holes + donor ions) exactly balance negative charges (electrons + acceptor ions).'
             }
           ],
           quickRevision: [
-            'LED: Forward bias, direct bandgap, hν = E_g.',
-            'Photodiode: Reverse bias, detects light.',
-            'Solar cell: 4th quadrant I-V curve, FF = (V_m I_m)/(V_oc I_sc).',
-            'Hall Effect: V_H = R_H I B / w.',
-            'Sign of R_H identifies N-type (negative) vs P-type (positive).'
+            'Intrinsic: n = p = n_i; E_F is in middle of gap.',
+            'N-type: n ≈ N_D, E_F shifts up near E_c; P-type: p ≈ N_A, E_F shifts down near E_v.',
+            'Mass action law: n · p = n_i².',
+            'Drift current: J_drift = σE = q(nμ_n + pμ_p)E.',
+            'Diffusion current: J_diff = q D_n (dn/dx) - q D_p (dp/dx).',
+            'Einstein relation: D/μ = kT/q = V_T (25.9 mV at 300 K).'
           ],
           examFocus: {
-            questionTypes: ['State and derive expression for Hall voltage and Hall coefficient with applications (8 Marks)', 'Explain construction, working, and I-V characteristics of Solar Cell (7 Marks)', 'Numerical on calculating Hall coefficient and carrier density (5 Marks)'],
-            likelyMarks: '8 to 10 Marks',
-            keyTheorems: ['Hall Effect in Semiconductors'],
-            tip: 'Draw the 3D block showing coordinate axes: Current along x, Magnetic field along z, and Hall voltage V_H across y.'
+            questionTypes: [
+              'Derive expressions for drift and diffusion currents and state Einstein relation (7-8 Marks)',
+              'Explain the concept of Fermi level and show its position in intrinsic and extrinsic semiconductors (7 Marks)',
+              'Numerical on Law of Mass Action and carrier concentrations (5 Marks)'
+            ],
+            likelyMarks: '8 Marks',
+            keyTheorems: ['Law of Mass Action', 'Einstein Relation'],
+            tip: 'Draw the Fermi level shifting up for N-type and shifting down for P-type on energy band diagrams.'
           },
-          visualType: 'hall-effect',
-          visualCaption: 'Hall Effect Carrier Deflection & Transverse Electric Field Setup',
-          visualExplanation: '3D diagram showing electron drift under Lorentz force (q v x B) producing transverse Hall voltage V_H across slab sides.',
+          visualType: 'carrier-transport',
+          visualCaption: 'Carrier Transport: Electric Field Drift vs Concentration Gradient Diffusion',
+          visualExplanation: 'Diagram depicting carrier drift velocity under electric field E alongside random thermal diffusion down a carrier concentration gradient dn/dx.',
           estimatedMinutes: 30
         },
         {
           id: 'phy-u5-t3',
           topicNumber: '5.3',
-          title: 'Nanomaterials: Properties, Quantum Confinement & 0D/1D/2D Classification',
-          syllabusText: 'Introduction to nanoscience& nanotechnology, the significance of nanoscale, Unique Properties: Comparison of bulk and nanomaterials, large surface-to-volume ratio, change in band gap, and optical/electrical/mechanical properties at the nanoscale. Classification of Nanostructured Materials: 0D (Quantum Dot), 1D (Nanowire).',
+          title: 'Optoelectronic Devices: P-N Junction, Photodiode, LED & BJT',
+          syllabusText: 'Photodiode, P-N junction transistor, LED.',
           unitId: 'phy-u5',
           subjectId: 'physics-1',
           subjectCode: '100104',
-          quickDefinition: 'Nanomaterials have at least one dimension between 1 and 100 nm. Quantum confinement restricts carrier motion, converting continuous energy bands into discrete energy states and increasing the effective band gap (E_g(nano) > E_g(bulk)).',
-          whyItMatters: 'Enables quantum dot displays with 100% color gamut, carbon nanotube transistors, targeted nanoparticle cancer drug delivery, and high-efficiency battery electrodes.',
+          quickDefinition: 'A P-N junction diode forms a depletion region with a built-in potential barrier V_bi. Under forward bias it conducts exponentially (Shockley equation). Photodiodes operate in reverse bias to detect optical power; Light Emitting Diodes (LEDs) operate in forward bias to emit photons via direct bandgap radiative recombination; Bipolar Junction Transistors (BJTs) act as current amplifiers (I_C = β I_B) and electronic switches.',
+          whyItMatters: 'Essential for optical fiber transceivers, flat-panel LED displays, camera image sensors (CMOS), audio amplifiers, and power switches.',
           coreConcept: [
             {
-              heading: 'Why Nanoscale is Unique (Two Primary Drivers)',
+              heading: '1. P-N Junction Diode & Shockley Equation',
               paragraphs: [
-                '1. Surface-to-Volume Ratio: As particle radius r decreases, the ratio Surface Area / Volume = (4π r^2) / (4/3 π r^3) = 3 / r increases inversely with size. A massive percentage of atoms reside on the surface with uncoordinated dangling bonds, dramatically boosting catalytic and chemical reactivity.',
-                '2. Quantum Confinement Effect: When crystal size drops below the electron-hole De Broglie wavelength (Bohr exciton radius ~1-10 nm), carriers feel quantum box boundaries. The energy bandgap expands: E_g(nano) = E_g(bulk) + h^2 / (8 m* R^2).'
+                'When P-type and N-type semiconductors join, mobile electrons diffuse into the P-region and holes diffuse into the N-region, leaving behind uncompensated ionized donor (+q) and acceptor (-q) ions.',
+                'This creates a Space Charge Depletion Region with a built-in potential barrier: V_bi = V_T ln(N_A N_D / n_i²).',
+                '• Forward Bias: Positive terminal to P, negative to N. Reduces barrier height to (V_bi - V), allowing exponential diffusion current.',
+                '• Reverse Bias: Positive to N, negative to P. Increases barrier height to (V_bi + V), leaving only a tiny minority reverse saturation current I₀.',
+                'Shockley Diode Equation: I = I₀ [ exp(V / (η V_T)) - 1 ], where η is the ideality factor (η = 1 for Ge, η = 1 to 2 for Si).'
               ]
             },
             {
-              heading: 'Classification of Nanostructured Materials by Confinement Dimensions',
+              heading: '2. Photodiode (Optical Detector)',
               paragraphs: [
-                '• 0D (Quantum Dots, Nanoparticles): All 3 dimensions confined below 100 nm (0 degrees of free motion). Discrete atomic-like density of states (e.g. CdSe quantum dots).',
-                '• 1D (Nanowires, Nanotubes, Nanorods): 2 dimensions confined, 1 dimension free (electrons move along wire axis). Step-like 1D density of states (e.g. Carbon Nanotubes, Silicon Nanowires).',
-                '• 2D (Nanosheets, Quantum Wells, Graphene): 1 dimension confined, 2 dimensions free (electrons move in 2D plane) (e.g. Graphene, MoS_2 single layers).',
-                '• 3D (Bulk Nanomaterials): Polycrystalline bulk containing nanoscale grain boundaries.'
+                'A photodiode is a p-n junction operating in REVERSE BIAS with an optical window over the depletion region.',
+                'When incident light with photon energy hν >= E_g strikes the depletion zone, it creates electron-hole pairs.',
+                'The strong internal built-in electric field sweeps electrons to the N-side and holes to the P-side, generating a photocurrent I_photo directly proportional to incident optical power P_opt.',
+                'Total Reverse Current: I_total = I_dark + I_photo, where I_dark is the reverse thermal saturation current.',
+                'Responsivity (R): R = I_photo / P_opt = (η q) / (h ν) (measured in A/W).'
               ]
             },
             {
-              heading: 'Property Changes at Nanoscale',
+              heading: '3. Light Emitting Diode (LED)',
               paragraphs: [
-                '• Optical: Bulk gold is shiny yellow, but 20 nm gold nanoparticles appear ruby red due to Surface Plasmon Resonance (SPR).',
-                '• Electrical: Bandgap widens; insulators can become conductors, and semiconductors can change emission colors simply by tuning quantum dot particle size.',
-                '• Mechanical: Superplasticity, ultra-high tensile strength (Carbon nanotubes are 100x stronger than structural steel at 1/6th weight).'
+                'An LED is a heavily doped DIRECT BANDGAP p-n junction operating in FORWARD BIAS.',
+                'Forward bias injects electrons into the P-region and holes into the N-region.',
+                'These excess minority carriers recombine radiatively across the bandgap, releasing energy as visible or infrared photons: hν ≈ E_g.',
+                'Emission Wavelength: λ = hc / E_g = 1240 / E_g (eV) nm.',
+                'Color Engineering: Gallium Nitride (GaN, E_g = 3.4 eV) emits blue/UV light; Gallium Arsenide Phosphide (GaAsP, E_g = 1.9 eV) emits red/yellow light.'
+              ]
+            },
+            {
+              heading: '4. Bipolar Junction Transistor (BJT)',
+              paragraphs: [
+                'A 3-terminal, 2-junction device (Emitter, Base, Collector) in NPN or PNP configuration.',
+                'Common Emitter (CE) Configuration: Input applied to Base-Emitter (forward biased), output taken across Collector-Emitter (reverse biased).',
+                'Current Amplification Factor (β): β = I_C / I_B = α / (1 - α) (typically 50 to 300).',
+                'Total Collector Current: I_C = β I_B + (1 + β) I_CBO.',
+                'Operating Regions: Cutoff (both junctions reverse biased, switch OFF), Active (forward-reverse, linear amplifier), Saturation (both junctions forward biased, switch ON).'
               ]
             }
           ],
           formulas: [
             {
-              title: 'Surface-to-Volume Ratio for Sphere',
-              latex: '\\frac{\\text{Surface Area}}{\\text{Volume}} = \\frac{4\\pi R^2}{\\frac{4}{3}\\pi R^3} = \\frac{3}{R}',
-              explanation: 'Shows surface atom percentage escalates rapidly as radius R approaches nanometer scale.'
+              title: 'Shockley Ideal Diode Equation',
+              latex: 'I = I_0 \\left( e^{\\frac{V}{\\eta V_T}} - 1 \\right)',
+              explanation: 'Describes current-voltage characteristics of a forward and reverse biased p-n junction.'
             },
             {
-              title: 'Brus Equation for Quantum Dot Bandgap Shift',
-              latex: 'E_g(\\text{nano}) = E_g(\\text{bulk}) + \\frac{h^2}{8 R^2} \\left( \\frac{1}{m_e^*} + \\frac{1}{m_h^*} \\right) - \\frac{1.8 q^2}{4\\pi \\varepsilon R}',
-              explanation: 'Relates quantum dot emission color (band gap) directly to nanoparticle radius R.'
+              title: 'LED Peak Emission Wavelength',
+              latex: '\\lambda = \\frac{hc}{E_g} = \\frac{1240}{E_g \\text{ (in eV)}} \\text{ nm}',
+              explanation: 'Directly relates emitted LED photon wavelength to bandgap energy.'
+            },
+            {
+              title: 'BJT Current Gain Relation',
+              latex: '\\beta = \\frac{\\alpha}{1 - \\alpha}, \\quad I_C = \\beta I_B + (1 + \\beta) I_{CBO}',
+              explanation: 'Relates common-emitter current gain β to common-base current gain α.'
             }
           ],
           example: {
-            problem: 'Compare the surface-to-volume ratio of a macroscopic sphere of radius R_1 = 1 cm with a nanoparticle of radius R_2 = 10 nm.',
+            problem: 'A green LED is fabricated from a semiconductor with an energy bandgap E_g = 2.25 eV. Calculate the wavelength of emitted light and verify that it falls in the green visible band (500 nm to 565 nm).',
             solutionSteps: [
-              'Step 1: For bulk sphere R_1 = 1 cm = 10^(-2) m:',
-              '  (S/V)_bulk = 3 / 10^(-2) = 300 m^(-1).',
-              'Step 2: For nanoparticle R_2 = 10 nm = 10^(-8) m:',
-              '  (S/V)_nano = 3 / 10^(-8) = 3 * 10^8 m^(-1).',
-              'Step 3: Ratio (S/V)_nano / (S/V)_bulk = (3 * 10^8) / 300 = 10^6 (One Million Times Higher!).',
-              'Step 4: The surface atom density is 1,000,000 times larger in the nanoparticle.'
+              'Step 1: Bandgap E_g = 2.25 eV = 2.25 * 1.602 * 10^(-19) J = 3.605 * 10^(-19) J.',
+              'Step 2: Formula: λ = hc / E_g.',
+              'Step 3: λ = (6.626 * 10^(-34) * 3.0 * 10^8) / (3.605 * 10^(-19)) = 5.514 * 10^(-7) m = 551.4 nm.',
+              'Step 4: Check range: 551.4 nm lies squarely inside the green visible spectrum (500–565 nm).'
             ],
-            finalAnswer: 'Nanoparticle surface-to-volume ratio is 1,000,000 times higher than the bulk sphere.'
+            finalAnswer: 'Emission Wavelength λ = 551.4 nm (Pure Green light).'
           },
           engineeringApplication: {
-            title: 'Samsung QLED TV Quantum Dot Displays',
-            description: 'Televisions embed 2 nm (blue-emitting) to 6 nm (red-emitting) CdSe/ZnS core-shell quantum dots excited by blue LED backlights, achieving pure 100% Rec. 2020 color accuracy without color filter light loss.',
-            impact: 'Delivers vivid cinematic HDR brightness with 30% reduced electrical power.'
+            title: 'Optical Fiber Receivers & Display Micro-LEDs',
+            description: 'High-speed InGaAs PIN photodiodes detect 100 Gbps modulated optical pulses in data centers, while sub-10μm Micro-LED arrays power ultra-bright smartwatch displays.',
+            impact: 'Revolutionizes optical communication bandwidth and energy-efficient displays.'
           },
           commonMistakes: [
             {
-              mistake: 'Confusing 0D and 2D nanomaterial definitions.',
-              correction: '0D has ZERO degrees of freedom (all 3 dimensions confined). 2D has TWO degrees of free motion (1 dimension confined).',
-              why: 'Dimension number refers to the number of UNCONFINED free electron motion directions.'
+              mistake: 'Connecting a photodiode in forward bias for optical power detection.',
+              correction: 'Photodiodes are ALWAYS operated in REVERSE BIAS to achieve low dark current and linear optical detection.',
+              why: 'In forward bias, large exponential diffusion currents completely overwhelm the tiny optical photocurrent.'
             }
           ],
           quickRevision: [
-            'Nanoscale: 1 to 100 nm.',
-            'Surface to volume ratio = 3/R.',
-            'Quantum confinement: E_g increases as size decreases.',
-            '0D: Quantum dots (all 3 axes confined).',
-            '1D: Nanowires / Carbon Nanotubes (2 axes confined).',
-            '2D: Graphene / Nanosheets (1 axis confined).'
+            'Shockley diode equation: I = I₀ (exp(V / ηV_T) - 1).',
+            'Photodiode: Reverse bias, detects optical power (I_total = I_dark + I_photo).',
+            'LED: Forward bias, direct bandgap, emits light λ = hc / E_g.',
+            'BJT CE relation: I_C = β I_B, where β = α / (1 - α).'
           ],
           examFocus: {
-            questionTypes: ['Explain quantum confinement effect and surface-to-volume ratio in nanomaterials (7-8 Marks)', 'Classify nanomaterials into 0D, 1D, 2D with examples (5-7 Marks)', 'Explain optical and electrical property changes at nanoscale (5 Marks)'],
-            likelyMarks: '7 to 8 Marks',
-            keyTheorems: ['Quantum Size Effect & Brus Formula'],
-            tip: 'Include a clean diagram contrasting continuous bulk density of states vs discrete atomic-like spikes for 0D quantum dots.'
+            questionTypes: [
+              'Explain the working principle and V-I characteristics of a photodiode and LED (7-8 Marks)',
+              'Explain the input and output characteristics of a BJT in common emitter (CE) configuration (8 Marks)',
+              'Numerical calculating LED wavelength or BJT currents (5 Marks)'
+            ],
+            likelyMarks: '8 Marks',
+            keyTheorems: ['Direct Bandgap Recombination Theory', 'BJT Current Gain Formulation'],
+            tip: 'Draw the reverse bias photodiode I-V curves under increasing illumination levels P₁ < P₂ < P₃.'
           },
-          visualType: 'quantum-dot-confinement',
-          visualCaption: 'Quantum Dot Confinement: Size-Tunable Bandgap & Color Emission',
-          visualExplanation: 'Diagram illustrating how shrinking quantum dot radius from 6 nm to 2 nm widens the band gap, shifting emission from Red to Green to Blue.',
+          visualType: 'bjt-characteristics',
+          visualCaption: 'Common Emitter (CE) BJT Output Characteristics & Operating Regions',
+          visualExplanation: 'Graph showing Collector Current I_C vs V_CE across varying base currents I_B, demarcating Cutoff, Active linear amplification, and Saturation switching zones.',
+          estimatedMinutes: 30
+        },
+        {
+          id: 'phy-u5-t4',
+          topicNumber: '5.4',
+          title: 'Hall Effect in Semiconductors & Engineering Applications',
+          syllabusText: 'Hall effect.',
+          unitId: 'phy-u5',
+          subjectId: 'physics-1',
+          subjectCode: '100104',
+          quickDefinition: 'When a current-carrying semiconductor strip is placed in a perpendicular magnetic field B, moving charge carriers experience a transverse Lorentz force F_L = q(v_d × B) that deflects them to one edge, establishing a transverse potential difference called the Hall Voltage V_H. The Hall Coefficient R_H = 1/(nq) directly determines carrier type (n or p), concentration n, and mobility μ.',
+          whyItMatters: 'Powers contactless wheel-speed sensors in automotive ABS brakes, brushless DC (BLDC) motor commutators, smartphone compasses, and semiconductor characterization tools.',
+          coreConcept: [
+            {
+              heading: '1. Physical Principle & Lorentz Force Deflection',
+              paragraphs: [
+                'Consider a rectangular semiconductor slab of width w and thickness t carrying current I along the +x direction.',
+                'A uniform magnetic field B is applied perpendicularly along the +z direction.',
+                'Charge carriers (electrons or holes) moving with drift velocity v_d experience a magnetic Lorentz force: F_L = q (v_d × B).',
+                'This deflects carriers toward one lateral face of the slab, accumulating opposite charges on the two lateral edges.',
+                'This charge accumulation establishes a transverse Hall Electric Field E_H along the y-axis, which opposes further carrier accumulation until equilibrium is reached.'
+              ]
+            },
+            {
+              heading: '2. Mathematical Derivation of Hall Voltage (V_H) & Hall Coefficient (R_H)',
+              paragraphs: [
+                'At equilibrium: Electric Force = Magnetic Lorentz Force',
+                'q E_H = q v_d B  ==>  E_H = v_d B.',
+                'The Hall Voltage across slab width w is: V_H = E_H * w = v_d B w.',
+                'Current density: J = I / (w t) = n q v_d  ==>  v_d = I / (n q w t).',
+                'Substituting v_d into the Hall voltage equation:',
+                'V_H = [ I / (n q w t) ] * B w = (I B) / (n q t).',
+                'Defining the Hall Coefficient: R_H = 1 / (n q).',
+                'Therefore: V_H = (R_H I B) / t.',
+                'Sign Convention of Hall Coefficient:',
+                '• N-Type Semiconductor (Electrons, q = -e): R_H = -1 / (n e) (Negative Hall Voltage).',
+                '• P-Type Semiconductor (Holes, q = +e): R_H = +1 / (p e) (Positive Hall Voltage).'
+              ]
+            },
+            {
+              heading: '3. Key Applications of the Hall Effect',
+              paragraphs: [
+                '1. Determination of Semiconductor Type: The polarity of Hall voltage V_H directly reveals whether a semiconductor is N-type (negative) or P-type (positive).',
+                '2. Measurement of Carrier Concentration: n = 1 / (|R_H| e) = (I B) / (|V_H| e t).',
+                '3. Measurement of Carrier Mobility (Hall Mobility): Since conductivity σ = n e μ  ==>  μ_H = |R_H| * σ = σ / (n e).',
+                '4. Magnetic Field Sensors: Since V_H ∝ B, Hall probes measure magnetic fields from micro-Teslas to tens of Teslas linearly.',
+                '5. Contactless BLDC Motor Rotor Commutation: Detects rotor permanent magnet position in electric vehicle drive motors without mechanical brushes.'
+              ]
+            }
+          ],
+          formulas: [
+            {
+              title: 'Hall Voltage Formula',
+              latex: 'V_H = \\frac{I B}{n q t} = \\frac{R_H I B}{t}',
+              explanation: 'Transverse voltage generated across semiconductor slab of thickness t.'
+            },
+            {
+              title: 'Hall Coefficient',
+              latex: 'R_H = \\frac{1}{n q} = \\begin{cases} -\\frac{1}{n e} & (\\text{N-type}) \\\\ +\\frac{1}{p e} & (\\text{P-type}) \\end{cases}',
+              explanation: 'Fundamental material parameter determining carrier sign and concentration.'
+            },
+            {
+              title: 'Hall Carrier Mobility',
+              latex: '\\mu_H = |R_H| \\sigma',
+              explanation: 'Product of Hall coefficient and electrical conductivity.'
+            }
+          ],
+          example: {
+            problem: 'A rectangular semiconductor strip of thickness 0.50 mm carries a current of 10 mA. A magnetic field B = 0.50 Tesla is applied perpendicular to the strip, producing a Hall voltage V_H = 2.0 mV. Calculate (i) the Hall coefficient R_H, and (ii) the carrier concentration n of the semiconductor.',
+            solutionSteps: [
+              'Step 1: Given thickness t = 0.50 mm = 0.50 * 10^(-3) m = 5.0 * 10^(-4) m.',
+              'Step 2: Current I = 10 mA = 10 * 10^(-3) A = 0.01 A.',
+              'Step 3: Magnetic field B = 0.50 T; Hall voltage V_H = 2.0 mV = 2.0 * 10^(-3) V.',
+              'Step 4: Formula: V_H = (R_H I B) / t  ==>  R_H = (V_H * t) / (I * B).',
+              'Step 5: R_H = (2.0 * 10^(-3) * 5.0 * 10^(-4)) / (0.01 * 0.50) = (1.0 * 10^(-6)) / (0.005) = 2.0 * 10^(-4) m³/C.',
+              'Step 6: Carrier concentration: n = 1 / (R_H * e) = 1 / (2.0 * 10^(-4) * 1.602 * 10^(-19)) = 1 / (3.204 * 10^(-23)) = 3.12 * 10²² m⁻³ (3.12 * 10¹⁶ cm⁻³).'
+            ],
+            finalAnswer: '(i) Hall Coefficient R_H = 2.0 * 10^(-4) m³/C, (ii) Carrier Concentration n = 3.12 * 10²² m⁻³.'
+          },
+          engineeringApplication: {
+            title: 'Electric Vehicle BLDC Motors & Smartphone Magnetometers',
+            description: 'Tesla and EV traction motors use solid-state Hall effect ICs to detect rotor angle with sub-degree accuracy for Field-Oriented Control (FOC) motor commutation.',
+            impact: 'Delivers 98% motor efficiency and smooth torque delivery in electric mobility.'
+          },
+          commonMistakes: [
+            {
+              mistake: 'Using the strip width w instead of thickness t in the denominator of the V_H formula.',
+              correction: 'V_H = (R_H I B) / t. The thickness t along the magnetic field direction is in the denominator.',
+              why: 'Width w cancels out because V_H = E_H * w and J = I / (w t).'
+            }
+          ],
+          quickRevision: [
+            'Principle: Lorentz force F = q(v_d × B) creates transverse field E_H.',
+            'Hall Voltage: V_H = (R_H I B) / t.',
+            'Hall Coefficient: R_H = 1 / (nq) (Negative for N-type, Positive for P-type).',
+            'Mobility: μ_H = |R_H| * σ.',
+            'Applications: Carrier type identification, concentration measurement, magnetic sensing, BLDC commutation.'
+          ],
+          examFocus: {
+            questionTypes: [
+              'Explain the principle of Hall effect, derive expressions for Hall voltage and Hall coefficient, and state its applications (8 Marks)',
+              'Numerical problem calculating Hall voltage, Hall coefficient, or carrier density (5 Marks)'
+            ],
+            likelyMarks: '8 Marks',
+            keyTheorems: ['Lorentz Force Equilibrium in Hall Effect'],
+            tip: 'State clearly how the polarity of V_H distinguishes between N-type and P-type semiconductors.'
+          },
+          visualType: 'hall-effect',
+          visualCaption: 'Hall Effect: Transverse Lorentz Force & Hall Voltage Generation',
+          visualExplanation: 'Diagram illustrating current-carrying semiconductor in perpendicular magnetic field B, showing electron deflection creating transverse electric field E_H and Hall voltage V_H.',
+          estimatedMinutes: 30
+        },
+        {
+          id: 'phy-u5-t5',
+          topicNumber: '5.5',
+          title: 'Solar Cells & Photovoltaic Characteristics',
+          syllabusText: 'Solar cell and its characteristics.',
+          unitId: 'phy-u5',
+          subjectId: 'physics-1',
+          subjectCode: '100104',
+          quickDefinition: 'A solar cell is a large-area p-n junction photodiode that converts sunlight directly into electrical energy via the photovoltaic effect. When incident photons of energy hν >= E_g create electron-hole pairs in the depletion zone, the built-in electric field separates them to produce a photo-voltage V_oc and photo-current I_sc across the load.',
+          whyItMatters: 'Foundational clean-energy technology powering planetary renewable electricity grids, rooftop solar installations, and satellite space stations.',
+          coreConcept: [
+            {
+              heading: '1. Photovoltaic Working Mechanism',
+              paragraphs: [
+                'Solar cell operation involves three consecutive physical processes:',
+                '1. Photon Absorption: Sunlight incident through the transparent top contact generates electron-hole pairs in the depletion region and neutral regions if hν >= E_g.',
+                '2. Charge Separation: The strong internal built-in electric field of the p-n junction sweeps electrons to the N-side and holes to the P-side before they can recombine.',
+                '3. Charge Collection: Excess electrons collected at the front metallic grid and holes collected at the back contact flow through an external load resistor, generating electric power.'
+              ]
+            },
+            {
+              heading: '2. I-V Characteristics & Key Solar Cell Parameters',
+              paragraphs: [
+                'Solar Cell Equation: I = I_sc - I₀ [ exp(V / (η V_T)) - 1 ].',
+                '• Short-Circuit Current (I_sc): The maximum current when terminals are shorted (V = 0). Proportional to incident solar irradiance: I = I_sc.',
+                '• Open-Circuit Voltage (V_oc): The maximum voltage across open terminals (I = 0): V_oc = η V_T ln(I_sc / I₀ + 1).',
+                '• Maximum Power Point (P_max): The point on the I-V curve where power output P = V_mp * I_mp is maximized.',
+                '• Fill Factor (FF): The ratio of maximum usable power to the product of V_oc and I_sc: FF = (V_mp * I_mp) / (V_oc * I_sc) (typically 0.70 to 0.85 for quality silicon cells).',
+                '• Power Conversion Efficiency (η): η = (P_max / P_in) * 100% = [ (FF * V_oc * I_sc) / P_in ] * 100%.'
+              ]
+            }
+          ],
+          formulas: [
+            {
+              title: 'Open Circuit Voltage',
+              latex: 'V_{oc} = \\eta V_T \\ln\\left( \\frac{I_{sc}}{I_0} + 1 \\right)',
+              explanation: 'Maximum voltage generated by illuminated solar cell under open circuit.'
+            },
+            {
+              title: 'Solar Cell Fill Factor (FF)',
+              latex: '\\text{FF} = \\frac{V_{mp} \\cdot I_{mp}}{V_{oc} \\cdot I_{sc}}',
+              explanation: 'Measures squareness and quality of solar cell I-V characteristic curve.'
+            },
+            {
+              title: 'Solar Cell Efficiency (η)',
+              latex: '\\eta = \\frac{P_{\\max}}{P_{\\text{in}}} \\times 100\\% = \\frac{\\text{FF} \\cdot V_{oc} \\cdot I_{sc}}{P_{\\text{in}}} \\times 100\\%',
+              explanation: 'Percentage of incident optical sunlight power converted into electrical power.'
+            }
+          ],
+          example: {
+            problem: 'A silicon solar cell of area 4.0 cm² under standard solar illumination (P_in = 100 mW/cm²) produces an open circuit voltage V_oc = 0.60 V, a short circuit current I_sc = 160 mA, and maximum power point coordinates V_mp = 0.50 V, I_mp = 140 mA. Calculate (i) the Fill Factor (FF), and (ii) the power conversion efficiency η.',
+            solutionSteps: [
+              'Step 1: Total incident optical power P_in = 100 mW/cm² * 4.0 cm² = 400 mW = 0.40 W.',
+              'Step 2: V_oc = 0.60 V; I_sc = 160 mA = 0.16 A.',
+              'Step 3: Maximum power output P_max = V_mp * I_mp = 0.50 V * 0.14 A = 0.070 W = 70 mW.',
+              'Step 4: Fill Factor FF = P_max / (V_oc * I_sc) = 0.070 / (0.60 * 0.16) = 0.070 / 0.096 = 0.7292 (72.9%).',
+              'Step 5: Efficiency η = (P_max / P_in) * 100% = (70 mW / 400 mW) * 100% = 17.5%.'
+            ],
+            finalAnswer: '(i) Fill Factor FF = 0.729 (72.9%), (ii) Efficiency η = 17.5%.'
+          },
+          engineeringApplication: {
+            title: 'Perovskite-Silicon Tandem Solar Cells for Clean Energy',
+            description: 'Stacking a wide-bandgap Perovskite solar cell (E_g = 1.7 eV) on top of a Silicon base cell (E_g = 1.1 eV) captures both blue and infrared sunlight, boosting lab efficiency beyond 33%.',
+            impact: 'Accelerates global decarbonization of electricity generation.'
+          },
+          commonMistakes: [
+            {
+              mistake: 'Drawing the solar cell characteristic in the 1st quadrant like an ordinary diode.',
+              correction: 'Solar cells generate power and operate in the 4TH QUADRANT of the I-V plane (Current is negative while voltage is positive).',
+              why: 'Photocurrent flows out of the device against the normal forward diode current.'
+            }
+          ],
+          quickRevision: [
+            'Working: Generation of e-h pairs by light, Separation by built-in field, Collection at contacts.',
+            'Key metrics: I_sc (V=0), V_oc (I=0), P_max = V_mp * I_mp.',
+            'Fill Factor: FF = (V_mp * I_mp) / (V_oc * I_sc).',
+            'Efficiency: η = (P_max / P_in) * 100% = (FF * V_oc * I_sc / P_in) * 100%.'
+          ],
+          examFocus: {
+            questionTypes: [
+              'Explain the working principle and I-V characteristics of a solar cell, defining V_oc, I_sc, Fill Factor, and Efficiency (8 Marks)',
+              'Numerical calculating Fill Factor and efficiency of a solar cell (5 Marks)'
+            ],
+            likelyMarks: '7 to 8 Marks',
+            keyTheorems: ['Photovoltaic Energy Conversion Principle'],
+            tip: 'Always sketch the illuminated 4th quadrant I-V curve highlighting V_oc, I_sc, and the maximum power rectangle.'
+          },
+          visualType: 'solar-cell-iv',
+          visualCaption: 'Solar Cell I-V Characteristic Curve: V_oc, I_sc & Maximum Power Point',
+          visualExplanation: 'Graph showing dark diode curve versus illuminated 4th-quadrant solar cell characteristic, highlighting short-circuit current I_sc, open-circuit voltage V_oc, and the maximum power rectangle.',
           estimatedMinutes: 25
+        },
+        {
+          id: 'phy-u5-t6',
+          topicNumber: '5.6',
+          title: 'Nanoscience, Nanomaterials, Quantum Confinement & Dimensional Classification',
+          syllabusText: 'Introduction to nanoscience & nanotechnology, the significance of nanoscale, Unique Properties: Comparison of bulk and nanomaterials, large surface-to-volume ratio, change in band gap, and optical/electrical/mechanical properties at the nanoscale, Classification of Nanostructured Materials: 0D (Quantum Dot), 1D (Nanowire), 2D, 3D.',
+          unitId: 'phy-u5',
+          subjectId: 'physics-1',
+          subjectCode: '100104',
+          quickDefinition: 'Nanotechnology is the engineering of functional systems at the molecular scale (1 nm to 100 nm). At the nanoscale, materials exhibit unique quantum mechanical properties not seen in bulk form due to two dominant effects: (1) Dramatically enlarged Surface-Area-to-Volume Ratio, and (2) Quantum Confinement which widens the electronic bandgap. Nanomaterials are classified by confinement dimensionality into 0D (Quantum Dots), 1D (Nanowires/CNTs), 2D (Graphene/Thin Films), and 3D (Bulk Nanocomposites).',
+          whyItMatters: 'Enables 2nm transistor fabrication in computer microchips, targeted cancer nanomedicine drug delivery, ultra-strong carbon nanotube composites, and high-efficiency QLED displays.',
+          coreConcept: [
+            {
+              heading: '1. The Nanoscale Realm & Why Size Changes Everything',
+              paragraphs: [
+                'The nanoscale spans from 1 nm to 100 nm (1 nm = 10^(-9) m ≈ 5 to 10 atoms in diameter).',
+                'When a bulk material is reduced to the nanoscale, classical continuum physics breaks down and quantum mechanics takes over because:',
+                '1. The physical dimensions become comparable to the de Broglie wavelength of electrons and the Bohr exciton radius.',
+                '2. The fraction of surface atoms increases exponentially compared to bulk interior atoms.'
+              ]
+            },
+            {
+              heading: '2. Large Surface-Area-to-Volume Ratio & Superproperties',
+              paragraphs: [
+                'Consider a solid cube of side L divided into smaller nanocubes of side l:',
+                'Surface Area / Volume Ratio: S / V = (6 L²) / L³ = 6 / L.',
+                'As particle dimension L drops into the nanometer range, S/V increases by millions of times.',
+                '• Chemical & Catalytic Hyperactivity: In bulk gold, less than 0.1% of atoms are at the surface. In 3nm gold nanoparticles, over 50% of atoms sit at the surface with unsaturated coordination bonds, transforming inert bulk gold into a hyperactive chemical catalyst!',
+                '• Melting Point Depression: Due to high surface energy, the melting point of gold drops from 1064°C in bulk to ~300°C for 2nm nanoparticles.',
+                '• Mechanical Strength: Carbon Nanotubes (CNTs) exhibit a tensile strength of ~60 GPa (100x stronger than structural steel at 1/6th the weight) due to seamless sp² carbon bond lattices.'
+              ]
+            },
+            {
+              heading: '3. Quantum Confinement Effect & Bandgap Widening',
+              paragraphs: [
+                'In bulk semiconductors, electron energy levels form continuous energy bands.',
+                'When particle size r is smaller than the electron-hole Bohr exciton radius (r < a_B), electrons are trapped inside a 3D quantum box.',
+                'By the particle-in-a-box energy relation E ∝ 1/r², the electronic bandgap widens:',
+                'Brus Equation for Nanoparticles: E_g(nano) = E_g(bulk) + [ (h² / 8 m* r²) ] - [ (1.786 e²) / (4πε r) ].',
+                'Optical Blue Shift: As nanoparticle radius r decreases, bandgap E_g increases, causing optical absorption and photoluminescence emission to shift towards shorter, bluer wavelengths (e.g. CdSe quantum dots emit red light at 6nm diameter, green at 4nm, and blue at 2nm!).'
+              ]
+            },
+            {
+              heading: '4. Dimensional Classification of Nanostructured Materials',
+              paragraphs: [
+                'Nanomaterials are classified strictly based on the number of spatial dimensions confined below 100 nm:',
+                '1. Zero-Dimensional (0D) Nanomaterials: Confined in ALL 3 spatial dimensions (x, y, z < 100 nm). Electrons have zero degrees of translational freedom. Density of States (DOS) consists of discrete atomic-like delta peaks δ(E). Examples: Quantum Dots (CdSe, InP), Gold Nanoparticles, Fullerenes (C₆₀).',
+                '2. One-Dimensional (1D) Nanomaterials: Confined in 2 dimensions; electrons move freely along 1 unconfined axis. DOS exhibits sharp van Hove singularities (DOS ∝ 1/√E). Examples: Carbon Nanotubes (SWCNT, MWCNT), Silicon Nanowires, Zinc Oxide (ZnO) Nanorods.',
+                '3. Two-Dimensional (2D) Nanomaterials: Confined in 1 dimension (thickness < 100 nm); electrons form a 2D electron gas (2DEG) free in 2 planar dimensions. DOS is a staircase step-function. Examples: Graphene (monolayer carbon honeycomb), MoS₂ nanosheets, 2D Quantum Wells.',
+                '4. Three-Dimensional (3D) Nanomaterials: Unconfined in macroscopic scale, but composed of nanoscale grains, precipitates, or nanocomposite matrices (<100 nm). Examples: Nanograined polycrystalline metals, carbon fiber nanocomposites, aerogels.'
+              ]
+            }
+          ],
+          formulas: [
+            {
+              title: 'Surface-to-Volume Ratio Scaling',
+              latex: '\\frac{\\text{Surface Area}}{\\text{Volume}} = \\frac{6}{L} \\propto \\frac{1}{r}',
+              explanation: 'Explains exponential increase in surface atoms and catalytic reactivity at nanoscale.'
+            },
+            {
+              title: 'Quantum Confinement Bandgap (Brus Equation)',
+              latex: 'E_g(\\text{nano}) = E_g(\\text{bulk}) + \\frac{h^2}{8 \\mu r^2} - \\frac{1.786 e^2}{4\\pi \\varepsilon r}',
+              explanation: 'Calculates bandgap widening and blue shift as quantum dot radius r decreases.'
+            }
+          ],
+          example: {
+            problem: 'A bulk semiconductor has a bandgap E_g = 1.50 eV and an effective reduced exciton mass μ = 0.10 m₀ (where m₀ = 9.109 * 10^(-31) kg). Calculate the effective bandgap of a spherical quantum dot of radius r = 2.0 nm fabricated from this material (neglecting Coulomb term).',
+            solutionSteps: [
+              'Step 1: Given bulk E_g = 1.50 eV.',
+              'Step 2: Effective mass μ = 0.10 * (9.109 * 10^(-31)) = 9.109 * 10^(-32) kg.',
+              'Step 3: Radius r = 2.0 nm = 2.0 * 10^(-9) m ==> r² = 4.0 * 10^(-18) m².',
+              'Step 4: Quantum confinement energy ΔE = h² / (8 μ r²).',
+              'Step 5: h² = (6.626 * 10^(-34))² = 4.390 * 10^(-67).',
+              'Step 6: 8 μ r² = 8 * (9.109 * 10^(-32)) * (4.0 * 10^(-18)) = 2.915 * 10^(-48).',
+              'Step 7: ΔE = (4.390 * 10^(-67)) / (2.915 * 10^(-48)) = 1.506 * 10^(-19) J = 0.940 eV.',
+              'Step 8: E_g(nano) = E_g(bulk) + ΔE = 1.50 eV + 0.940 eV = 2.44 eV.'
+            ],
+            finalAnswer: 'Quantum Dot Bandgap E_g(nano) = 2.44 eV (Widens from 1.50 eV to 2.44 eV, shifting emission from infrared into green light!).'
+          },
+          engineeringApplication: {
+            title: 'Quantum Dot Displays (QLED TVs) & Targeted Cancer Drug Delivery',
+            description: 'Samsung QLED displays tune quantum dot size to emit ultra-pure primary red, green, and blue colors with 100% color gamut. Functionalized gold nanoparticles target cancer tumors directly, releasing chemotherapy drugs under infrared laser illumination without harming healthy cells.',
+            impact: 'Revolutionizes consumer visual displays and oncology therapeutics.'
+          },
+          commonMistakes: [
+            {
+              mistake: 'Confusing 1D and 2D nanomaterial confinement definitions.',
+              correction: 'A 1D nanomaterial (Nanowire) has 2 CONFINED dimensions (<100 nm) and 1 free dimension. A 2D nanomaterial (Graphene) has 1 CONFINED dimension (<100 nm) and 2 free dimensions.',
+              why: 'The dimensionality refers to the number of UNCONFINED dimensions where electrons are free to move.'
+            }
+          ],
+          quickRevision: [
+            'Nanoscale: 1 nm to 100 nm.',
+            'Two core effects: (1) S/V ratio increases as 1/r, (2) Bandgap widens by quantum confinement (E ∝ 1/r²).',
+            'Blue shift: Smaller quantum dots emit shorter wavelength / higher energy light.',
+            '0D: Quantum Dots (3 dimensions < 100 nm, delta DOS).',
+            '1D: Nanowires / CNTs (2 dimensions < 100 nm).',
+            '2D: Graphene / Thin films (1 dimension < 100 nm).',
+            '3D: Bulk nanocomposites.'
+          ],
+          examFocus: {
+            questionTypes: [
+              'Classify nanomaterials into 0D, 1D, 2D, and 3D with examples and density of states (8 Marks)',
+              'Explain the quantum confinement effect and surface-to-volume ratio in nanomaterials (7 Marks)',
+              'Compare the physical, optical, and electrical properties of bulk materials versus nanomaterials (6-7 Marks)',
+              'Numerical calculating quantum dot bandgap widening using Brus equation (5 Marks)'
+            ],
+            likelyMarks: '8 to 10 Marks',
+            keyTheorems: ['Quantum Confinement in Nanocrystals', 'Surface-to-Volume Scaling Law'],
+            tip: 'Always provide the 4-tier classification table (0D, 1D, 2D, 3D) along with Density of States graphs for full marks.'
+          },
+          visualType: 'nanomaterials-classification',
+          visualCaption: 'Dimensional Classification: 0D Quantum Dots, 1D Nanowires & 2D Graphene',
+          visualExplanation: 'Diagram illustrating quantum confinement dimensionality: 0D spherical quantum dots (all 3 dimensions confined), 1D cylindrical nanowires (2 confined), and 2D planar graphene sheets (1 confined).',
+          estimatedMinutes: 30
         }
       ]
     }
