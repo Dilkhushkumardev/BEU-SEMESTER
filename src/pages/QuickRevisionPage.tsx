@@ -25,7 +25,9 @@ export const QuickRevisionPage: React.FC<QuickRevisionPageProps> = ({ onNavigate
     if (initialSubjectFilter) {
       const match = allSubjects.find((s) => s.id === initialSubjectFilter || s.code === initialSubjectFilter);
       if (match) {
+        // eslint-disable-next-line react/set-state-in-effect
         setSelectedSubjectId(match.id);
+        // eslint-disable-next-line react/set-state-in-effect
         setSelectedUnitId('all');
       }
     }
