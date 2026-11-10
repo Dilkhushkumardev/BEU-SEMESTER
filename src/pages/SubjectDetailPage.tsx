@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { 
   ArrowLeft, 
   CheckCircle2, 
@@ -36,11 +36,12 @@ export const SubjectDetailPage: React.FC<SubjectDetailPageProps> = ({ subjectId,
   const [showBooks, setShowBooks] = useState<boolean>(false);
 
   // Sync expanded unit when navigating between different subjects
-  useEffect(() => {
+  React.useEffect(() => {
     if (subject?.units && subject.units.length > 0) {
+      // eslint-disable-next-line react/set-state-in-effect
       setExpandedUnitIds(new Set([subject.units[0].id]));
     }
-  }, [subjectId, subject]);
+  }, [subject]);
 
   const toggleUnit = (unitId: string) => {
     setExpandedUnitIds((prev) => {
