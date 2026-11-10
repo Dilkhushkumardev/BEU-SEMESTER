@@ -21,17 +21,16 @@ export const QuickRevisionPage: React.FC<QuickRevisionPageProps> = ({ onNavigate
   const [selectedUnitId, setSelectedUnitId] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
 
-  React.useEffect(() => {
-    if (initialSubjectFilter) {
-      const match = allSubjects.find((s) => s.id === initialSubjectFilter || s.code === initialSubjectFilter);
-      if (match) {
-        // eslint-disable-next-line react/set-state-in-effect
-        setSelectedSubjectId(match.id);
-        // eslint-disable-next-line react/set-state-in-effect
-        setSelectedUnitId('all');
-      }
+  // Sync state during render if initialSubjectFilter prop changes
+  const [prevFilter, setPrevFilter] = useState(initialSubjectFilter);
+  if (initialSubjectFilter !== prevFilter) {
+    setPrevFilter(initialSubjectFilter);
+    const match = initialSubjectFilter ? allSubjects.find((s) => s.id === initialSubjectFilter || s.code === initialSubjectFilter) : undefined;
+    if (match) {
+      setSelectedSubjectId(match.id);
+      setSelectedUnitId('all');
     }
-  }, [initialSubjectFilter]);
+  }
 
   const currentSubject = allSubjects.find((s) => s.id === selectedSubjectId) || allSubjects[0];
 

@@ -13,38 +13,47 @@ export const SearchModal: React.FC<SearchModalProps> = ({ onNavigate }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  // Focus input when opened
   useEffect(() => {
     if (isSearchOpen) {
       setTimeout(() => inputRef.current?.focus(), 50);
-    } else {
-      // eslint-disable-next-line react/set-state-in-effect
-      setSearchQuery('');
-      // eslint-disable-next-line react/set-state-in-effect
-      setSelectedIndex(0);
     }
-  }, [isSearchOpen, setSearchQuery]);
+  }, [isSearchOpen]);
 
-  useEffect(() => {
-    // eslint-disable-next-line react/set-state-in-effect
+  // Reset selected index when search query changes during render
+  const [prevQuery, setPrevQuery] = useState(searchQuery);
+  if (searchQuery !== prevQuery) {
+    setPrevQuery(searchQuery);
     setSelectedIndex(0);
-  }, [searchQuery]);
+  }
 
   const results = React.useMemo(() => {
     if (!searchQuery.trim()) return [];
     return performGlobalSearch(searchQuery);
   }, [searchQuery]);
 
+  const handleClose = React.useCallback(() => {
+    setIsSearchOpen(false);
+    setSearchQuery('');
+    setSelectedIndex(0);
+  }, [setIsSearchOpen, setSearchQuery]);
+
   const handleSelect = React.useCallback((result: SearchResult) => {
     setIsSearchOpen(false);
+    setSearchQuery('');
+    setSelectedIndex(0);
     onNavigate(result.url);
-  }, [setIsSearchOpen, onNavigate]);
+  }, [setIsSearchOpen, setSearchQuery, onNavigate]);
 
   // Keyboard navigation inside search results
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!isSearchOpen) return;
 
-      if (e.key === 'ArrowDown') {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        handleClose();
+      } else if (e.key === 'ArrowDown') {
         e.preventDefault();
         setSelectedIndex((prev) => (prev + 1 < results.length ? prev + 1 : prev));
       } else if (e.key === 'ArrowUp') {
@@ -61,7 +70,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({ onNavigate }) => {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isSearchOpen, results, selectedIndex, handleSelect]);
+  }, [isSearchOpen, results, selectedIndex, handleClose, handleSelect]);
 
   if (!isSearchOpen) return null;
 
@@ -96,7 +105,10 @@ export const SearchModal: React.FC<SearchModalProps> = ({ onNavigate }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-24 px-4 bg-black/80 backdrop-blur-md animate-fade-in">
+    <div 
+      className="fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-24 px-4 bg-black/80 backdrop-blur-md animate-fade-in"
+      onClick={handleClose}
+    >
       <div 
         className="w-full max-w-2xl bg-slate-900 border border-slate-700/80 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[80vh]"
         onClick={(e) => e.stopPropagation()}

@@ -35,13 +35,13 @@ export const SubjectDetailPage: React.FC<SubjectDetailPageProps> = ({ subjectId,
   const [showCOs, setShowCOs] = useState<boolean>(false);
   const [showBooks, setShowBooks] = useState<boolean>(false);
 
-  // Sync expanded unit when navigating between different subjects
-  React.useEffect(() => {
-    if (subject?.units && subject.units.length > 0) {
-      // eslint-disable-next-line react/set-state-in-effect
-      setExpandedUnitIds(new Set([subject.units[0].id]));
-    }
-  }, [subject]);
+  // Sync expanded unit during render when navigating between different subjects
+  const [prevSubjectId, setPrevSubjectId] = useState(subjectId);
+  if (subjectId !== prevSubjectId) {
+    setPrevSubjectId(subjectId);
+    setExpandedUnitIds(new Set(subject?.units[0] ? [subject.units[0].id] : []));
+    setSelectedUnitFilter('all');
+  }
 
   const toggleUnit = (unitId: string) => {
     setExpandedUnitIds((prev) => {
